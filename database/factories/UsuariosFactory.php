@@ -1,8 +1,6 @@
 <?php
 
-/* @var $factory \Illuminate\Database\Eloquent\Factory */
-
-use equipac\User;
+use equipac\Models\Usuarios;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -16,13 +14,14 @@ use Faker\Generator as Faker;
 | model instances for testing / seeding your application's database.
 |
 */
+// instanciando o gerador de fakes
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Usuarios::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'nome' => $faker->name,
+        'password' => $faker->unique()->userName, // password
+        'cargo' => $faker->jobTitle,
+        'cpf' => $faker->cpf,
+        'email' => $faker->unique()->safeEmail
     ];
 });
