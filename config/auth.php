@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'usuario',
         'passwords' => 'users',
     ],
 
@@ -36,15 +36,9 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'usuario' => [
             'driver' => 'session',
-            'provider' => 'users',
-        ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+            'provider' => 'usuario',
         ],
     ],
 
@@ -66,9 +60,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'usuario' => [
             'driver' => 'eloquent',
-            'model' => equipac\User::class,
+            'model' => equipac\Models\Usuario::class,
         ],
 
         // 'users' => [
@@ -93,9 +87,9 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
+        'usuario' => [
+            'provider' => 'usuario',
+            'table' => 'usuario_password_resets',
             'expire' => 60,
         ],
     ],
