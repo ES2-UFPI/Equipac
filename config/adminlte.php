@@ -93,7 +93,7 @@ return [
 
     'login_url' => 'login',
 
-    'chamados_url' => 'chamados',
+    'chamados_url' => 'chamado',
 
 
     /*
@@ -117,14 +117,14 @@ return [
         ],
         [
             'text'        => 'Manutenção',
-            'url'         => 'manutencao',
+            'url'         => 'equipamento',
             'icon'        => 'wrench',
             'label'       => 5,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Chamados',
-            'url'         => 'chamados',
+            'url'         => 'chamado',
             'icon'        => 'comments',
             'label'       => 250,
             'label_color' => 'success',
