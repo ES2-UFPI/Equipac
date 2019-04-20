@@ -16,6 +16,8 @@ route::get('/', function () {
 route::get('usuario', 'UsuarioController@index');
 route::get('login-usuario', 'UsuarioController@login')->name('login-usuario');
 route::Post('login-usuario', 'UsuarioController@postLogin')->name('login-submit');
+route::get('register-usuario', 'UsuarioController@registerIndex')->name('register-u');
+route::Post('register-usuario', 'UsuarioController@registerUsuario')->name('register-usuario');
 
 //so entram nesses quando tiver logado
 //equipamentos.store....

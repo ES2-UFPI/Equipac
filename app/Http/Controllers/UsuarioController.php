@@ -5,6 +5,7 @@ namespace equipac\Http\Controllers;
 use equipac\models\Usuario;
 use Illuminate\Http\Request;
 use Auth;
+use Validator;
 
 class UsuarioController extends Controller
 {
@@ -18,6 +19,11 @@ class UsuarioController extends Controller
         return view('painel');
     }
 
+    public function registerIndex()
+    {
+        return view('usuarios.auth.register-usuario');
+    }
+
     public function login()
     {
         return view('usuarios.auth.login-usuario');
@@ -26,15 +32,40 @@ class UsuarioController extends Controller
     public function postLogin(Request $request)
     {
         $credenciais = ['email' => $request->get('email'),
-        'password' => $request->get('password')];
-
+        'password' => $request->get('password')
+    ];
+        //dd(auth()->guard('usuario')->attempt($credenciais));
         if (auth()->guard('usuario')->attempt($credenciais)) {
-            return redirect('painel');
+            return redirect('usuario');
         } else{
             return redirect('login-usuario')
             ->withErrors(['errors' => 'nao existe']);
         }
 
+    }
+
+    public function registerUsuario(Request $request)
+    {
+        $validacao = validator::make($request->all(),[
+            'name' => 'required',
+            'email' => 'required|min:3|max:150',
+            'password' => 'required|min:3|max:150|unique:Usuario',
+            'cpf' => 'required|max:15'
+        ]);
+
+        if($validacao->fails()){
+            dd($validacao);
+            return redirect('/')
+            ->withErrors(['errors' => 'nao existe']);
+        }
+
+        $user = new Usuario();
+        $user->nome = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->cpf = $request->cpf;
+        $user->save();
+        return redirect('/usuario');
     }
 
     /**
