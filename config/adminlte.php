@@ -93,7 +93,7 @@ return [
 
     'login_url' => 'login',
 
-    'chamados_url' => 'chamados',
+    'chamados_url' => 'chamado',
 
 
     /*
@@ -112,19 +112,19 @@ return [
         'Menu Solicitações',
         [
             'text' => 'Solicitações',
-            'url'  => 'admin',
+            'url'  => 'usuario',
             'can'  => '',
         ],
         [
-            'text'        => 'Manutenção',
-            'url'         => 'manutencao',
+            'text'        => 'Equipamentos',
+            'url'         => 'equipamento',
             'icon'        => 'wrench',
             'label'       => 5,
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Chamados',
-            'url'         => 'chamados',
+            'text'        => 'Problemas',
+            'url'         => 'problema',
             'icon'        => 'comments',
             'label'       => 250,
             'label_color' => 'success',

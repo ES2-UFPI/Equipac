@@ -1,16 +1,4 @@
 @extends('adminlte::page')
 @section('content')
-
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
- 
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-
+<h1>{{auth()->user()->nome}}</h1>
 @endsection

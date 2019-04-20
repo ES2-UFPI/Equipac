@@ -2,7 +2,7 @@
 @section('content')
  <!-- /.card-header -->
               <!-- form start -->
-              <form method="POST" role="form" action="{{route('cadastro.chamado')}}">
+              <form method="POST" role="form" action="{{route('chamado.store')}}">
                 {!! csrf_field() !!}
                   <div class="card-body">
                     <!-- textarea -->
