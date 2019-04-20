@@ -2,20 +2,19 @@
 
 namespace equipac\Http\Controllers;
 
-use equipac\models\Manutencao;
+use equipac\models\Admin;
 use Illuminate\Http\Request;
 
-class ManutencaoController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Manutencao $ma)
+    public function index()
     {
-        $manut = $ma::all();
-        return view('bolsista.sol-manutencao' , compact('manut'));
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class ManutencaoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -42,10 +41,10 @@ class ManutencaoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \equipac\models\Manutencao  $manutencao
+     * @param  \equipac\models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Manutencao $manutencao)
+    public function show(Admin $admin)
     {
         //
     }
@@ -53,10 +52,10 @@ class ManutencaoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \equipac\models\Manutencao  $manutencao
+     * @param  \equipac\models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Manutencao $manutencao)
+    public function edit(Admin $admin)
     {
         //
     }
@@ -65,10 +64,10 @@ class ManutencaoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \equipac\models\Manutencao  $manutencao
+     * @param  \equipac\models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Manutencao $manutencao)
+    public function update(Request $request, Admin $admin)
     {
         //
     }
@@ -76,10 +75,10 @@ class ManutencaoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \equipac\models\Manutencao  $manutencao
+     * @param  \equipac\models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Manutencao $manutencao)
+    public function destroy(Admin $admin)
     {
         //
     }

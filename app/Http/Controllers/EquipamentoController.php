@@ -38,7 +38,8 @@ class EquipamentoController extends Controller
     {
         //dd($dados->all());
         $ext = array('criacao' => date('Y-m-d H:i:s'),
-            'usuario_id' => auth()->user()->id);
+                     'usuario_id' => auth()->user()->id
+                    );
         $result = array_merge($request->all(), $ext);
         $insert = $eqp->create($result);
 

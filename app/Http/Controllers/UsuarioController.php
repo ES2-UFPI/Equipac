@@ -9,14 +9,10 @@ use Validator;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('painel');
+        return view('usuario');
     }
 
     public function registerIndex()
@@ -33,11 +29,13 @@ class UsuarioController extends Controller
     {
         $credenciais = ['email' => $request->get('email'),
         'password' => $request->get('password')
-    ];
+        ];
         //dd(auth()->guard('usuario')->attempt($credenciais));
         if (auth()->guard('usuario')->attempt($credenciais)) {
+
             return redirect('usuario');
-        } else{
+        } 
+        else{
             return redirect('login-usuario')
             ->withErrors(['errors' => 'nao existe']);
         }
@@ -56,7 +54,7 @@ class UsuarioController extends Controller
         if($validacao->fails()){
             dd($validacao);
             return redirect('/')
-            ->withErrors(['errors' => 'nao existe']);
+            ->withErrors(['errors' => 'Problema']);
         }
 
         $user = new Usuario();
@@ -65,7 +63,10 @@ class UsuarioController extends Controller
         $user->password = bcrypt($request->password);
         $user->cpf = $request->cpf;
         $user->save();
-        return redirect('/usuario');
+
+
+        return redirect('login-usuario');
+
     }
 
     /**

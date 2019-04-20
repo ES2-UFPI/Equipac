@@ -14,11 +14,11 @@
     </div>
 @endif
 <!-- /.card-header -->
-<!-- form start -->
+<!-- form start 
 <form role="form" method="POST" action="{{ route('equipamento.store') }}">
   {!! csrf_field() !!}
   <div class="card-body" class="container-fluid">
-    <!-- textarea -->
+    <!-- textarea 
     <div class="form-group">
       <label>Patrimonio</label>
       <input type="number" class="form-control" id="patrimonio" name="patrimonio" placeholder="Patrimonio">
@@ -31,15 +31,14 @@
       <button type="submit" class="btn btn-primary">Adicionar</button>
     </div>
   </form>
-
+-->
 <div>
-  <h1>Listagem das categorias:</h1>
 
 <div class="row" class="container-fluid">
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Equipamento cadastrados</h3>
+        <h3 class="card-title">Equipamentos cadastrados para Manutenção:</h3>
 
         <div class="card-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
@@ -56,21 +55,12 @@
         <table class="table table-hover">
           <tr>
           <th>Id</th>
-          <th>Patrimonio</th>
-          <th>Modelo</th>
           <th></th>
         </tr>
-         @foreach($equipamento as $e )
+         @foreach($manut as $e )
          <tr>
-          <th>{{ $e['idEquipamento']}}</th>
-          <th>{{ $e['patrimonio']}}</th>
-          <th>{{ $e['modelo']}}</th>
-          <th>
-            <form method="post" action="{{}}">
-               <button type="imput" class="btn btn-primary">Sol. Manutenção</button></th>
-            </form>
-
-           
+          <th>{{ $e['idManutencao']}}</th>
+          <th><button type="" class="btn btn-primary">Sol. Manutenção</button></th>
          </tr>
          @endforeach
       </table>
