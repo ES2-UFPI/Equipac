@@ -2,20 +2,20 @@
 
 namespace equipac\Http\Controllers;
 
+use equipac\models\problema;
 use Illuminate\Http\Request;
-use equipac\models\Equipamento;
 
-class EquipamentoController extends Controller
+class ProblemaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Equipamento $eqp)
+    public function index(Problema $prob)
     {
-        $equipamento = $eqp::all();
-        return view('usuarios.equipamento' , compact('equipamento'));
+        $problema = $prob::all();
+        return view('usuarios.problemas' , compact('problema'));
     }
 
     /**
@@ -25,7 +25,7 @@ class EquipamentoController extends Controller
      */
     public function create()
     {
-        return view('usuarios/equipamento');
+        //
     }
 
     /**
@@ -34,32 +34,31 @@ class EquipamentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Equipamento $eqp)
+    public function store(Request $request, Problema $cham)
     {
-        //dd($dados->all());
-        $ext = array('criacao' => date('Y-m-d H:i:s'),
-            'usuario_id' => auth()->user()->id);
+         $ext = array('criacao' => date('Y-m-d H:i:s'),
+                    'usuario_id' => auth()->user()->id);
         $result = array_merge($request->all(), $ext);
-        $insert = $eqp->create($result);
+        $insert = $cham->create($result);
 
         if ($insert)
             return redirect()
-        ->route('equipamento.index')
-        ->with('success', 'Equipamento inserida com sucesso!');
+                    ->route('index')
+                    ->with('success', 'Chamado criado com sucesso!');
 
     // Redireciona de volta com uma mensagem de erro
         return redirect()
-        ->back()
-        ->with('error', 'Falha ao inserir');
+                ->back()
+                ->with('error', 'Falha ao Criar');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \equipac\models\problema  $problema
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(problema $problema)
     {
         //
     }
@@ -67,10 +66,10 @@ class EquipamentoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \equipac\models\problema  $problema
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(problema $problema)
     {
         //
     }
@@ -79,10 +78,10 @@ class EquipamentoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \equipac\models\problema  $problema
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, problema $problema)
     {
         //
     }
@@ -90,10 +89,10 @@ class EquipamentoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \equipac\models\problema  $problema
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(problema $problema)
     {
         //
     }

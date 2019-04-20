@@ -35,8 +35,9 @@ class ChamadoController extends Controller
     public function store(Request $request, Chamados $cham)
     {
         //dd($dados->all());
-        $tempo = array('criacao' => date('Y-m-d H:i:s'));
-        $result = array_merge($request->all(), $tempo);
+        $ext = array('criacao' => date('Y-m-d H:i:s'),
+                    'usuario_id' => auth()->user()->id);
+        $result = array_merge($request->all(), $ext);
         $insert = $cham->create($result);
 
         if ($insert)

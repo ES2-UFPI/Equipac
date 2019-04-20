@@ -25,6 +25,7 @@ route::Post('register-usuario', 'UsuarioController@registerUsuario')->name('regi
 Route::resource('equipamento', 'EquipamentoController');
 Route::resource('chamado', 'ChamadoController');
 Route::resource('manutencao', 'ManutencaoController');
+Route::resource('problema', 'ProblemaController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

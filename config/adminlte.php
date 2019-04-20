@@ -112,19 +112,19 @@ return [
         'Menu Solicitações',
         [
             'text' => 'Solicitações',
-            'url'  => 'admin',
+            'url'  => 'usuario',
             'can'  => '',
         ],
         [
-            'text'        => 'Manutenção',
+            'text'        => 'Equipamentos',
             'url'         => 'equipamento',
             'icon'        => 'wrench',
             'label'       => 5,
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Chamados',
-            'url'         => 'chamado',
+            'text'        => 'Problemas',
+            'url'         => 'problema',
             'icon'        => 'comments',
             'label'       => 250,
             'label_color' => 'success',
