@@ -33,6 +33,8 @@ class Usuario extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $guard = 'usuario';
+
 
     public function equipamento()
     {

@@ -13,9 +13,9 @@ return [
     |
     */
 
-
     'defaults' => [
         'guard' => 'usuario',
+        'guard' => 'bolsista',
         'passwords' => 'users',
     ],
     

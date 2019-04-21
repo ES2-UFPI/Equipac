@@ -23,6 +23,8 @@ class Bolsista extends Authenticatable
         'password',
     ];
 
+    protected $guard = 'bolsista';
+
     /**
      * The attributes that should be cast to native types.
      *

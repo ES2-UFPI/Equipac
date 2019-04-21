@@ -32,6 +32,7 @@ route::Post('register-bolsista', 'BolsistaController@registerBolsista')->name('r
 Route::resource('equipamento', 'EquipamentoController');
 Route::resource('chamado', 'ChamadoController');
 Route::resource('manutencao', 'ManutencaoController');
+//route::get('manutencao', 'BolsistaController@registerIndex')->name('register-b');
 Route::resource('problema', 'ProblemaController');
 
 Auth::routes();

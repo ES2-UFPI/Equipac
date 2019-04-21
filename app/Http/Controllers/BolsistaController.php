@@ -9,6 +9,12 @@ use Validator;
 
 class BolsistaController extends Controller
 {
+
+    public function __construct()
+    {
+        auth()->setDefaultDriver('bolsista');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,6 +41,7 @@ class BolsistaController extends Controller
             $credenciais = ['email' => $request->get('email'),
             'password' => $request->get('password')
         ];
+        config(['auth.defaults.guard' => 'bolsista']);
             //dd(auth()->guard('bolsista')->attempt($credenciais));
         if (auth()->guard('bolsista')->attempt($credenciais)) {
             //dd(auth()->user());
@@ -66,6 +73,7 @@ public function registerbolsista(Request $request)
     $user->email = $request->email;
     $user->password = bcrypt($request->password);
     $user->cpf = $request->cpf;
+     $user->nivel = 2;
     $user->save();
     
     return redirect('/bolsista-login');

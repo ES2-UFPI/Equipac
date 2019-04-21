@@ -59,7 +59,7 @@
         </tr>
          @foreach($manut as $e )
          <tr>
-          <th>{{ $e['idManutencao']}}</th>
+          <th>{{ $e['id']}}</th>
           <th><button type="" class="btn btn-primary">Sol. Manutenção</button></th>
          </tr>
          @endforeach
