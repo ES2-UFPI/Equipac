@@ -125,7 +125,7 @@ return [
         ],
         [
             'text'        => 'Sol. de chamados',
-            'url'         => 'manutencao',
+            'url'         => 'chamados',
             'icon'        => 'comments',
             'label'       => 10,
             'label_color' => 'success',

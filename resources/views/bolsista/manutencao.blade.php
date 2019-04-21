@@ -3,20 +3,18 @@
 
 
 @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success">
+  {{ session('success') }}
+</div>
 @endif
- 
+
 @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
+<div class="alert alert-danger">
+  {{ session('error') }}
+</div>
 @endif
 <!-- /.card-header -->
 <!-- form start -->
-
-[]~;..
 <div class="row" class="container-fluid">
   <div class="col-12">
     <div class="card">
@@ -37,33 +35,34 @@
       <div class="card-body table-responsive p-0">
         <table class="table table-hover">
           <tr>
-          <th>Id</th>
-          <th>Id</th>
-          <th>nome</th>
-        </tr>
-         @foreach($manutencao as $index => $ma )
-         <?php 
-              $e = $ma::find($manutencao[$index]->id)->equipamento;
-              $a = $equip::find($e[$index]->id)->usuario;
-           ?>
-         <tr>
-          <th>{{ $ma['id']}}</th>
-          <th>{{$a->id}}</th>
-           <td>{{$a->nome}}</td>
-          <th>
-            <form method="post" action="{{route('manutencao.store')}}">
+            <th>Id</th>
+            <th>Id</th>
+            <th>nome</th>
+          </tr>
+          @foreach($manutencao as $index => $ma )
+          <?php $e = $ma::find($manutencao[$index]->id)->equipamento; ?>
+          @foreach($e as $equipamento)
+          <?php $a = $equip::find($equipamento->id)->usuario;?>
+          <tr>
+            <th>{{ $ma['id']}}</th>
+            <th>{{$a->id}}</th>
+            <td>{{$a->nome}}</td>
+            <th>
+              <form method="post" action="{{route('manutencao.store')}}">
                {!! csrf_field() !!}
-              <input type="hidden" name="id" value="{{$ma['id']}}">
-               <button type="imput" class="btn btn-primary">Sol. Manutenção</button></th>
-            </form>           
+               <input type="hidden" name="id" value="{{$ma['id']}}">
+               <button type="imput" class="btn btn-primary">Sol. Manutenção</button>
+             </form>           
+           </th>
          </tr>
          @endforeach
-      </table>
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
-</div>
-<!-- /.row -->
+         @endforeach
+       </table>
+     </div>
+     <!-- /.card-body -->
+   </div>
+   <!-- /.card -->
+ </div>
+ <!-- /.row -->
 
-@endsection
+ @endsection
