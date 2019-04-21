@@ -4,10 +4,9 @@ namespace equipac\models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Authenticatable
+class Bolsista extends Authenticatable
 {
-
-	protected $table = 'usuario';
+    protected $table = 'bolsista';
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +23,8 @@ class Usuario extends Authenticatable
         'password',
     ];
 
+    protected $guard = 'bolsista';
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -32,13 +33,5 @@ class Usuario extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    protected $guard = 'usuario';
-
-
-    public function equipamento()
-    {
-        return $this->hasMany('App\models\Equipamento', 'usuario_id', 'id');
-    }
 
 }

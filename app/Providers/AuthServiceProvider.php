@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'equipac\Model' => 'equipac\Policies\ModelPolicy',
+         //'equipac\Model' => 'equipac\Policies\ModelPolicy',
     ];
 
     /**
@@ -25,6 +25,23 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+         Gate::define('bolsista', function ($user) {
+           if ($user->nivel == 2){
+               return true;
+           }
+           return false;
+       });
+         Gate::define('usuario', function ($user) {
+           if ($user->nivel == 3){
+               return true;
+           }
+           return false;
+       });
+         Gate::define('admin', function ($user) {
+           if ($user->nivel == 2){
+               return true;
+           }
+           return false;
+       });
     }
 }

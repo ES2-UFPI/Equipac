@@ -2,78 +2,82 @@
 
 namespace equipac\Http\Controllers;
 
-use equipac\models\Usuario;
+use equipac\models\Bolsista;
 use Illuminate\Http\Request;
 use Auth;
 use Validator;
 
-class UsuarioController extends Controller
+class BolsistaController extends Controller
 {
 
     public function __construct()
     {
-        auth()->setDefaultDriver('usuario');
+        auth()->setDefaultDriver('bolsista');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function index()
     {
-        return view('usuario');
+        return view('bolsista');
     }
 
     public function registerIndex()
     {
-        return view('usuarios.auth.register-usuario');
+        return view('bolsista.auth.register-bolsista');
     }
 
     public function login()
     {
-        return view('usuarios.auth.login-usuario');
+        return view('bolsista.auth.login-bolsista');
     }
 
     public function postLogin(Request $request)
     {
-        $credenciais = ['email' => $request->get('email'),
-        'password' => $request->get('password')
-    ];
-    config(['auth.defaults.guard' => 'usuario']);
-        //dd(auth()->guard('usuario')->attempt($credenciais));
-    if (auth()->guard('usuario')->attempt($credenciais)) {
-            //dd(auth()->guard('usuario')->user());
-        return redirect('usuario');
-    } 
-    else{
-        return redirect('login-usuario')
-        ->withErrors(['errors' => 'nao existe']);
+            $credenciais = ['email' => $request->get('email'),
+            'password' => $request->get('password')
+        ];
+        config(['auth.defaults.guard' => 'bolsista']);
+            //dd(auth()->guard('bolsista')->attempt($credenciais));
+        if (auth()->guard('bolsista')->attempt($credenciais)) {
+            //dd(auth()->user());
+            return redirect('bolsista');
+        } 
+        else{
+            return redirect('login-bolsista')
+            ->withErrors(['errors' => 'nao existe']);
+        }
     }
 
-}
-
-public function registerUsuario(Request $request)
+public function registerbolsista(Request $request)
 {
     $validacao = validator::make($request->all(),[
         'name' => 'required',
         'email' => 'required|min:3|max:150',
-        'password' => 'required|min:3|max:150|unique:Usuario',
+        'password' => 'required|min:3|max:150|unique:bolsista',
         'cpf' => 'required|max:15'
     ]);
 
     if($validacao->fails()){
         dd($validacao);
         return redirect('/')
-        ->withErrors(['errors' => 'Problema']);
+        ->withErrors(['errors' => 'problemas']);
     }
 
-    $user = new Usuario();
+    $user = new Bolsista();
     $user->nome = $request->name;
     $user->email = $request->email;
     $user->password = bcrypt($request->password);
     $user->cpf = $request->cpf;
-    $user->nivel = 3;
+     $user->nivel = 2;
     $user->save();
-
-
-    return redirect('login-usuario');
-
+    
+    return redirect('/bolsista-login');
+    
 }
 
     /**
@@ -100,10 +104,10 @@ public function registerUsuario(Request $request)
     /**
      * Display the specified resource.
      *
-     * @param  \equipac\models\Usuario  $usuario
+     * @param  \equipac\models\Bolsista  $bolsista
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuario $usuario)
+    public function show(Bolsista $bolsista)
     {
         //
     }
@@ -111,10 +115,10 @@ public function registerUsuario(Request $request)
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \equipac\models\Usuario  $usuario
+     * @param  \equipac\models\Bolsista  $bolsista
      * @return \Illuminate\Http\Response
      */
-    public function edit(Usuario $usuario)
+    public function edit(Bolsista $bolsista)
     {
         //
     }
@@ -123,10 +127,10 @@ public function registerUsuario(Request $request)
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \equipac\models\Usuario  $usuario
+     * @param  \equipac\models\Bolsista  $bolsista
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, Bolsista $bolsista)
     {
         //
     }
@@ -134,10 +138,10 @@ public function registerUsuario(Request $request)
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \equipac\models\Usuario  $usuario
+     * @param  \equipac\models\Bolsista  $bolsista
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(Bolsista $bolsista)
     {
         //
     }

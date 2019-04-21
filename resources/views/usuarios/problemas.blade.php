@@ -2,7 +2,7 @@
 @section('content')
 <!-- /.card-header -->
 <!-- form start -->
-<form method="POST" role="form" action="{{route('problema.store')}}">
+<form method="POST" role="form" action="{{route('problemas.store')}}">
   {!! csrf_field() !!}
   <div class="card-body">
     <!-- textarea -->
@@ -47,7 +47,7 @@
             </tr>
             @foreach($problema as $e )
             <tr>
-              <th>{{ $e['idProblema']}}</th>
+              <th>{{ $e['id']}}</th>
               <th>{{ $e['descricao']}}</th>
               <th>{{ $e['criacao']}}</th>
               <th><button type="" class="btn btn-primary">Sol. Chamado</button></th>

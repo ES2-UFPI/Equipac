@@ -4,9 +4,14 @@ namespace equipac\Http\Controllers;
 
 use Illuminate\Http\Request;
 use equipac\models\Equipamento;
+use equipac\models\Manutencao;
 
 class EquipamentoController extends Controller
 {
+    public function __construct()
+    {
+        auth()->setDefaultDriver('usuario');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +21,12 @@ class EquipamentoController extends Controller
     {
         $equipamento = $eqp::all();
         return view('usuarios.equipamento' , compact('equipamento'));
+    }
+
+     public function indexLista(Equipamento $eqp)
+    {
+        $equipamento = $eqp::all();
+        return view('usuarios.lista-equipamento' , compact('equipamento'));
     }
 
     /**
@@ -38,7 +49,8 @@ class EquipamentoController extends Controller
     {
         //dd($dados->all());
         $ext = array('criacao' => date('Y-m-d H:i:s'),
-            'usuario_id' => auth()->user()->id);
+                     'usuario_id' => auth()->guard('usuario')->user()->id
+                    );
         $result = array_merge($request->all(), $ext);
         $insert = $eqp->create($result);
 
@@ -53,6 +65,24 @@ class EquipamentoController extends Controller
         ->with('error', 'Falha ao inserir');
     }
 
+    public function manutencao(Request $request, Equipamento $eqp, Manutencao $manut)
+    {
+        //dd($eqp::find($request->get('id'))->usuario->id);
+        $eqpp = $eqp::find($request->get('id'));
+        $ext = array('dataAtribuida' => date('Y-m-d H:i:s'));
+        $ext2 = array('status' => 'Atribuida');  
+        $result = array_merge($ext2, $ext);
+        $insert = $manut->create($result);
+        if ($insert){
+            $eqpp->manutencao()->attach($insert, ['equipamento_usuario_id' => $eqp::find($request->get('id'))->usuario->id]);
+            return redirect()
+            ->route('lista-equipamento')
+            ->with('success', 'Manutenção Cadastrada com sucesso!');
+        }
+        return redirect()
+        ->back()
+        ->with('error', 'Falha ao Cadastrar');
+    }
     /**
      * Display the specified resource.
      *
