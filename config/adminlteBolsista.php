@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Equipac</b>',
+    'logo' => '<b>Bolsista</b>',
 
     'logo_mini' => '<b>E</b>PC',
 
@@ -121,23 +121,6 @@ return [
             'icon'        => 'wrench',
             'label'       => 5,
             'label_color' => 'success',
-            'can'         => 'usuario',
-        ],
-        [
-            'text'        => 'Sol. de Manutenção',
-            'url'         => 'manutencao',
-            'icon'        => 'wrench',
-            'label'       => 5,
-            'label_color' => 'success',
-            'can'         => 'bolsista', 
-        ],
-        [
-            'text'        => 'Sol. de chamados',
-            'url'         => 'manutencao',
-            'icon'        => 'comments',
-            'label'       => 10,
-            'label_color' => 'success',
-            'can'         => 'bolsista',
         ],
         [
             'text'        => 'Problemas',
@@ -145,18 +128,7 @@ return [
             'icon'        => 'comments',
             'label'       => 250,
             'label_color' => 'success',
-            'can'         => 'usuario'
-        ],
-        [
-            'text'        => 'Manutenção',
-            'url'         => 'manutencao',
-            'icon'        => 'comments',
-            'label'       => 2,
-            'label_color' => 'success',
-            'can'         => 'usuario'
-        ],
-
-    ],
+        ],],
     /*    'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

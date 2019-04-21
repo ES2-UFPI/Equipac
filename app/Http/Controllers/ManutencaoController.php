@@ -3,6 +3,8 @@
 namespace equipac\Http\Controllers;
 
 use equipac\models\Manutencao;
+use equipac\models\Equipamento;
+use equipac\models\Usuario;
 use Illuminate\Http\Request;
 
 class ManutencaoController extends Controller
@@ -12,10 +14,10 @@ class ManutencaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Manutencao $ma)
+    public function index(Equipamento $ma)
     {
-        $manut = $ma::all();
-        return view('bolsista.sol-manutencao' , compact('manut'));
+        $equipamento = $ma::all();
+        return view('usuarios.manutencao' , compact('equipamento'));
     }
 
     /**
@@ -34,9 +36,23 @@ class ManutencaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Equipamento $eqp, Manutencao $manut)
     {
-        //
+        //dd($eqp::find($request->get('id'))->usuario->id);
+        $eqpp = $eqp::find($request->get('id'));
+        $ext = array('dataAtribuida' => date('Y-m-d H:i:s'));
+        $ext2 = array('status' => 'Atribuida');  
+        $result = array_merge($ext2, $ext);
+        $insert = $manut->create($result);
+        if ($insert){
+            $eqpp->manutencao()->attach($insert, ['equipamento_usuario_id' => $eqp::find($request->get('id'))->usuario->id]);
+            return redirect()
+            ->route('equipamento.index')
+            ->with('success', 'Equipamento inserida com sucesso!');
+        }
+        return redirect()
+        ->back()
+        ->with('error', 'Falha ao inserir');
     }
 
     /**

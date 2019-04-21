@@ -15,24 +15,8 @@
 @endif
 <!-- /.card-header -->
 <!-- form start -->
-<form role="form" method="POST" action="{{ route('equipamento.store') }}">
-  {!! csrf_field() !!}
-  <div class="card-body" class="container-fluid">
-    <!-- textarea -->
-    <div class="form-group">
-      <label>Patrimonio</label>
-      <input type="number" class="form-control" id="patrimonio" name="patrimonio" placeholder="Patrimonio">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Modelo</label>
-      <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Modelo">
-    </div>
-    <div class="card-footer">
-      <button type="submit" class="btn btn-primary">Adicionar</button>
-    </div>
-  </form>
 
-
+[]~;..
 <div class="row" class="container-fluid">
   <div class="col-12">
     <div class="card">
@@ -56,12 +40,20 @@
           <th>Id</th>
           <th>Patrimonio</th>
           <th>Modelo</th>
+          <th></th>
         </tr>
          @foreach($equipamento as $e )
          <tr>
           <th>{{ $e['id']}}</th>
           <th>{{ $e['patrimonio']}}</th>
           <th>{{ $e['modelo']}}</th>
+          <th>
+            <form method="post" action="{{route('manutencao.store')}}">
+               {!! csrf_field() !!}
+              <input type="hidden" name="id" value="{{$e['id']}}">
+               <button type="imput" class="btn btn-primary">Sol. Manutenção</button></th>
+            </form>           
+         </tr>
          @endforeach
       </table>
     </div>

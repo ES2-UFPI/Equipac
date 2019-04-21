@@ -62,6 +62,7 @@ class UsuarioController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->cpf = $request->cpf;
+        $user->nivel = 3;
         $user->save();
 
 

@@ -13,11 +13,12 @@ return [
     |
     */
 
+
     'defaults' => [
         'guard' => 'usuario',
-        'guard' => 'bolsista',
         'passwords' => 'users',
     ],
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -37,6 +38,10 @@ return [
     */
 
     'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
         'usuario' => [
             'driver' => 'session',
             'provider' => 'usuario',
@@ -73,11 +78,10 @@ return [
             'driver' => 'eloquent',
             'model' => equipac\Models\Bolsista::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
     ],
 
     /*
@@ -104,6 +108,11 @@ return [
         'usuario' => [
             'provider' => 'bolsista',
             'table' => 'bolsista_password_resets',
+            'expire' => 60,
+        ],
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
             'expire' => 60,
         ],
     ],

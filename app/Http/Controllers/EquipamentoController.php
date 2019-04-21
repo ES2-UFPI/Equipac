@@ -54,6 +54,25 @@ class EquipamentoController extends Controller
         ->with('error', 'Falha ao inserir');
     }
 
+    public function manutencao(Request $request, Equipamento $eqp, Manutencao $manut)
+    {
+        dd('erro');
+        $ext = array('dataAtribuida' => date('Y-m-d H:i:s'));
+        $ext2 = array('status' => 'Atribuida',
+          'Equipamento_Usuario_id' => $eqp::find($request)->usuario()->id);  
+        $result = array_merge($ext2, $ext);
+        $insert = $manut->create($result);
+        if ($insert){
+            $eqp->manutencao()->attach($manut);
+            return redirect()
+            ->route('equipamento.index')
+            ->with('success', 'Equipamento inserida com sucesso!');
+        }
+    // Redireciona de volta com uma mensagem de erro
+        return redirect()
+        ->back()
+        ->with('error', 'Falha ao inserir');
+    }
     /**
      * Display the specified resource.
      *
