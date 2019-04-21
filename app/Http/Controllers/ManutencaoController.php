@@ -14,10 +14,17 @@ class ManutencaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Equipamento $ma)
+    public function index(Manutencao $ma, Equipamento $equip)
     {
-        $equipamento = $ma::all();
-        return view('usuarios.manutencao' , compact('equipamento'));
+        $manutencao = $ma::all();
+        //$e = $equip::all();
+        //$e = $ma::find($manutencao[0]->id)->equipamento;
+        //dd($e[0]::find()->usuario);
+        //dd($manutencao[0]::find($manutencao[0]->id)->equipamento[0]::find(0)->usuario[0]->id);
+        $e = Manutencao::find($manutencao[0]->id)->equipamento;
+        $a = Equipamento::find($e[0]->id)->usuario;
+        //dd($a->id);
+        return view('usuarios.manutencao' , compact('manutencao', 'equip', 'ma'));
     }
 
     /**

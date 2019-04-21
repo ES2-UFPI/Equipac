@@ -116,14 +116,6 @@ return [
             'can'  => '',
         ],
         [
-            'text'        => 'Equipamentos',
-            'url'         => 'equipamento',
-            'icon'        => 'wrench',
-            'label'       => 5,
-            'label_color' => 'success',
-            'can'         => 'usuario',
-        ],
-        [
             'text'        => 'Sol. de Manutenção',
             'url'         => 'manutencao',
             'icon'        => 'wrench',
@@ -140,22 +132,33 @@ return [
             'can'         => 'bolsista',
         ],
         [
+            'text'        => 'Equipamentos',
+            'url'         => 'equipamento',
+            'icon'        => 'wrench',
+            'can'         => 'usuario',
+        ],
+        [
             'text'        => 'Problemas',
-            'url'         => 'problema',
+            'url'         => 'problemas',
             'icon'        => 'comments',
-            'label'       => 250,
-            'label_color' => 'success',
             'can'         => 'usuario'
         ],
         [
-            'text'        => 'Manutenção',
-            'url'         => 'manutencao',
+            'text'        => 'Lista Equipamentos',
+            'url'         => 'lista-equipamento',
             'icon'        => 'comments',
             'label'       => 2,
             'label_color' => 'success',
             'can'         => 'usuario'
         ],
-
+        [
+            'text'        => 'Listar Problemas',
+            'url'         => 'lista-problemas',
+            'icon'        => 'comments',
+            'label'       => 2,
+            'label_color' => 'success',
+            'can'         => 'usuario'
+        ],
     ],
     /*    'ACCOUNT SETTINGS',
         [

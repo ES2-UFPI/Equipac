@@ -33,7 +33,17 @@ Route::resource('equipamento', 'EquipamentoController');
 Route::resource('chamado', 'ChamadoController');
 Route::resource('manutencao', 'ManutencaoController');
 //route::get('manutencao', 'BolsistaController@registerIndex')->name('register-b');
-Route::resource('problema', 'ProblemaController');
+Route::resource('problemas', 'ProblemaController');
+route::get('sol-manutencao', 'ManutencaoController@index');
+
+
+route::get('lista-equipamento', 'EquipamentoController@indexLista')->name('lista-equipamento');
+route::Post('lista-equipamento', 'EquipamentoController@manutencao')->name('equipamento-manutencao');
+
+
+
+route::get('lista-problemas', 'ProblemaController@indexLista')->name('lista-problemas');
+route::Post('lista-problemas', 'ProblemasController@chamado')->name('problema-chamado');
 
 Auth::routes();
 
