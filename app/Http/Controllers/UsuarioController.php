@@ -35,10 +35,10 @@ class UsuarioController extends Controller
         $credenciais = ['email' => $request->get('email'),
         'password' => $request->get('password')
     ];
-    config(['auth.defaults.guard' => 'usuario']);
         //dd(auth()->guard('usuario')->attempt($credenciais));
     if (auth()->guard('usuario')->attempt($credenciais)) {
             //dd(auth()->guard('usuario')->user());
+        config(['auth.defaults.guard' => 'usuario']);
         return redirect('usuario');
     } 
     else{
