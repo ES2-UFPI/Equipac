@@ -21,8 +21,11 @@ class ManutencaoController extends Controller
         //$e = $ma::find($manutencao[0]->id)->equipamento;
         //dd($e[0]::find()->usuario);
         //dd($manutencao[0]::find($manutencao[0]->id)->equipamento[0]::find(0)->usuario[0]->id);
-        $e = Manutencao::find($manutencao[0]->id)->equipamento;
-        $a = Equipamento::find($e[0]->id)->usuario;
+        if(!$manutencao->isEmpty()){
+            $e = Manutencao::find($manutencao[0]->id)->equipamento;
+            $a = Equipamento::find($e[0]->id)->usuario;
+        }
+        
         //dd($a->id);
         return view('bolsista.manutencao' , compact('manutencao', 'equip', 'ma'));
     }
