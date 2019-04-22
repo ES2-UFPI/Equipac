@@ -73,8 +73,8 @@
     }
 
     .table-status {
-        margin-top: 21px;
-        margin-bottom: 21px !important;
+        margin-top: 20px;
+        margin-bottom: 20px !important;
     }
 </style>
 </head>
