@@ -1,5 +1,5 @@
 @extends('adminlte::page')
 @section('title', 'Equipac Bolsista')
 @section('content')
-<h1>{{auth()->guard('bolsista')->user()->nome}}</h1>
+<h1>{{auth()->user()->nome}}</h1>
 @endsection
