@@ -13,14 +13,14 @@ route::get('/', function () {
 
 
 //localhost:8000/usuario -- exibe a tela com as info do usuario
-route::get('usuario', 'UsuarioController@index');
+route::get('usuario', 'UsuarioController@index')->name('usuario');
 route::get('login-usuario', 'UsuarioController@login')->name('login-usuario');
 route::Post('login-usuario', 'UsuarioController@postLogin')->name('login-submit');
 route::get('register-usuario', 'UsuarioController@registerIndex')->name('register-u');
 route::Post('register-usuario', 'UsuarioController@registerUsuario')->name('register-usuario');
 
 //localhost:8000/bolsista -- exibe a tela com as info do bolsista
-route::get('bolsista', 'BolsistaController@index');
+route::get('bolsista', 'BolsistaController@index')->name('bolsista');
 route::get('login-bolsista', 'BolsistaController@login')->name('login-bolsista');
 route::Post('login-bolsista', 'BolsistaController@postLogin')->name('login-submit-bolsista');
 route::get('register-bolsista', 'BolsistaController@registerIndex')->name('register-b');
@@ -47,4 +47,5 @@ route::Post('lista-problemas', 'ProblemasController@chamado')->name('problema-ch
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
+Route::post('home', 'HomeController@index')->name('home');

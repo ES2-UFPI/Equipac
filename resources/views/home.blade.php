@@ -1,9 +1,5 @@
 @extends('adminlte::page')
-<<<<<<< Updated upstream
-
-=======
-@section('title', 'Equipac Bolsista')
->>>>>>> Stashed changes
+@section('title', 'Equipac')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
