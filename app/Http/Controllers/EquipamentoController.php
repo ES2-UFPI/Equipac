@@ -5,6 +5,9 @@ namespace equipac\Http\Controllers;
 use Illuminate\Http\Request;
 use equipac\models\Equipamento;
 use equipac\models\Manutencao;
+use equipac\models\Usuario;
+
+use Auth;
 
 class EquipamentoController extends Controller
 {
@@ -17,9 +20,11 @@ class EquipamentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Equipamento $eqp)
+    public function index(Equipamento $eqp, Usuario $usuario)
     {
-        $equipamento = $eqp::all();
+        dd(Auth::guard()->user());
+        //$equipamento = $usuario::find(auth()->user()->id)->equipamento;
+
         return view('usuarios.equipamento' , compact('equipamento'));
     }
 

@@ -47,13 +47,6 @@
             <th>{{ $ma['id']}}</th>
             <th>{{$a->id}}</th>
             <td>{{$a->nome}}</td>
-            <th>
-              <form method="post" action="{{route('manutencao.store')}}">
-               {!! csrf_field() !!}
-               <input type="hidden" name="id" value="{{$ma['id']}}">
-               <button type="imput" class="btn btn-primary">Sol. Manutenção</button>
-             </form>           
-           </th>
          </tr>
          @endforeach
          @endforeach
