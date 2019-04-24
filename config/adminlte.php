@@ -133,7 +133,7 @@ return [
         ],
         [
             'text'        => 'Equipamentos',
-            'url'         => 'equipamento',
+            'url'         => 'usuario/equipamento',
             'icon'        => 'wrench',
             'can'         => 'usuario',
         ],
@@ -145,7 +145,7 @@ return [
         ],
         [
             'text'        => 'Lista Equipamentos',
-            'url'         => 'lista-equipamento',
+            'url'         => 'usuario/lista-equipamento',
             'icon'        => 'comments',
             'label'       => 2,
             'label_color' => 'success',

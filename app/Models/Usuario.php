@@ -3,11 +3,15 @@
 namespace equipac\models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use equipac\models\Equipamento;
+
 
 class Usuario extends Authenticatable
 {
 
 	protected $table = 'usuario';
+    protected $primarykey = 'id';
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -38,7 +42,7 @@ class Usuario extends Authenticatable
 
     public function equipamento()
     {
-        return $this->hasMany('App\models\Equipamento', 'usuario_id', 'id');
+        return $this->hasMany('equipac\models\Equipamento', 'usuario_id', 'id');
     }
 
 }
