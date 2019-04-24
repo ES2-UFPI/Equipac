@@ -3,6 +3,8 @@
 namespace equipac\models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use equipac\models\Equipamento;
+
 
 class Usuario extends Authenticatable
 {
@@ -40,7 +42,7 @@ class Usuario extends Authenticatable
 
     public function equipamento()
     {
-        return $this->hasMany('App\models\Equipamento', 'usuario_id', 'id');
+        return $this->hasMany('equipac\models\Equipamento', 'usuario_id', 'id');
     }
 
 }

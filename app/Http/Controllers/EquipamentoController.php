@@ -11,10 +11,15 @@ use Auth;
 
 class EquipamentoController extends Controller
 {
-    public function __construct()
+     public function __construct()
     {
-        auth()->setDefaultDriver('usuario');
+        //auth()->setDefaultDriver('usuario');
+
+
+        $this->middleware('auth:usuario',['only' => 'index', 'create', 'store', 'update', 'destroy']);
+
     }
+    
     /**
      * Display a listing of the resource.
      *
@@ -22,15 +27,17 @@ class EquipamentoController extends Controller
      */
     public function index(Equipamento $eqp, Usuario $usuario)
     {
-        dd(Auth::guard()->user());
-        //$equipamento = $usuario::find(auth()->user()->id)->equipamento;
+        //dd(Auth::guard()->user()->id);
+        $equipamento = $usuario::find(auth()->user()->id)->equipamento;
 
         return view('usuarios.equipamento' , compact('equipamento'));
     }
 
-     public function indexLista(Equipamento $eqp)
+     public function indexLista(Equipamento $eqp, Usuario $usuario)
     {
-        $equipamento = $eqp::all();
+        dd(Auth::guard()->user()->id);
+        //$equipamento = $usuario::find(auth()->user()->id)->equipamento;
+
         return view('usuarios.lista-equipamento' , compact('equipamento'));
     }
 

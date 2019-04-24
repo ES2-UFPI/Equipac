@@ -12,38 +12,42 @@ class UsuarioController extends Controller
 
     public function __construct()
     {
-        auth()->setDefaultDriver('usuario');
+        //auth()->setDefaultDriver('usuario');
+
+
+        $this->middleware('auth:usuario',['only' => 'index']);
+
     }
 
     public function index()
     {
-        return view('home');
+        return view('usuario');
     }
 
     public function registerIndex()
     {
-        return view('usuarios.auth.register-usuario');
+        return view('usuarios.auth.register');
     }
 
     public function login()
     {
-        return view('usuarios.auth.login-usuario');
+        return view('usuarios.auth.login');
     }
 
     public function postLogin(Request $request)
     {
-        $credenciais = ['email' => $request->get('email'),
-        'password' => $request->get('password')];
-
-        if (auth()->guard('usuario')->attempt($credenciais)) {
-            config(['auth.defaults.guard' => 'usuario']);
-            return redirect('home');
-        } 
-        else{
-            return redirect('login-usuario')
-            ->withErrors(['errors' => 'nao existe']);
+        // Validate the form data
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+      // Attempt to log the user in
+        if (Auth::guard('usuario')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+        // if successful, then redirect to their intended location
+            return redirect()->intended(route('usuario'));
         }
-
+      // if unsuccessful, then redirect back to the login with the form data
+        return redirect()->back()->withInput($request->only('email', 'remember'));
     }
 
     public function registerUsuario(Request $request)

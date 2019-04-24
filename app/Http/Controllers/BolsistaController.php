@@ -13,6 +13,7 @@ class BolsistaController extends Controller
     public function __construct()
     {
         auth()->setDefaultDriver('bolsista');
+        $this->middleware('auth');
     }
 
     /**
@@ -23,7 +24,7 @@ class BolsistaController extends Controller
 
     public function index()
     {
-        return view('home');
+        return view('bolsista');
     }
 
     public function registerIndex()
