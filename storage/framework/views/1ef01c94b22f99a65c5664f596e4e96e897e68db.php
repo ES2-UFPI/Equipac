@@ -1,18 +1,19 @@
-@extends('adminlte::page')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
-@if(session('success'))
+<?php if(session('success')): ?>
 <div class="alert alert-success">
-  {{ session('success') }}
-</div>
-@endif
+  <?php echo e(session('success')); ?>
 
-@if(session('error'))
-<div class="alert alert-danger">
-  {{ session('error') }}
 </div>
-@endif
+<?php endif; ?>
+
+<?php if(session('error')): ?>
+<div class="alert alert-danger">
+  <?php echo e(session('error')); ?>
+
+</div>
+<?php endif; ?>
 <!-- /.card-header -->
 <!-- form start -->
 <div class="row" class="container-fluid">
@@ -39,17 +40,17 @@
             <th>Id</th>
             <th>nome</th>
           </tr>
-          @foreach($manutencao as $index => $ma )
+          <?php $__currentLoopData = $manutencao; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $ma): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <?php $e = $ma::find($manutencao[$index]->id)->equipamento; ?>
-          @foreach($e as $equipamento)
+          <?php $__currentLoopData = $e; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $equipamento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <?php $a = $equip::find($equipamento->id)->usuario;?>
           <tr>
-            <th>{{ $ma['id']}}</th>
-            <th>{{$a->id}}</th>
-            <td>{{$a->nome}}</td>
+            <th><?php echo e($ma['id']); ?></th>
+            <th><?php echo e($a->id); ?></th>
+            <td><?php echo e($a->nome); ?></td>
          </tr>
-         @endforeach
-         @endforeach
+         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
        </table>
      </div>
      <!-- /.card-body -->
@@ -58,4 +59,5 @@
  </div>
  <!-- /.row -->
 
- @endsection
+ <?php $__env->stopSection(); ?>
+<?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\DESENVOLVIMENTO\COMPUTACAO\Equipac\resources\views/bolsista/manutencao.blade.php ENDPATH**/ ?>

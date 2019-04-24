@@ -1,5 +1,4 @@
-@extends('adminlte::page')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- /.card-header -->
 <!-- form start -->
 
@@ -29,14 +28,14 @@
             <th>Data</th>
             <th></th>
           </tr>
-          @foreach($problema as $e )
+          <?php $__currentLoopData = $problema; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <tr>
-            <th>{{ $e['id']}}</th>
-            <th>{{ $e['descricao']}}</th>
-            <th>{{ $e['criacao']}}</th>
+            <th><?php echo e($e['id']); ?></th>
+            <th><?php echo e($e['descricao']); ?></th>
+            <th><?php echo e($e['criacao']); ?></th>
             <th><button type="" class="btn btn-primary">Sol. Chamado</button></th>
           </tr>
-          @endforeach
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </table>
       </div>
       <!-- /.card-body -->
@@ -44,4 +43,5 @@
     <!-- /.card -->
   </div>
 </div><!-- /.row -->
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\DESENVOLVIMENTO\COMPUTACAO\Equipac\resources\views/bolsista/chamados.blade.php ENDPATH**/ ?>
