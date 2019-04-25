@@ -12,8 +12,7 @@ class BolsistaController extends Controller
 
     public function __construct()
     {
-        auth()->setDefaultDriver('bolsista');
-        $this->middleware('auth');
+        $this->middleware('auth:bolsista');
     }
 
     /**

@@ -88,7 +88,7 @@ class EquipamentoController extends Controller
         if ($insert){
             $eqpp->manutencao()->attach($insert, ['equipamento_usuario_id' => $eqp::find($request->get('id'))->usuario->id]);
             return redirect()
-            ->route('lista-equipamento')
+            ->route('lista-equipamento.index')
             ->with('success', 'Manutenção Cadastrada com sucesso!');
         }
         return redirect()

@@ -4,6 +4,8 @@ namespace equipac\Http\Controllers\Auth;
 
 use equipac\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -34,8 +36,21 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('guest')->except('logout');
-        $this->middleware('guest:usuario')->except('logout');
+        $this->middleware('guest')->except('logout');
+    	$this->middleware('guest:usuario')->except('logout');
         $this->middleware('guest:bolsista')->except('logout');
     }
+
+    public function logout(Request $request) {
+        //dd(Auth()->guard());
+    	if (Auth::guard('usuario')->check()) {
+    		Auth::guard('usuario')->logout();
+    		return redirect('/usuario/login');	
+    	} else if(Auth::guard('bolsista')->check()){
+    		Auth::guard('bolsista')->logout();
+    		return redirect('/bolsista/login');
+    	}
+
+    }
+
 }

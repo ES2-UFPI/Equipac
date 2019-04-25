@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title><?php echo e(config('app.name', 'Laravel')); ?></title>
+    <title><?php echo e(config('app.name', 'Equipac')); ?></title>
 
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                    <?php echo e(config('app.name', 'Laravel')); ?>
+                    <?php echo e(config('app.name', 'Equipac')); ?>
 
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="<?php echo e(__('Toggle navigation')); ?>">
@@ -41,7 +41,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <?php if(auth()->guard()->guest()): ?>
-                        <?php if(\Request::is('login-usuario')): ?>
+                        <?php if(\Request::is('usuario/login')): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo e(route('login-usuario')); ?>"><?php echo e(__('Login')); ?></a>
                         </li>
@@ -49,7 +49,7 @@
                             <a class="nav-link" href="<?php echo e(route('register-u')); ?>"><?php echo e(__('Register')); ?></a>
                         </li>
                         <?php endif; ?>
-                        <?php if(\Request::is('login-bolsista')): ?>
+                        <?php if(\Request::is('bolsista/login')): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo e(route('login-bolsista')); ?>"><?php echo e(__('Login')); ?></a>
                         </li>
