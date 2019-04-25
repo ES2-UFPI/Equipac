@@ -15,12 +15,7 @@ route::get('/', function () {
 //localhost:8000/usuario -- exibe a tela com as info do usuario
 
 
-//localhost:8000/bolsista -- exibe a tela com as info do bolsista
-route::get('bolsista', 'BolsistaController@index')->name('bolsista');
-route::get('login-bolsista', 'BolsistaController@login')->name('login-bolsista');
-route::Post('login-bolsista', 'BolsistaController@postLogin')->name('login-submit-bolsista');
-route::get('register-bolsista', 'BolsistaController@registerIndex')->name('register-b');
-route::Post('register-bolsista', 'BolsistaController@registerBolsista')->name('register-bolsista');
+
 
 //so entram nesses quando tiver logado
 //equipamentos.store....
@@ -31,7 +26,14 @@ Route::resource('manutencao', 'ManutencaoController');
 Route::resource('problemas', 'ProblemaController');
 route::get('sol-manutencao', 'ManutencaoController@index');
 
-
+Route::prefix('bolsista')->group(function () {
+	//localhost:8000/bolsista -- exibe a tela com as info do bolsista
+	route::get('/', 'BolsistaController@index')->name('bolsista');
+	route::get('login', 'Auth\BolsistaLoginController@login')->name('login-bolsista');
+	route::Post('login', 'Auth\BolsistaLoginController@loginBolsista')->name('login-submit-bolsista');
+	route::get('register', 'BolsistaController@registerIndex')->name('register-b');
+	route::Post('register', 'BolsistaController@registerBolsista')->name('register-bolsista');
+});
 
 
 
@@ -58,9 +60,12 @@ Route::prefix('usuario')->group(function () {
 	route::get('register', 'UsuarioController@registerIndex')->name('register-u');
 	route::Post('register', 'UsuarioController@registerUsuario')->name('register-usuario');
 
+
 	Route::resource('equipamento', 'EquipamentoController'); 
 	Route::resource('lista-equipamento', 'ListarEquipamentoController');
 	Route::resource('chamado', 'ChamadoController');
 
 	route::Post('lista-equipamento', 'EquipamentoController@manutencao')->name('equipamento-manutencao');
 });
+
+Route::post('logout', 'Auth\LoginController@logout');

@@ -7,7 +7,7 @@ use equipac\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 
-class UsuarioLoginController extends Controller
+class BolsistaLoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ class UsuarioLoginController extends Controller
     // protected $redirectTo = '/home';
     public function __construct()
     {
-    	$this->middleware('guest:usuario')->except('logout');
+    	$this->middleware('guest:bolsista')->except('logout');
     }
     /**
      * Display a listing of the resource.
@@ -37,9 +37,9 @@ class UsuarioLoginController extends Controller
      */
     public function login()
     {
-    	return view('usuarios.auth.login');
+    	return view('bolsista.auth.login');
     }
-    public function loginUsuario(Request $request)
+    public function loginBolsista(Request $request)
     {
       // Validate the form data
     	$this->validate($request, [
@@ -47,9 +47,9 @@ class UsuarioLoginController extends Controller
     		'password' => 'required|min:6'
     	]);
       // Attempt to log the user in
-    	if (Auth::guard('usuario')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+    	if (Auth::guard('bolsista')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
         // if successful, then redirect to their intended location
-    		return redirect()->intended(route('usuario'));
+    		return redirect()->intended(route('bolsista'));
     	}
       // if unsuccessful, then redirect back to the login with the form data
     	return redirect()->back()->withInput($request->only('email', 'remember'));
@@ -57,8 +57,8 @@ class UsuarioLoginController extends Controller
 
     public function logout()
     {
-    	Auth::guard('usuario')->logout();
-    	return redirect()->route('login-usuario');
+    	Auth::guard('bolsista')->logout();
+    	return redirect()->route('login-bolsista');
     }
     
   }
