@@ -47,12 +47,12 @@ class BolsistaLoginController extends Controller
     		'password' => 'required|min:6'
     	]);
       // Attempt to log the user in
-    	if (Auth::guard('bolsista')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+    	if (Auth::guard('bolsista')->attempt(['email' => $request->email, 'password' => $request->password])) {
         // if successful, then redirect to their intended location
     		return redirect()->intended(route('bolsista'));
     	}
       // if unsuccessful, then redirect back to the login with the form data
-    	return redirect()->back()->withInput($request->only('email', 'remember'));
+    	return redirect()->back()->withInput($request->only('email'));
     }
 
     public function logout()

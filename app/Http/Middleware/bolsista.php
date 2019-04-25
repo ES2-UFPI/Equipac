@@ -4,7 +4,7 @@ namespace equipac\Http\Middleware;
 
 use Closure;
 
-class usuario
+class bolsista
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class usuario
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->user()->nivel == 2){
+        if(auth()->user()->nivel == 3){
             return $next($request);
         }
         return redirect(‘login’)->with(‘error’,’You have not admin access’);

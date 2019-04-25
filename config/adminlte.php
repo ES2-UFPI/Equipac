@@ -117,7 +117,7 @@ return [
         ],
         [
             'text'        => 'Sol. de Manutenção',
-            'url'         => 'manutencao',
+            'url'         => 'bolsista/manutencao',
             'icon'        => 'wrench',
             'label'       => 5,
             'label_color' => 'success',
@@ -125,7 +125,7 @@ return [
         ],
         [
             'text'        => 'Sol. de chamados',
-            'url'         => 'chamados',
+            'url'         => 'bolsista/chamados',
             'icon'        => 'comments',
             'label'       => 10,
             'label_color' => 'success',
@@ -139,7 +139,7 @@ return [
         ],
         [
             'text'        => 'Problemas',
-            'url'         => 'problemas',
+            'url'         => 'usuario/problemas',
             'icon'        => 'comments',
             'can'         => 'usuario'
         ],
@@ -153,7 +153,7 @@ return [
         ],
         [
             'text'        => 'Listar Problemas',
-            'url'         => 'lista-problemas',
+            'url'         => 'usuario/lista-problemas',
             'icon'        => 'comments',
             'label'       => 2,
             'label_color' => 'success',

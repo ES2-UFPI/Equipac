@@ -13,8 +13,6 @@ class UsuarioController extends Controller
     public function __construct()
     {
         //auth()->setDefaultDriver('usuario');
-
-
         $this->middleware('auth:usuario',['only' => 'index']);
 
     }

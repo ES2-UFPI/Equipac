@@ -21,10 +21,16 @@ route::get('/', function () {
 //equipamentos.store....
 //equipamentos.create...
 
-Route::resource('manutencao', 'ManutencaoController');
+
 //route::get('manutencao', 'BolsistaController@registerIndex')->name('register-b');
-Route::resource('problemas', 'ProblemaController');
-route::get('sol-manutencao', 'ManutencaoController@index');
+//Route::resource('problemas', 'ProblemaController');
+//route::get('sol-manutencao', 'ManutencaoController@index');
+
+
+
+Auth::routes();
+
+Route::get('home', 'HomeController@index')->name('home');
 
 Route::prefix('bolsista')->group(function () {
 	//localhost:8000/bolsista -- exibe a tela com as info do bolsista
@@ -33,17 +39,9 @@ Route::prefix('bolsista')->group(function () {
 	route::Post('login', 'Auth\BolsistaLoginController@loginBolsista')->name('login-submit-bolsista');
 	route::get('register', 'BolsistaController@registerIndex')->name('register-b');
 	route::Post('register', 'BolsistaController@registerBolsista')->name('register-bolsista');
+	Route::resource('chamados', 'ChamadoController');
+	Route::resource('manutencao', 'ManutencaoController');
 });
-
-
-
-
-route::get('lista-problemas', 'ProblemaController@indexLista')->name('lista-problemas');
-route::Post('lista-problemas', 'ProblemasController@chamado')->name('problema-chamado');
-
-Auth::routes();
-
-Route::get('home', 'HomeController@index')->name('home');
 
 Route::prefix('usuario')->group(function () {
 	//Route::get('/', 'AdminController@index')->name('admin.dashboard');
@@ -60,12 +58,13 @@ Route::prefix('usuario')->group(function () {
 	route::get('register', 'UsuarioController@registerIndex')->name('register-u');
 	route::Post('register', 'UsuarioController@registerUsuario')->name('register-usuario');
 
-
+	Route::resource('problemas', 'ProblemaController');
 	Route::resource('equipamento', 'EquipamentoController'); 
 	Route::resource('lista-equipamento', 'ListarEquipamentoController');
-	Route::resource('chamado', 'ChamadoController');
-
 	route::Post('lista-equipamento', 'EquipamentoController@manutencao')->name('equipamento-manutencao');
+	route::get('lista-problemas', 'ProblemaController@indexLista')->name('lista-problemas');
+	route::Post('lista-problemas', 'ProblemasController@chamado')->name('problema-chamado');
+
 });
 
 Route::post('logout', 'Auth\LoginController@logout');

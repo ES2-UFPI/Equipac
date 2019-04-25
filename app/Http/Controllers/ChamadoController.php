@@ -7,6 +7,14 @@ use equipac\models\problema;
 
 class ChamadoController extends Controller
 {
+    public function __construct()
+    {
+        //auth()->setDefaultDriver('usuario');
+
+
+        $this->middleware('auth:bolsista',['only' => 'index', 'create', 'store', 'update', 'destroy']);
+
+    }
     /**
      * Display a listing of the resource.
      *
