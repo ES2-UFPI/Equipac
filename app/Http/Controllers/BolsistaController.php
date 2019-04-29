@@ -12,7 +12,7 @@ class BolsistaController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:bolsista');
+        $this->middleware('auth:bolsista', ['only' => 'index']);
     }
 
     /**
@@ -28,7 +28,7 @@ class BolsistaController extends Controller
 
     public function registerIndex()
     {
-        return view('bolsista.auth.register-bolsista');
+        return view('bolsista.auth.register');
     }
 
     public function login()
@@ -85,7 +85,7 @@ class BolsistaController extends Controller
      */
     public function create()
     {
-        //
+        return view('bolsista.auth.register');
     }
 
     /**

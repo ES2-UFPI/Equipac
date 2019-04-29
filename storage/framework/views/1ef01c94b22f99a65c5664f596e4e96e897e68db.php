@@ -36,8 +36,8 @@
       <div class="card-body table-responsive p-0">
         <table class="table table-hover">
           <tr>
-            <th>Id</th>
-            <th>Id</th>
+            <th>Id Equipamento</th>
+            <th>Id Usuario</th>
             <th>nome</th>
           </tr>
           <?php $__currentLoopData = $manutencao; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $ma): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
