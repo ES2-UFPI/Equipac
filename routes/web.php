@@ -1,31 +1,8 @@
 <?php
 
-//Route::get('/chamados', 'ChamadoController@tela');
-//Route::get('/equipamento', 'EquipamentoController@create');
-
-//route::post('cadastroEquipamento', 'EquipamentosController@store')->name('cadastro');
-
-//route::post('cadastroChamados', 'ChamadoController@criarChamado')->name('cadastro.chamado');
-
 route::get('/', function () {
 	return view('welcome');
 })->name('index');
-
-
-//localhost:8000/usuario -- exibe a tela com as info do usuario
-
-
-
-
-//so entram nesses quando tiver logado
-//equipamentos.store....
-//equipamentos.create...
-
-
-//route::get('manutencao', 'BolsistaController@registerIndex')->name('register-b');
-//Route::resource('problemas', 'ProblemaController');
-//route::get('sol-manutencao', 'ManutencaoController@index');
-
 
 
 Auth::routes();
@@ -33,7 +10,6 @@ Auth::routes();
 Route::get('home', 'HomeController@index')->name('home');
 
 Route::prefix('bolsista')->group(function () {
-	//localhost:8000/bolsista -- exibe a tela com as info do bolsista
 	route::get('/', 'BolsistaController@index')->name('bolsista');
 	route::get('login', 'Auth\BolsistaLoginController@login')->name('login-bolsista');
 	route::Post('login', 'Auth\BolsistaLoginController@loginBolsista')->name('login-submit-bolsista');
@@ -57,7 +33,7 @@ Route::prefix('usuario')->group(function () {
 	route::Post('login', 'Auth\UsuarioLoginController@loginUsuario')->name('login-submit');
 	route::get('register', 'UsuarioController@registerIndex')->name('register-u');
 	route::Post('register', 'UsuarioController@registerUsuario')->name('register-usuario');
-
+	/*Rotas de funcionalidades*/
 	Route::resource('problemas', 'ProblemaController');
 	Route::resource('equipamento', 'EquipamentoController'); 
 	Route::resource('lista-equipamento', 'ListarEquipamentoController');

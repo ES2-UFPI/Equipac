@@ -74,7 +74,7 @@ class BolsistaController extends Controller
         $user->nivel = 2;
         $user->save();
 
-        return redirect('/bolsista-login');
+        return redirect('login-bolsista');
 
     }
 
