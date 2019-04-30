@@ -43,14 +43,26 @@
               <th>Id</th>
               <th>Descrição</th>
               <th>Data</th>
-              <th></th>
+              <th>Solicitar Chamado</th>
+              <th>Excluir problema</th>
             </tr>
-            @foreach($problema as $e )
+            @foreach($problema as $p )
             <tr>
-              <th>{{ $e['id']}}</th>
-              <th>{{ $e['descricao']}}</th>
-              <th>{{ $e['criacao']}}</th>
-              <th><button type="" class="btn btn-primary">Sol. Chamado</button></th>
+              <th>{{ $p['id']}}</th>
+              <th>{{ $p['descricao']}}</th>
+              <th>{{ $p['criacao']}}</th>
+              <th><form method="post" action="{{route('login-usuario')}}">
+                {!! csrf_field() !!}
+                <input type="hidden" name="id" value="{{$p['id']}}">
+                <button type="imput" class="btn btn-primary">Sol. Chamado</button></th>
+              </form>
+            </th>
+            <th><form method="post" action="{{route('login-usuario')}}">
+                {!! csrf_field() !!}
+                <input type="hidden" name="id" value="{{$p['id']}}">
+                <button type="imput" class="btn btn-primary">Excluir problema</button></th>
+              </form>
+            </th>
             </tr>
             @endforeach
           </table>
