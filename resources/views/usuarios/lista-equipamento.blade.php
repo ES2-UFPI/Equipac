@@ -38,7 +38,7 @@
           <th>Id</th>
           <th>Patrimonio</th>
           <th>Modelo</th>
-          <th>Sol. Manutencao</th>
+          
         </tr>
          @foreach($equipamento as $e )
          <tr>
@@ -50,7 +50,8 @@
                {!! csrf_field() !!}
               <input type="hidden" name="id" value="{{$e['id']}}">
                <button type="imput" class="btn btn-primary">Sol. Manutenção</button></th>
-            </form>  
+            </form>
+          
          @endforeach
       </table>
     </div>

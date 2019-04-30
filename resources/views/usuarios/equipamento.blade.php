@@ -56,12 +56,23 @@
           <th>Id</th>
           <th>Patrimonio</th>
           <th>Modelo</th>
+          
         </tr>
          @foreach($equipamento as $e )
          <tr>
           <th>{{ $e['id']}}</th>
           <th>{{ $e['patrimonio']}}</th>
           <th>{{ $e['modelo']}}</th>
+          <th>
+            <form method="post" action="{{route('equipamento-manutencao')}}">
+              {!! csrf_field() !!}
+              <input type="hidden" name="id" value="{{$e['id']}}">
+              <button type="imput" class="btn btn-primary">Sol. Manutenção</button></th>
+            </form>
+          </th>
+          <th>
+            
+          </th>
          @endforeach
       </table>
     </div>

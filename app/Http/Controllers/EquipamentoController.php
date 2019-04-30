@@ -67,15 +67,23 @@ class EquipamentoController extends Controller
         $insert = $eqp->create($result);
 
         if ($insert)
-            return redirect()
-        ->route('equipamento.index')
-        ->with('success', 'Equipamento inserida com sucesso!');
+            return redirect()->route('equipamento.index')->with('success', 'Equipamento inserida com sucesso!');
 
-    // Redireciona de volta com uma mensagem de erro
-        return redirect()
-        ->back()
-        ->with('error', 'Falha ao inserir');
+        // Redireciona de volta com uma mensagem de erro
+        return redirect()->back()->with('error', 'Falha ao inserir');
     }
+
+    /*
+    public function delete(Request $request, Equipamento $eqp){
+        $eqpp = $eqp::find($request->get('id'));
+
+        if ($eqpp)
+            return redirect()->route('equipamento.index')->with('success', 'Equipamento excluido com sucesso!');
+
+        // Redireciona de volta com uma mensagem de erro
+        return redirect() ->back() ->with('error', 'Falha ao excluir equipamento!');
+
+    } */
 
     public function manutencao(Request $request, Equipamento $eqp, Manutencao $manut)
     {
