@@ -5,37 +5,29 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `equipac_ci` ;
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema equipac_ci
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `equipac_ci` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `equipac_ci` ;
 -- -----------------------------------------------------
--- Schema equipac_teste
+-- Table `equipac_ci`.`status`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `equipac_ci`.`status` ;
 
--- -----------------------------------------------------
--- Schema equipac_teste
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `equipac_teste` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `mydb` ;
-
--- -----------------------------------------------------
--- Table `mydb`.`status`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`status` (
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`status` (
   `id` INT NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`));
 
-USE `equipac_teste` ;
+-- -----------------------------------------------------
+-- Table `equipac_ci`.`admin`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `equipac_ci`.`admin` ;
 
--- -----------------------------------------------------
--- Table `equipac_teste`.`admin`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `equipac_teste`.`admin` (
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`admin` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(16) NOT NULL,
   `email` VARCHAR(255) NULL DEFAULT NULL,
@@ -51,9 +43,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `equipac_teste`.`bolsista`
+-- Table `equipac_ci`.`bolsista`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `equipac_teste`.`bolsista` (
+DROP TABLE IF EXISTS `equipac_ci`.`bolsista` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`bolsista` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
@@ -72,9 +66,11 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `equipac_teste`.`bolsista_has_chamado`
+-- Table `equipac_ci`.`bolsista_has_chamado`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `equipac_teste`.`bolsista_has_chamado` (
+DROP TABLE IF EXISTS `equipac_ci`.`bolsista_has_chamado` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`bolsista_has_chamado` (
   `bolsista_id` INT(10) UNSIGNED NOT NULL,
   `chamado_id` INT(11) NOT NULL,
   `chamado_problema_id` INT(11) NOT NULL,
@@ -84,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `equipac_teste`.`bolsista_has_chamado` (
   INDEX `fk_bolsista_has_chamado_bolsista1_idx` (`bolsista_id` ASC) VISIBLE,
   CONSTRAINT `fk_bolsista_has_chamado_bolsista1`
     FOREIGN KEY (`bolsista_id`)
-    REFERENCES `equipac_teste`.`bolsista` (`id`),
+    REFERENCES `equipac_ci`.`bolsista` (`id`),
   CONSTRAINT `fk_bolsista_has_chamado_chamado1`
     FOREIGN KEY (`chamado_id` , `chamado_problema_id` , `chamado_problema_usuario_id`)
     REFERENCES `mydb`.`chamado` (`id` , `problema_id` , `problema_usuario_id`))
@@ -94,9 +90,11 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `equipac_teste`.`manutencao`
+-- Table `equipac_ci`.`manutencao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `equipac_teste`.`manutencao` (
+DROP TABLE IF EXISTS `equipac_ci`.`manutencao` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`manutencao` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `solucao` VARCHAR(200) NULL DEFAULT NULL,
   `dataAtribuida` DATE NULL DEFAULT NULL,
@@ -115,9 +113,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `equipac_teste`.`bolsista_has_manutencao`
+-- Table `equipac_ci`.`bolsista_has_manutencao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `equipac_teste`.`bolsista_has_manutencao` (
+DROP TABLE IF EXISTS `equipac_ci`.`bolsista_has_manutencao` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`bolsista_has_manutencao` (
   `bolsista_id` INT(10) UNSIGNED NOT NULL,
   `manutencao_id` INT(11) NOT NULL,
   PRIMARY KEY (`bolsista_id`, `manutencao_id`),
@@ -125,19 +125,21 @@ CREATE TABLE IF NOT EXISTS `equipac_teste`.`bolsista_has_manutencao` (
   INDEX `fk_bolsista_has_manutencao_bolsista1_idx` (`bolsista_id` ASC) VISIBLE,
   CONSTRAINT `fk_bolsista_has_manutencao_bolsista1`
     FOREIGN KEY (`bolsista_id`)
-    REFERENCES `equipac_teste`.`bolsista` (`id`),
+    REFERENCES `equipac_ci`.`bolsista` (`id`),
   CONSTRAINT `fk_bolsista_has_manutencao_manutencao1`
     FOREIGN KEY (`manutencao_id`)
-    REFERENCES `equipac_teste`.`manutencao` (`id`))
+    REFERENCES `equipac_ci`.`manutencao` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `equipac_teste`.`usuario`
+-- Table `equipac_ci`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `equipac_teste`.`usuario` (
+DROP TABLE IF EXISTS `equipac_ci`.`usuario` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`usuario` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(255) NULL DEFAULT NULL,
   `password` VARCHAR(5000) NULL DEFAULT NULL,
@@ -156,9 +158,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `equipac_teste`.`equipamento`
+-- Table `equipac_ci`.`equipamento`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `equipac_teste`.`equipamento` (
+DROP TABLE IF EXISTS `equipac_ci`.`equipamento` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`equipamento` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `patrimonio` INT(11) NULL DEFAULT NULL,
   `modelo` VARCHAR(45) NULL DEFAULT NULL,
@@ -168,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `equipac_teste`.`equipamento` (
   INDEX `fk_equipamento_usuario_idx` (`usuario_id` ASC) VISIBLE,
   CONSTRAINT `fk_equipamento_usuario`
     FOREIGN KEY (`usuario_id`)
-    REFERENCES `equipac_teste`.`usuario` (`id`))
+    REFERENCES `equipac_ci`.`usuario` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = utf8mb4
@@ -176,9 +180,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `equipac_teste`.`equipamento_has_manutencao`
+-- Table `equipac_ci`.`equipamento_has_manutencao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `equipac_teste`.`equipamento_has_manutencao` (
+DROP TABLE IF EXISTS `equipac_ci`.`equipamento_has_manutencao` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`equipamento_has_manutencao` (
   `equipamento_id` INT(11) NOT NULL,
   `equipamento_usuario_id` INT(11) NOT NULL,
   `manutencao_id` INT(11) NOT NULL,
@@ -187,19 +193,21 @@ CREATE TABLE IF NOT EXISTS `equipac_teste`.`equipamento_has_manutencao` (
   INDEX `fk_equipamento_has_manutencao_equipamento1_idx` (`equipamento_id` ASC, `equipamento_usuario_id` ASC) VISIBLE,
   CONSTRAINT `fk_equipamento_has_manutencao_equipamento1`
     FOREIGN KEY (`equipamento_id` , `equipamento_usuario_id`)
-    REFERENCES `equipac_teste`.`equipamento` (`id` , `usuario_id`),
+    REFERENCES `equipac_ci`.`equipamento` (`id` , `usuario_id`),
   CONSTRAINT `fk_equipamento_has_manutencao_manutencao1`
     FOREIGN KEY (`manutencao_id`)
-    REFERENCES `equipac_teste`.`manutencao` (`id`))
+    REFERENCES `equipac_ci`.`manutencao` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `equipac_teste`.`problema`
+-- Table `equipac_ci`.`problema`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `equipac_teste`.`problema` (
+DROP TABLE IF EXISTS `equipac_ci`.`problema` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`problema` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(300) NULL DEFAULT NULL,
   `criacao` DATETIME NOT NULL,
@@ -209,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `equipac_teste`.`problema` (
   INDEX `fk_problema_usuario1_idx` (`usuario_id` ASC) VISIBLE,
   CONSTRAINT `fk_problema_usuario1`
     FOREIGN KEY (`usuario_id`)
-    REFERENCES `equipac_teste`.`usuario` (`id`))
+    REFERENCES `equipac_ci`.`usuario` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb4

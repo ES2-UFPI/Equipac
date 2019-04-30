@@ -25,5 +25,11 @@ class Manutencao extends Model
     {
         return $this->belongsToMany('equipac\models\bolsista','bolsista_has_manutencao','manutencao_id', 'bolsista_id');
     }
+
+     public function status()
+    {
+        return $this->belongsTo('equipac\models\Status');
+    }
+
     
 }
