@@ -109,8 +109,8 @@ class ManutencaoController extends Controller
     {
         //
     }
-
-    public function atribuirChamado($)
+    
+    public function atribuirChamado()
     {
         
     }
