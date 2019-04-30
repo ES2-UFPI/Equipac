@@ -56,7 +56,8 @@
           <th>Id</th>
           <th>Patrimonio</th>
           <th>Modelo</th>
-          
+          <th>Solicitar Manutenção</th>
+          <th>Excluir equipamento</th>
         </tr>
          @foreach($equipamento as $e )
          <tr>
@@ -71,7 +72,11 @@
             </form>
           </th>
           <th>
-            
+            <form method="post" action="{{route('login-usuario')}}">
+              {!! csrf_field() !!}
+              <input type="hidden" name="id" value="{{$e['id']}}">
+              <button type="imput" class="btn btn-primary">Excluir equipamento</button></th>
+            </form>
           </th>
          @endforeach
       </table>
