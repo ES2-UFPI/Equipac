@@ -16,5 +16,14 @@ class Manutencao extends Model
     {
         return $this->belongsToMany('equipac\models\Equipamento','equipamento_has_manutencao', 'manutencao_id', 'equipamento_id')->withPivot(['equipamento_usuario_id']);;
     }
+
+    /**
+     *Manutencao tem muitos bolsistas: bolongsToMany()
+     *
+     */
+    public function bolsista()
+    {
+        return $this->belongsToMany('equipac\models\bolsista','bolsista_has_manutencao','manutencao_id', 'bolsista_id');
+    }
     
 }
