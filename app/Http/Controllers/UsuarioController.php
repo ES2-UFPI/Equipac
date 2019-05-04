@@ -70,9 +70,8 @@ class UsuarioController extends Controller
         $user->cpf = $request->cpf;
         $user->nivel = 3;
         $user->save();
-
-
-        return redirect('login-usuario');
+        
+        return redirect()->route('login-usuario');
 
     }
 

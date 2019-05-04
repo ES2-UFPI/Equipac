@@ -16,18 +16,18 @@ class ManutencaoController extends Controller
      */
     public function index(Manutencao $ma, Equipamento $equip)
     {
-        $manutencao = $ma::all();
         //$e = $equip::all();
         //$e = $ma::find($manutencao[0]->id)->equipamento;
         //dd($e[0]::find()->usuario);
         //dd($manutencao[0]::find($manutencao[0]->id)->equipamento[0]::find(0)->usuario[0]->id);
-        if(!$manutencao->isEmpty()){
-            $e = Manutencao::find($manutencao[0]->id)->equipamento;
-            $a = Equipamento::find($e[0]->id)->usuario;
-        }
+        $manutencao = $ma::all();
+        // if(!$manutencao->isEmpty()){
+        //     $e = Manutencao::find($manutencao[0]->id)->equipamento;
+        //     $a = Equipamento::find($e[0]->id)->usuario;
+        // }
         
         //dd($a->id);
-        return view('bolsista.manutencao' , compact('manutencao', 'equip', 'ma'));
+        return view('bolsista.manutencao' , compact('manutencao'));
     }
 
     /**
@@ -51,7 +51,7 @@ class ManutencaoController extends Controller
         //dd($eqp::find($request->get('id'))->usuario->id);
         $eqpp = $eqp::find($request->get('id'));
         $ext = array('dataAtribuida' => date('Y-m-d H:i:s'));
-        $ext2 = array('status' => 'Atribuida');  
+        $ext2 = array('status_id' => '1'); 
         $result = array_merge($ext2, $ext);
         $insert = $manut->create($result);
         if ($insert){
@@ -63,6 +63,13 @@ class ManutencaoController extends Controller
         return redirect()
         ->back()
         ->with('error', 'Falha ao inserir');
+    }
+
+    public function AlterarStatus(Request $request, Equipamento $eqp, Manutencao $manut)
+    {
+        $ma = $manut::find($request->get('id'));
+        $ma->status_id = $request->get('status');
+        $ma->save();
     }
 
     /**

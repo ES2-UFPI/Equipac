@@ -58,12 +58,30 @@
           <th>Id</th>
           <th>Patrimonio</th>
           <th>Modelo</th>
+          <th>Solicitar Manutenção</th>
+          <th>Excluir equipamento</th>
         </tr>
          <?php $__currentLoopData = $equipamento; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
          <tr>
           <th><?php echo e($e['id']); ?></th>
           <th><?php echo e($e['patrimonio']); ?></th>
           <th><?php echo e($e['modelo']); ?></th>
+          <th>
+            <form method="post" action="<?php echo e(route('equipamento-manutencao')); ?>">
+              <?php echo csrf_field(); ?>
+
+              <input type="hidden" name="id" value="<?php echo e($e['id']); ?>">
+              <button type="imput" class="btn btn-primary">Sol. Manutenção</button></th>
+            </form>
+          </th>
+          <th>
+            <form method="post" action="<?php echo e(route('login-usuario')); ?>">
+              <?php echo csrf_field(); ?>
+
+              <input type="hidden" name="id" value="<?php echo e($e['id']); ?>">
+              <button type="imput" class="btn btn-primary">Excluir equipamento</button></th>
+            </form>
+          </th>
          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </table>
     </div>

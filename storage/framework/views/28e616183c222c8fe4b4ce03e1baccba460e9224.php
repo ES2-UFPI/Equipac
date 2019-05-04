@@ -26,14 +26,38 @@
             <th>Id</th>
             <th>Descrição</th>
             <th>Data</th>
-            <th></th>
+            <th>Solicitar Chamado</th>
+            <th>Excluir problema</th>
+
           </tr>
-          <?php $__currentLoopData = $problema; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <?php $__currentLoopData = $problema; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <tr>
-            <th><?php echo e($e['id']); ?></th>
-            <th><?php echo e($e['descricao']); ?></th>
-            <th><?php echo e($e['criacao']); ?></th>
-            <th><button type="" class="btn btn-primary">Sol. Chamado</button></th>
+            <th><?php echo e($p['id']); ?></th>
+            <th><?php echo e($p['descricao']); ?></th>
+            <th><?php echo e($p['criacao']); ?></th>
+            <th><form method="post" action="<?php echo e(route('login-usuario')); ?>">
+                <?php echo csrf_field(); ?>
+
+                <input type="hidden" name="id" value="<?php echo e($p['id']); ?>">
+                <button type="imput" class="btn btn-primary">Sol. Chamado</button></th>
+              </form>
+            </th>
+            <th><form method="post" action="<?php echo e(route('login-usuario')); ?>">
+                <?php echo csrf_field(); ?>
+
+                <input type="hidden" name="id" value="<?php echo e($p['id']); ?>">
+                <button type="imput" class="btn btn-primary">Excluir</button></th>
+
+                <!-- menu -->
+                <th><form method="post" action="<?php echo e(route('login-usuario')); ?>">
+                <?php echo csrf_field(); ?>
+
+                <input type="hidden" name="id" value="<?php echo e($p['id']); ?>">
+                <button type="imput" class="btn btn-primary">menu</button></th>
+
+              </form>
+            </th>
+          
           </tr>
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </table>
