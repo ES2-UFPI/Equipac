@@ -15,6 +15,7 @@ Route::prefix('bolsista')->group(function () {
 	route::Post('login', 'Auth\BolsistaLoginController@loginBolsista')->name('login-submit-bolsista');
 	route::get('register', 'BolsistaController@registerIndex')->name('register-b');
 	route::Post('register', 'BolsistaController@registerBolsista')->name('register-bolsista');
+	route::Post('manutencao', 'ManutencaoController@AlterarStatus')->name('altera-status');
 	Route::resource('chamados', 'ChamadoController');
 	Route::resource('manutencao', 'ManutencaoController');
 });
@@ -27,19 +28,18 @@ Route::prefix('usuario')->group(function () {
 	//Route::get('login', 'Auth\Admin\LoginController@login')->name('admin.auth.login');
 	//Route::post('login', 'Auth\Admin\LoginController@loginAdmin')->name('admin.auth.loginAdmin');
 	//Route::post('logout', 'Auth\Admin\LoginController@logout')->name('admin.auth.logout');
-
 	route::get('/', 'UsuarioController@index')->name('usuario');
 	route::get('login', 'Auth\UsuarioLoginController@login')->name('login-usuario');
 	route::Post('login', 'Auth\UsuarioLoginController@loginUsuario')->name('login-submit');
 	route::get('register', 'UsuarioController@registerIndex')->name('register-u');
 	route::Post('register', 'UsuarioController@registerUsuario')->name('register-usuario');
-	/*Rotas de funcionalidades*/
 	Route::resource('problemas', 'ProblemaController');
 	Route::resource('equipamento', 'EquipamentoController'); 
-	Route::resource('lista-equipamento', 'ListarEquipamentoController');
+	Route::get('lista-equipamento', 'ListarEquipamentoController@index')->name('lista-equipamento-index');
 	route::Post('lista-equipamento', 'EquipamentoController@manutencao')->name('equipamento-manutencao');
+	// route::post('lista-equipamento', 'ListarEquipamentoController@deletaEquipamento')->name('deleta');
 	route::get('lista-problemas', 'ProblemaController@indexLista')->name('lista-problemas');
-	route::Post('lista-problemas', 'ProblemasController@chamado')->name('problema-chamado');
+	route::Post('lista-problemas', 'ProblemaController@chamado')->name('problema-chamado');
 
 });
 

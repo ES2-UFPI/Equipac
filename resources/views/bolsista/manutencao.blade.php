@@ -38,24 +38,34 @@
             <th>Id Equipamento</th>
             <th>Id Usuario</th>
             <th>nome</th>
+            <td>Status</td>
+            <td>Opcão</td>
           </tr>
-          @foreach($manutencao as $index => $ma )
-          <?php $e = $ma::find($manutencao[$index]->id)->equipamento; ?>
-          @foreach($e as $equipamento)
-          <?php $a = $equip::find($equipamento->id)->usuario;?>
-          <tr>
-            <th>{{ $ma['id']}}</th>
-            <th>{{$a->id}}</th>
-            <td>{{$a->nome}}</td>
-         </tr>
-         @endforeach
-         @endforeach
-       </table>
-     </div>
-     <!-- /.card-body -->
+          @foreach($manutencao as $index => $ma)
+          <?php $equipamento = $ma::find($manutencao[$index]->id)->equipamento; ?>
+          <th>{{ $ma['id']}}</th>
+          <th>{{ $equipamento->usuario->id  }}</th>
+          <th>{{ $equipamento->usuario->nome  }}</th>
+          <th>{{ $ma->status->name  }}</th>
+          <td>
+            @if($ma['status_id']=='1')
+            <form method="post" action="{{route('altera-status')}}">
+             {!! csrf_field() !!}
+             <input type="hidden" name="id" value="{{$ma['id']}}">
+             <input type="hidden" name="status" value="2">
+             <button type="imput" class="btn btn-primary">Atribuir</button></th>
+           </form>
+           @endif
+         </td>
+       </tr>
+       @endforeach
+       @endforeach
+     </table>
    </div>
-   <!-- /.card -->
+   <!-- /.card-body -->
  </div>
- <!-- /.row -->
+ <!-- /.card -->
+</div>
+<!-- /.row -->
 
- @endsection
+@endsection

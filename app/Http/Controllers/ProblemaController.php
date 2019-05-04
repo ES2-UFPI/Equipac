@@ -19,7 +19,7 @@ class ProblemaController extends Controller
     public function index(Problema $prob)
     {
         $problema = $prob::all();
-        return view('usuarios.problemas' , compact('problema'));
+        return view('usuarios.problema' , compact('problema'));
     }
 
     public function indexLista(Problema $prob)

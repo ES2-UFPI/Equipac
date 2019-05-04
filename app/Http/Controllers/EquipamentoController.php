@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use equipac\models\Equipamento;
 use equipac\models\Manutencao;
 use equipac\models\Usuario;
+use equipac\models\Status;
 
 use Auth;
 
@@ -73,30 +74,29 @@ class EquipamentoController extends Controller
         return redirect()->back()->with('error', 'Falha ao inserir');
     }
 
-    /*
     public function delete(Request $request, Equipamento $eqp){
         $eqpp = $eqp::find($request->get('id'));
-
-        if ($eqpp)
-            return redirect()->route('equipamento.index')->with('success', 'Equipamento excluido com sucesso!');
+        $check = $eqpp->delete();
+        dd($check);
+        if ($check)
+            return redirect()->route('lista-equipamento-index')->with('success', 'Equipamento excluido com sucesso!');
 
         // Redireciona de volta com uma mensagem de erro
         return redirect() ->back() ->with('error', 'Falha ao excluir equipamento!');
 
-    } */
+    }
 
-    public function manutencao(Request $request, Equipamento $eqp, Manutencao $manut)
+    public function manutencao(Request $request, Equipamento $eqp, Manutencao $manut, Status $status)
     {
-        //dd($eqp::find($request->get('id'))->usuario->id);
         $eqpp = $eqp::find($request->get('id'));
-        $ext = array('dataAtribuida' => date('Y-m-d H:i:s'));
-        $ext2 = array('status' => 'Atribuida');  
-        $result = array_merge($ext2, $ext);
-        $insert = $manut->create($result);
-        if ($insert){
-            $eqpp->manutencao()->attach($insert, ['equipamento_usuario_id' => $eqp::find($request->get('id'))->usuario->id]);
+        $sts = $status::find(1);
+        $manut->dataAtribuida = date('Y-m-d H:i:s');
+        $manut->status()->associate($sts);
+        $manut->equipamento()->associate($eqpp);
+        $manut->equipamento_usuario_id = $eqp::find($request->get('id'))->usuario->id;
+        if ($manut->save()){
             return redirect()
-            ->route('lista-equipamento.index')
+            ->route('lista-equipamento-index')
             ->with('success', 'Manutenção Cadastrada com sucesso!');
         }
         return redirect()
@@ -143,8 +143,14 @@ class EquipamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(int $id, Equipamento $eqp){
+        // dd($eqp::find($id));
+        $eqp::find($id)->delete();
+        // if ($check)
+        return redirect()->route('lista-equipamento-index')->with('success', 'Equipamento excluido com sucesso!');
+
+        // Redireciona de volta com uma mensagem de erro
+        // return redirect() ->back() ->with('error', 'Falha ao excluir equipamento!');
+
     }
 }

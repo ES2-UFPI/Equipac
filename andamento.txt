@@ -1,0 +1,2 @@
+1 equipamento tem varias manutenções :: hasMany
+1 manutenção tem um equipamento :: belongTo

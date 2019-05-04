@@ -65,7 +65,9 @@
           <th>{{ $e['id']}}</th>
           <th>{{ $e['patrimonio']}}</th>
           <th>{{ $e['modelo']}}</th>
-          <th><button type="imput" class="btn btn-primary">Sol. Manutenção</button></th>
+          <th>
+            <button type="imput" class="btn btn-primary">Atribuir</button>
+          </th>
          </tr>
          @endforeach
       </table>

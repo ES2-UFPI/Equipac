@@ -5,13 +5,13 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema equipac_ci
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema equipac_ci
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `equipac_ci` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema equipac_ci
 -- -----------------------------------------------------
@@ -20,12 +20,12 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 -- Schema equipac_ci
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `equipac_ci` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `mydb` ;
+USE `equipac_ci` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`status`
+-- Table `equipac_ci`.`status`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`status` (
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`status` (
   `id` INT NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`));
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`bolsista_has_chamado` (
     REFERENCES `equipac_ci`.`bolsista` (`id`),
   CONSTRAINT `fk_bolsista_has_chamado_chamado1`
     FOREIGN KEY (`chamado_id` , `chamado_problema_id` , `chamado_problema_usuario_id`)
-    REFERENCES `mydb`.`chamado` (`id` , `problema_id` , `problema_usuario_id`))
+    REFERENCES `equipac_ci`.`chamado` (`id` , `problema_id` , `problema_usuario_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`manutencao` (
   INDEX `fk_manutencao_status1_idx` (`status_id` ASC) VISIBLE,
   CONSTRAINT `fk_manutencao_status1`
     FOREIGN KEY (`status_id`)
-    REFERENCES `mydb`.`status` (`id`)
+    REFERENCES `equipac_ci`.`status` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

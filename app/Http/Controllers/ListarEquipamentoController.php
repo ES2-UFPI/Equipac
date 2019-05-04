@@ -33,5 +33,16 @@ class ListarEquipamentoController extends Controller
         return view('usuarios.lista-equipamento' , compact('equipamento'));
     }
 
+    public function deletaEquipamento(Request $request, Equipamento $eqp){
+        $eqpp = $eqp::find($request->get('id'));
+        $check = $eqpp->delete();
+        dd($check);
+        if ($check)
+            return redirect()->route('lista-equipamento-index')->with('success', 'Equipamento excluido com sucesso!');
+
+        // Redireciona de volta com uma mensagem de erro
+        return redirect() ->back() ->with('error', 'Falha ao excluir equipamento!');
+
+    } 
     
 }
