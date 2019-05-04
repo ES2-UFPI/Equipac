@@ -17,7 +17,7 @@ Route::prefix('bolsista')->group(function () {
 	route::Post('register', 'BolsistaController@registerBolsista')->name('register-bolsista');
 	route::Post('manutencao', 'ManutencaoController@AlterarStatus')->name('altera-status');
 	Route::resource('chamados', 'ChamadoController');
-	Route::resource('manutencao', 'ManutencaoController');
+	Route::get('manutencao', 'ManutencaoController@index')->name('index-manutencao');
 });
 
 Route::prefix('usuario')->group(function () {

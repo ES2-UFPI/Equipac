@@ -5,6 +5,7 @@ namespace equipac\Http\Controllers;
 use equipac\models\Manutencao;
 use equipac\models\Equipamento;
 use equipac\models\Usuario;
+use equipac\models\Status;
 use Illuminate\Http\Request;
 
 class ManutencaoController extends Controller
@@ -65,11 +66,19 @@ class ManutencaoController extends Controller
         ->with('error', 'Falha ao inserir');
     }
 
-    public function AlterarStatus(Request $request, Equipamento $eqp, Manutencao $manut)
+    public function AlterarStatus(Request $request, Status $status, Manutencao $ma)
     {
-        $ma = $manut::find($request->get('id'));
-        $ma->status_id = $request->get('status');
-        $ma->save();
+        $manut = $ma::find($request->id);
+        $sts = $status::find($request->status);
+        $manut->status()->associate($sts);
+        if ($manut->save()){
+            return redirect()
+            ->route('index-manutencao')
+            ->with('success', 'Manutenção Cadastrada com sucesso!');
+        }
+        return redirect()
+        ->back()
+        ->with('error', 'Falha ao Cadastrar');
     }
 
     /**
@@ -119,6 +128,6 @@ class ManutencaoController extends Controller
     
     public function atribuirChamado()
     {
-        
+
     }
 }
