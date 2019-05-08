@@ -159,6 +159,14 @@ return [
             'label_color' => 'success',
             'can'         => 'usuario'
         ],
+        [
+            'text'        => 'Cadastrar Bolsista',
+            'url'         => 'supervisor/register-bolsista',
+            'icon'        => 'comments',
+            'label'       => 2,
+            'label_color' => 'success',
+            'can'         => 'supervisor'
+        ],
     ],
     /*    'ACCOUNT SETTINGS',
         [
