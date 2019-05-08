@@ -99,8 +99,8 @@
                     <td><a href="{{ route('register-b') }}">Register</a></td>
                 </tr>
                 <tr>
-                    <td><a href="{{ route('login-usuario') }}">Supervisor</a></td>
-                    <td><a href="{{ route('register-u') }}">Register</a></td>
+                    <td><a href="{{ route('login-supervisor') }}">Supervisor</a></td>
+                    <td><a href="{{ route('register-s') }}">Register</a></td>
                 </tr>
             </table>
             @endauth

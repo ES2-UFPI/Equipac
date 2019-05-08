@@ -66,8 +66,7 @@
            </th>
            <th>
             <form method="post" action="{{route('equipamento.destroy', ['eqp' => $e])}}">
-             @csrf
-             @method('DELETE')
+              @csrf @method('DELETE')
              <input type="hidden" name="id" value="{{$e['id']}}">
              <button type="imput" class="btn btn-primary">Excluir</button></th>
            </form>  

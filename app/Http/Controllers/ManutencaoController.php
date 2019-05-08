@@ -5,11 +5,15 @@ namespace equipac\Http\Controllers;
 use equipac\models\Manutencao;
 use equipac\models\Equipamento;
 use equipac\models\Usuario;
-use equipac\models\Status;
+use equipac\models\Status_manutencao;
 use Illuminate\Http\Request;
 
 class ManutencaoController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('auth:bolsista', ['only' => 'index']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -66,7 +70,7 @@ class ManutencaoController extends Controller
         ->with('error', 'Falha ao inserir');
     }
 
-    public function AlterarStatus(Request $request, Status $status, Manutencao $ma)
+    public function AlterarStatus(Request $request, Status_manutencao $status, Manutencao $ma)
     {
         $manut = $ma::find($request->id);
         $sts = $status::find($request->status);

@@ -24,7 +24,7 @@ class Manutencao extends Model
 
      public function status()
     {
-        return $this->belongsTo('equipac\models\Status', 'status_id');
+        return $this->belongsTo('equipac\models\Status_manutencao', 'status_id');
     }
 
     

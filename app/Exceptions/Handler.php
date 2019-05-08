@@ -62,6 +62,10 @@ class Handler extends ExceptionHandler
                 $login = 'bolsista.auth.login';
                  return redirect()->guest(route($login));
             }
+            if ($request->is('supervisor') || $request->is('supervisor/*')) {
+                $login = 'bolsista.auth.login';
+                 return redirect()->guest(route($login));
+            }
             return redirect()->guest(route('login'));
   }
 }

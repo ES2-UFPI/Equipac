@@ -99,8 +99,8 @@
                     <td><a href="<?php echo e(route('register-b')); ?>">Register</a></td>
                 </tr>
                 <tr>
-                    <td><a href="<?php echo e(route('login-usuario')); ?>">Supervisor</a></td>
-                    <td><a href="<?php echo e(route('register-u')); ?>">Register</a></td>
+                    <td><a href="<?php echo e(route('login-supervisor')); ?>">Supervisor</a></td>
+                    <td><a href="<?php echo e(route('register-s')); ?>">Register</a></td>
                 </tr>
             </table>
             <?php endif; ?>

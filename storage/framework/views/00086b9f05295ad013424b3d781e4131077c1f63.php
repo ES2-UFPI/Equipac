@@ -68,8 +68,7 @@
            </th>
            <th>
             <form method="post" action="<?php echo e(route('equipamento.destroy', ['eqp' => $e])); ?>">
-             <?php echo csrf_field(); ?>
-             <?php echo method_field('DELETE'); ?>
+              <?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?>
              <input type="hidden" name="id" value="<?php echo e($e['id']); ?>">
              <button type="imput" class="btn btn-primary">Excluir</button></th>
            </form>  
