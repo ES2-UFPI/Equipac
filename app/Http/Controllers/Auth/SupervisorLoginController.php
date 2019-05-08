@@ -21,7 +21,7 @@ class SupervisorLoginController extends Controller
     */
     use AuthenticatesUsers;
     /**
-     * Where to redirect users after login.
+     * Where to redirect users after login. login de servidor
      *
      * @var string
      */
