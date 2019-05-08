@@ -47,11 +47,7 @@
                 <input type="hidden" name="id" value="{{$p['id']}}">
                 <button type="imput" class="btn btn-primary">Excluir</button></th>
 
-                <!-- menu -->
-                <th><form method="post" action="{{route('login-usuario')}}">
-                {!! csrf_field() !!}
-                <input type="hidden" name="id" value="{{$p['id']}}">
-                <button type="imput" class="btn btn-primary">menu</button></th>
+        
 
               </form>
             </th>
