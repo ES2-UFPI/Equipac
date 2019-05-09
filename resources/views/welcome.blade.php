@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Equipac</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -81,7 +81,7 @@
 <body>
     <div class="content" >
         <div class="title m-b-md">
-            Escolha o tipo de Usuario
+            Escolha o tipo de Usuário
         </div>     
         <div class="">
             @if (Route::has('login'))
@@ -96,7 +96,7 @@
                 </tr>
                 <tr>
                     <td><a href="{{ route('login-bolsista') }}">Bolsista</a></td>
-                    <td><a href="{{ route('register-b') }}">Register</a></td>
+                    <!--<td><a href="{{ route('register-b') }}">Register</a></td> Remoção do botão de registrar bolsista -->
                 </tr>
                 <tr>
                     <td><a href="{{ route('login-supervisor') }}">Supervisor</a></td>
