@@ -24,7 +24,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
+         Gate::define('supervisor', function ($user) {
+           if ($user->nivel == 1){
+               return true;
+           }
+           return false;
+       });
          Gate::define('bolsista', function ($user) {
            if ($user->nivel == 2){
                return true;
@@ -38,7 +43,7 @@ class AuthServiceProvider extends ServiceProvider
            return false;
        });
          Gate::define('admin', function ($user) {
-           if ($user->nivel == 2){
+           if ($user->nivel == 0){
                return true;
            }
            return false;

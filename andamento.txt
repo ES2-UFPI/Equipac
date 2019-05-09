@@ -1,0 +1,10 @@
+1 equipamento tem varias manutenções :: hasMany
+1 manutenção tem um equipamento :: belongTo
+
+
+chamado: belongTo problema
+problema: hasOne chamado
+
+supervisor
+
+alteração do status para status_manutencao e status_chamados

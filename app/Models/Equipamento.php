@@ -15,13 +15,12 @@ class Equipamento extends Model
 
     public function manutencao()
     {
-        //    $this->belongsToMany('relacao', 'nome da tabela pivot', 'key ref. equipamento em pivot', 'key ref. manutencao em pivot')
-        return $this->belongsToMany('equipac\models\Manutencao','equipamento_has_manutencao', 'equipamento_id', 'manutencao_id')->withPivot(['equipamento_usuario_id']);
+        return $this->hasMany('equipac\models\Manutencao');
     }
 
     public function usuario()
     {
-        //    $this->belongsToMany('relacao', 'nome da tabela pivot', 'key ref. equipamento em pivot', 'key ref. manutencao em pivot')
+        //$this->belongsToMany('relacao', 'nome da tabela pivot', 'key ref. equipamento em pivot', 'key ref. manutencao em pivot')
         return $this->belongsTo('equipac\models\Usuario');
     }
 

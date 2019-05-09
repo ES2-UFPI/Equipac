@@ -5,27 +5,41 @@ namespace equipac\Http\Controllers;
 use Illuminate\Http\Request;
 use equipac\models\Equipamento;
 use equipac\models\Manutencao;
+use equipac\models\Usuario;
+use equipac\models\Status_manutencao;
+use Illuminate\Support\Facades\Schema;
+
+use Auth;
 
 class EquipamentoController extends Controller
 {
-    public function __construct()
+     public function __construct()
     {
-        auth()->setDefaultDriver('usuario');
+        //auth()->setDefaultDriver('usuario');
+
+
+        $this->middleware('auth:usuario',['only' => 'index', 'create', 'store', 'update', 'destroy']);
+
     }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Equipamento $eqp)
+    public function index(Equipamento $eqp, Usuario $usuario)
     {
-        $equipamento = $eqp::all();
+        //dd(Auth::guard()->user()->id);
+        $equipamento = $usuario::find(auth()->user()->id)->equipamento;
+
         return view('usuarios.equipamento' , compact('equipamento'));
     }
 
-     public function indexLista(Equipamento $eqp)
+     public function indexLista(Equipamento $eqp, Usuario $usuario)
     {
-        $equipamento = $eqp::all();
+        dd(Auth::guard()->user()->id);
+        //$equipamento = $usuario::find(auth()->user()->id)->equipamento;
+
         return view('usuarios.lista-equipamento' , compact('equipamento'));
     }
 
@@ -55,28 +69,35 @@ class EquipamentoController extends Controller
         $insert = $eqp->create($result);
 
         if ($insert)
-            return redirect()
-        ->route('equipamento.index')
-        ->with('success', 'Equipamento inserida com sucesso!');
+            return redirect()->route('equipamento.index')->with('success', 'Equipamento inserida com sucesso!');
 
-    // Redireciona de volta com uma mensagem de erro
-        return redirect()
-        ->back()
-        ->with('error', 'Falha ao inserir');
+        // Redireciona de volta com uma mensagem de erro
+        return redirect()->back()->with('error', 'Falha ao inserir');
     }
 
-    public function manutencao(Request $request, Equipamento $eqp, Manutencao $manut)
-    {
-        //dd($eqp::find($request->get('id'))->usuario->id);
+    public function delete(Request $request, Equipamento $eqp){
         $eqpp = $eqp::find($request->get('id'));
-        $ext = array('dataAtribuida' => date('Y-m-d H:i:s'));
-        $ext2 = array('status' => 'Atribuida');  
-        $result = array_merge($ext2, $ext);
-        $insert = $manut->create($result);
-        if ($insert){
-            $eqpp->manutencao()->attach($insert, ['equipamento_usuario_id' => $eqp::find($request->get('id'))->usuario->id]);
+        $check = $eqpp->delete();
+        dd($check);
+        if ($check)
+            return redirect()->route('lista-equipamento-index')->with('success', 'Equipamento excluido com sucesso!');
+
+        // Redireciona de volta com uma mensagem de erro
+        return redirect() ->back() ->with('error', 'Falha ao excluir equipamento!');
+
+    }
+
+    public function manutencao(Request $request, Equipamento $eqp, Manutencao $manut, Status_manutencao $status)
+    {
+        $eqpp = $eqp::find($request->get('id'));
+        $sts = $status::find(1);
+        $manut->dataAtribuida = date('Y-m-d H:i:s');
+        $manut->status()->associate($sts);
+        $manut->equipamento()->associate($eqpp);
+        $manut->equipamento_usuario_id = $eqp::find($request->get('id'))->usuario->id;
+        if ($manut->save()){
             return redirect()
-            ->route('lista-equipamento')
+            ->route('lista-equipamento-index')
             ->with('success', 'Manutenção Cadastrada com sucesso!');
         }
         return redirect()
@@ -123,8 +144,16 @@ class EquipamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(int $id, Equipamento $eqp){
+        // dd($eqp::find($id));
+        Schema::disableForeignKeyConstraints();
+        $eqp::find($id)->delete();
+        Schema::enableForeignKeyConstraints();
+        // if ($check)
+        return redirect()->route('lista-equipamento-index')->with('success', 'Equipamento excluido com sucesso!');
+
+        // Redireciona de volta com uma mensagem de erro
+        // return redirect() ->back() ->with('error', 'Falha ao excluir equipamento!');
+
     }
 }

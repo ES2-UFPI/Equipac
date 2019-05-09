@@ -3,15 +3,15 @@
 
 
 @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success">
+  {{ session('success') }}
+</div>
 @endif
- 
+
 @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
+<div class="alert alert-danger">
+  {{ session('error') }}
+</div>
 @endif
 <!-- /.card-header -->
 <!-- form start -->
@@ -35,28 +35,50 @@
       <div class="card-body table-responsive p-0">
         <table class="table table-hover">
           <tr>
-          <th>Id</th>
-          <th>Patrimonio</th>
-          <th>Modelo</th>
-          <th>Sol. Manutencao</th>
-        </tr>
-         @foreach($equipamento as $e )
-         <tr>
-          <th>{{ $e['id']}}</th>
-          <th>{{ $e['patrimonio']}}</th>
-          <th>{{ $e['modelo']}}</th>
-          <th>
-            <form method="post" action="{{route('equipamento-manutencao')}}">
+            <th>Id</th>
+            <th>Patrimonio</th>
+            <th>Modelo</th>
+            <th>Status</th>
+            <th>Solicitar Manutenção</th>
+            <th>Excluir equipamento</th>          
+          </tr>
+          @foreach($equipamento as $index => $e )
+          <tr>
+            <th>{{ $e['id']}}</th>
+            <th>{{ $e['patrimonio']}}</th>
+            <th>{{ $e['modelo']}}</th>
+            <!-- exists é para relacionamentos n to n -->
+            @if(!$e->manutencao->isEmpty())
+            <th>{{ $e->manutencao->last()->status->name }}</th>
+            @else
+            <th>Sem Sol. Man</th>
+            @endif
+            @if(!$e->manutencao->isEmpty() && $e->manutencao->last()->status->id != 4)
+            <th>Solicitação feita</th>
+            <th>Não pode excluir</th>
+            @else
+            <th>
+              <form method="post" action="{{route('equipamento-manutencao')}}">
                {!! csrf_field() !!}
-              <input type="hidden" name="id" value="{{$e['id']}}">
+               <input type="hidden" name="id" value="{{$e['id']}}">
                <button type="imput" class="btn btn-primary">Sol. Manutenção</button></th>
-            </form>  
-         @endforeach
-      </table>
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
+             </form>
+           </th>
+           <th>
+            <form method="post" action="{{route('equipamento.destroy', ['eqp' => $e])}}">
+              @csrf @method('DELETE')
+             <input type="hidden" name="id" value="{{$e['id']}}">
+             <button type="imput" class="btn btn-primary">Excluir</button></th>
+           </form>  
+         </th>
+         @endif
+       </tr>
+       @endforeach
+     </table>
+   </div>
+   <!-- /.card-body -->
+ </div>
+ <!-- /.card -->
 </div>
 <!-- /.row -->
 

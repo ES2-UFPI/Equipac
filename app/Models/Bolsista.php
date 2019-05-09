@@ -34,4 +34,13 @@ class Bolsista extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     *bolsista tem muitas manutenções: bolongsToMany()
+     *
+     */
+    public function manutencao()
+    {
+        return $this->belongsToMany('equipac\models\Manutencao','bolsista_has_manutencao', 'bolsista_id', 'manutencao_id');
+    }
+
 }

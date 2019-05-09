@@ -117,7 +117,7 @@ return [
         ],
         [
             'text'        => 'Sol. de Manutenção',
-            'url'         => 'manutencao',
+            'url'         => 'bolsista/manutencao',
             'icon'        => 'wrench',
             'label'       => 5,
             'label_color' => 'success',
@@ -125,7 +125,7 @@ return [
         ],
         [
             'text'        => 'Sol. de chamados',
-            'url'         => 'chamados',
+            'url'         => 'bolsista/chamados',
             'icon'        => 'comments',
             'label'       => 10,
             'label_color' => 'success',
@@ -133,19 +133,19 @@ return [
         ],
         [
             'text'        => 'Equipamentos',
-            'url'         => 'equipamento',
+            'url'         => 'usuario/equipamento',
             'icon'        => 'wrench',
             'can'         => 'usuario',
         ],
         [
             'text'        => 'Problemas',
-            'url'         => 'problemas',
+            'url'         => 'usuario/problemas',
             'icon'        => 'comments',
             'can'         => 'usuario'
         ],
         [
             'text'        => 'Lista Equipamentos',
-            'url'         => 'lista-equipamento',
+            'url'         => 'usuario/lista-equipamento',
             'icon'        => 'comments',
             'label'       => 2,
             'label_color' => 'success',
@@ -153,11 +153,19 @@ return [
         ],
         [
             'text'        => 'Listar Problemas',
-            'url'         => 'lista-problemas',
+            'url'         => 'usuario/lista-problemas',
             'icon'        => 'comments',
             'label'       => 2,
             'label_color' => 'success',
             'can'         => 'usuario'
+        ],
+        [
+            'text'        => 'Cadastrar Bolsista',
+            'url'         => 'supervisor/register-bolsista',
+            'icon'        => 'comments',
+            'label'       => 2,
+            'label_color' => 'success',
+            'can'         => 'supervisor'
         ],
     ],
     /*    'ACCOUNT SETTINGS',
