@@ -35,34 +35,46 @@
       <div class="card-body table-responsive p-0">
         <table class="table table-hover">
           <tr>
-            <th>Id</th>
-            <th>Id</th>
+            <th>Id Equipamento</th>
+            <th>Id Usuario</th>
             <th>nome</th>
+            <td>Status</td>
+            <td>Opcão</td>
           </tr>
-          @foreach($manutencao as $index => $ma )
-          <?php $e = $ma::find($manutencao[$index]->id)->equipamento; ?>
-          @foreach($e as $equipamento)
-          <?php $a = $equip::find($equipamento->id)->usuario;?>
+          @foreach($manutencao as $index => $ma)
           <tr>
-            <th>{{ $ma['id']}}</th>
-            <th>{{$a->id}}</th>
-            <td>{{$a->nome}}</td>
-            <th>
-              <form method="post" action="{{route('manutencao.store')}}">
-               {!! csrf_field() !!}
-               <input type="hidden" name="id" value="{{$ma['id']}}">
-               <button type="imput" class="btn btn-primary">Sol. Manutenção</button>
-             </form>           
-           </th>
-         </tr>
-         @endforeach
-         @endforeach
-       </table>
-     </div>
-     <!-- /.card-body -->
-   </div>
-   <!-- /.card -->
- </div>
- <!-- /.row -->
+          @if($ma['status_id']!='4')
+          <th>{{ $ma->id}}</th>
+          <th>{{ $ma->equipamento->usuario->id  }}</th>
+          <th>{{ $ma->equipamento->usuario->nome  }}</th>
+          <th>{{ $ma->status->name  }}</th>
+          <td>
+            <form method="post" action="{{route('altera-status')}}">
+              {!! csrf_field() !!}
+              @if($ma['status_id']=='1')
+              <input type="hidden" name="id" value="{{$ma['id']}}">
+              <input type="hidden" name="status" value="2">
+              <button type="imput" class="btn btn-primary">Atribuir</button></th>
+              @elseif($ma['status_id']=='2')
+              <input type="hidden" name="id" value="{{$ma['id']}}">
+              <input type="hidden" name="status" value="3">
+              <button type="imput" class="btn btn-primary">Em andamento</button></th>
+              @elseif($ma['status_id']=='3')
+              <input type="hidden" name="id" value="{{$ma['id']}}">
+              <input type="hidden" name="status" value="4">
+              <button type="imput" class="btn btn-primary">Concluir</button></th>
+              @endif
+            </form>
+          </td>
+          @endif
+        </tr>
+        @endforeach
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.row -->
 
- @endsection
+@endsection

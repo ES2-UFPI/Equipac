@@ -3,17 +3,27 @@
 namespace equipac\Http\Controllers;
 
 use Illuminate\Http\Request;
+use equipac\models\problema;
 
 class ChamadoController extends Controller
 {
+    public function __construct()
+    {
+        //auth()->setDefaultDriver('usuario');
+
+
+        $this->middleware('auth:bolsista',['only' => 'index', 'create', 'store', 'update', 'destroy']);
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Problema $prob)
     {
-        return view('usuarios/chamados');
+        $problema = $prob::all();
+        return view('bolsista.chamados' , compact('problema'));
     }
 
     /**
