@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use equipac\models\Equipamento;
 use equipac\models\Manutencao;
 use equipac\models\Usuario;
-use equipac\models\Status;
+use equipac\models\Status_manutencao;
+use Illuminate\Support\Facades\Schema;
 
 use Auth;
 
@@ -86,7 +87,7 @@ class EquipamentoController extends Controller
 
     }
 
-    public function manutencao(Request $request, Equipamento $eqp, Manutencao $manut, Status $status)
+    public function manutencao(Request $request, Equipamento $eqp, Manutencao $manut, Status_manutencao $status)
     {
         $eqpp = $eqp::find($request->get('id'));
         $sts = $status::find(1);
@@ -145,7 +146,9 @@ class EquipamentoController extends Controller
      */
     public function destroy(int $id, Equipamento $eqp){
         // dd($eqp::find($id));
+        Schema::disableForeignKeyConstraints();
         $eqp::find($id)->delete();
+        Schema::enableForeignKeyConstraints();
         // if ($check)
         return redirect()->route('lista-equipamento-index')->with('success', 'Equipamento excluido com sucesso!');
 

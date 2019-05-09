@@ -3,7 +3,10 @@
 namespace equipac\Http\Controllers;
 
 use equipac\models\Supervisor;
+use equipac\models\Bolsista;
 use Illuminate\Http\Request;
+use Auth;
+use Validator;
 
 class SupervisorController extends Controller
 {
@@ -41,7 +44,7 @@ class SupervisorController extends Controller
         }
     }
 
-    public function registersupervisor(Request $request)
+    public function registerSupervisor(Request $request)
     {
         $validacao = validator::make($request->all(),[
             'name' => 'required',
@@ -61,11 +64,43 @@ class SupervisorController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->cpf = $request->cpf;
-        $user->nivel = 3;
+        $user->nivel = 1;
         $user->save();
 
         return redirect()->route('login-supervisor');
 
+    }
+
+    public function registerBolsista(Request $request)
+    {
+        $validacao = validator::make($request->all(),[
+            'name' => 'required',
+            'email' => 'required|min:3|max:150',
+            'password' => 'required|min:3|max:150|unique:bolsista',
+            'cpf' => 'required|max:15'
+        ]);
+
+        if($validacao->fails()){
+            dd($validacao);
+            return redirect('/')
+            ->withErrors(['errors' => 'problemas']);
+        }
+
+        $user = new Bolsista();
+        $user->nome = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->cpf = $request->cpf;
+        $user->nivel = 2;
+        $user->save();
+
+        return redirect()->route('supervisor-register-bolsista')->with('success', 'Bolsista cadastrado com sucesso!');
+
+    }
+
+    public function indexRegisterBolsista()
+    {
+        return view('supervisor.register-bolsista');
     }
 
     /**

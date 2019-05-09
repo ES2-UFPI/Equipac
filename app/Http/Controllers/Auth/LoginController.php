@@ -37,8 +37,9 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    	$this->middleware('guest:usuario')->except('logout');
+        $this->middleware('guest:usuario')->except('logout');
         $this->middleware('guest:bolsista')->except('logout');
+        $this->middleware('guest:supervisor')->except('logout');
     }
 
     public function logout(Request $request) {
@@ -50,7 +51,11 @@ class LoginController extends Controller
     		Auth::guard('bolsista')->logout();
     		return redirect('/bolsista/login');
     	}
+        else if(Auth::guard('supervisor')->check()){
+            Auth::guard('supervisor')->logout();
+            return redirect('/supervisor/login');
+        }
 
-    }
+}
 
 }

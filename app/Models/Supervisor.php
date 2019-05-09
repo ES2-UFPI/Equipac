@@ -2,9 +2,9 @@
 
 namespace equipac\models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Supervisor extends Model
+class Supervisor extends Authenticatable
 {
     protected $table = 'supervisor';
     protected $primarykey = 'id';
