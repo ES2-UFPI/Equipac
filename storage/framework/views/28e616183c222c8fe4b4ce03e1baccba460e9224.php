@@ -48,12 +48,7 @@
                 <input type="hidden" name="id" value="<?php echo e($p['id']); ?>">
                 <button type="imput" class="btn btn-primary">Excluir</button></th>
 
-                <!-- menu -->
-                <th><form method="post" action="<?php echo e(route('login-usuario')); ?>">
-                <?php echo csrf_field(); ?>
-
-                <input type="hidden" name="id" value="<?php echo e($p['id']); ?>">
-                <button type="imput" class="btn btn-primary">menu</button></th>
+        
 
               </form>
             </th>
