@@ -4,6 +4,7 @@ namespace equipac\Http\Controllers;
 
 use equipac\models\Bolsista;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Auth;
 use Validator;
 
@@ -133,14 +134,12 @@ class BolsistaController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \equipac\models\Bolsista  $bolsista
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Bolsista $bolsista)
+    public function excluirBolsista(Request $request, Bolsista $bol)
     {
-        //
+        Schema::disableForeignKeyConstraints();
+        $bol::find($request->get('id'))->delete();
+        Schema::enableForeignKeyConstraints();
+        // if ($check)
+        return redirect()->route('listar-bolsista-index')->with('success', 'Bolsista excluido com sucesso!');
     }
 }
