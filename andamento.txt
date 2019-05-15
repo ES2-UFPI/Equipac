@@ -8,3 +8,5 @@ problema: hasOne chamado
 supervisor
 
 alteração do status para status_manutencao e status_chamados
+
+Começar a integração com o travis ci
