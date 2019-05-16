@@ -119,16 +119,16 @@ return [
             'text'        => 'Sol. de Manutenção',
             'url'         => 'bolsista/manutencao',
             'icon'        => 'wrench',
-            'label'       => 5,
-            'label_color' => 'success',
+            //'label'       => 5,
+            //'label_color' => 'success',
             'can'         => 'bolsista', 
         ],
         [
             'text'        => 'Sol. de chamados',
             'url'         => 'bolsista/chamados',
             'icon'        => 'comments',
-            'label'       => 10,
-            'label_color' => 'success',
+            //'label'       => 10,
+            //'label_color' => 'success',
             'can'         => 'bolsista',
         ],
         [
@@ -147,24 +147,30 @@ return [
             'text'        => 'Lista Equipamentos',
             'url'         => 'usuario/lista-equipamento',
             'icon'        => 'comments',
-            'label'       => 2,
-            'label_color' => 'success',
+            //'label'       => 2,
+            //'label_color' => 'success',
             'can'         => 'usuario'
         ],
         [
             'text'        => 'Listar Problemas',
             'url'         => 'usuario/lista-problemas',
             'icon'        => 'comments',
-            'label'       => 2,
-            'label_color' => 'success',
+            //'label'       => 2,
+            //'label_color' => 'success',
             'can'         => 'usuario'
         ],
         [
             'text'        => 'Cadastrar Bolsista',
             'url'         => 'supervisor/register-bolsista',
             'icon'        => 'comments',
-            'label'       => 2,
-            'label_color' => 'success',
+            //'label_color' => 'success',
+            'can'         => 'supervisor'
+        ],
+        [
+            'text'        => 'Litar Bolsistas',
+            'url'         => 'supervisor/listar-bolsista',
+            'icon'        => 'list',
+            //'label_color' => 'success',
             'can'         => 'supervisor'
         ],
     ],
