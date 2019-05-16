@@ -167,7 +167,7 @@ return [
             'can'         => 'supervisor'
         ],
         [
-            'text'        => 'Litar Bolsistas',
+            'text'        => 'Listar Bolsistas',
             'url'         => 'supervisor/listar-bolsista',
             'icon'        => 'list',
             //'label_color' => 'success',

@@ -10,10 +10,10 @@ use Validator;
 
 class SupervisorController extends Controller
 {
-     public function __construct()
-    {
-        $this->middleware('auth:supervisor', ['only' => 'index']);
-    }
+ public function __construct()
+ {
+    $this->middleware('auth:supervisor', ['only' => 'index']);
+}
     /**
      * Display a listing of the resource.
      *
@@ -33,6 +33,12 @@ class SupervisorController extends Controller
     {
         $bol = $bolsista::all();
         return view('supervisor.listar-bolsista', compact('bol'));
+    }
+
+    public function indexEditarBolsista()
+    {
+        $bol = null;
+        return view('supervisor.editar-bolsista', compact('bol'));
     }
 
     public function postLogin(Request $request)
@@ -173,5 +179,24 @@ class SupervisorController extends Controller
     public function destroy(Supervisor $supervisor)
     {
         //
+    }
+
+    public function indexEditarBolsistaInfo(int $id, Bolsista $bolsista)
+    {
+        $bol = $bolsista::find($id);
+        return view('supervisor.editar-bolsista', compact('bol'));
+    }
+
+    public function updateBolsista(int $id, Request $request, Bolsista $bolsista)
+    {
+        $bol = $bolsista::find($id);
+        $bol['nome'] = $request->get('nome');
+        $bol['email'] = $request->get('email');
+        if ($bol->save()) {
+            return  redirect()->route('listar-bolsista-index')->with('success', 'Informações do Bolsista atualizadas com sucesso!');
+        }else{
+            return  redirect()->route('listar-bolsista-index')->with('error', 'Informações do Bolsista não foram atualizadas!');
+        }
+
     }
 }

@@ -10,3 +10,10 @@ supervisor
 alteração do status para status_manutencao e status_chamados
 
 Começar a integração com o travis ci
+
+
+<form method="get" action="{{route('editar-bolsista')}}">
+                  @csrf
+                  <input type="hidden" name="id" value="{{$e['id']}}">
+                  <button type="imput" class="btn btn-primary">Editar</button>
+                </form>

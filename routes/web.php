@@ -37,14 +37,16 @@ Route::prefix('usuario')->group(function () {
 
 Route::prefix('supervisor')->group(function () {
 	route::get ('/', 'SupervisorController@index')->name('supervisor');
-	route::get ('register-bolsista', 'SupervisorController@indexRegisterBolsista')->name('supervisor-register-bolsista-index');
-	route::Post('register-bolsista', 'SupervisorController@registerBolsista')->name('supervisor-register-bolsista');
 	route::get ('login', 'Auth\SupervisorLoginController@login')->name('login-supervisor');
 	route::Post('login', 'Auth\SupervisorLoginController@loginBolsista')->name('login-submit-supervisor');
 	route::get ('register', 'SupervisorController@registerIndex')->name('register-s');
 	route::Post('register', 'SupervisorController@registerSupervisor')->name('register-supervisor');
+	route::get ('register-bolsista', 'SupervisorController@indexRegisterBolsista')->name('supervisor-register-bolsista-index');
+	route::Post('register-bolsista', 'SupervisorController@registerBolsista')->name('supervisor-register-bolsista');
 	Route::get ('listar-bolsista', 'SupervisorController@indexListarBolsista')->name('listar-bolsista-index');
 	route::Post('listar-bolsista', 'BolsistaController@excluirBolsista')->name('excluir-bolsista');
+	Route::get ('editar-bolsista/{id}', 'SupervisorController@indexEditarBolsistaInfo')->name('editar-bolsista');
+	Route::post('editar-bolsista/{id}', 'SupervisorController@updateBolsista')->name('update-bolsista');
 });
 
 Route::post('logout', 'Auth\LoginController@logout');
