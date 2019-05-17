@@ -5,8 +5,17 @@ namespace equipac\Http\Controllers;
 use equipac\models\Admin;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Schema;
+use Auth;
+use Validator;
+
 class AdminController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin', ['only' => 'index']);
+    }
     /**
      * Display a listing of the resource.
      *
