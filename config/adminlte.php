@@ -173,6 +173,13 @@ return [
             //'label_color' => 'success',
             'can'         => 'supervisor'
         ],
+        [
+            'text'        => 'Cadastrar supervisor',
+            'url'         => 'admin/cadastrar-supervisor',
+            'icon'        => 'list',
+            //'label_color' => 'success',
+            'can'         => 'admin'
+        ],
     ],
     /*    'ACCOUNT SETTINGS',
         [

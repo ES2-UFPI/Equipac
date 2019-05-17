@@ -18,7 +18,7 @@ Criação da tabela do admin no banco de dados -- OK
 Autenticação do admin
 Middleware do admin
 Configuração do adminLTE para o admin
-Configuração do config/auth.php para o admin
+Configuração do config/auth.php para o admin -- OK
 Adição do Can para o admin no AdminLTE
 
 @messias
