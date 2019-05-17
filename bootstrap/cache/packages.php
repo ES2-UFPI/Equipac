@@ -41,4 +41,11 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'sven/artisan-view' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Sven\\ArtisanView\\ServiceProvider',
+    ),
+  ),
 );

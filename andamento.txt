@@ -24,6 +24,6 @@ Adição do Can para o admin no AdminLTE -- OK
 @messias
 criação da model para o admin -- OK
 criação do controller para o admin -- OK
-criação da view para o admin
+criação da view para o admin -- ok
 criação da rota para o admin
 

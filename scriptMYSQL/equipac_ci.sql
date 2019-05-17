@@ -158,14 +158,12 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`admin` (
   `admin_password_resets` VARCHAR(32) NOT NULL,
   `create_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `Update_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `email_verified_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `remember_token` VARCHAR(100) NULL,
+  `nivel` INT(11) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
+COLLATE = utf8mb4_0900_ai_ci
 
 -- -----------------------------------------------------
 -- Table `equipac_ci`.`equipamento`

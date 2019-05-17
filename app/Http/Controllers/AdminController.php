@@ -16,14 +16,53 @@ class AdminController extends Controller
     {
         $this->middleware('auth:admin', ['only' => 'index']);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return view('admin');
+    }
+
+    public function registerIndex()
+    {
+        return view('admin.auth.register');
+    }
+
+    public function postLogin(Request $request)
+    {
+        $credenciais = ['email' => $request->get('email'),
+        'password' => $request->get('password')];
+        
+        if (auth()->guard('admin')->attempt($credenciais)) {
+            config(['auth.defaults.guard' => 'admin']);
+            return redirect('home');
+        } else {
+            return redirect('login-admin')
+            ->withErrors(['errors' => 'nao existe']);
+        }
+    }
+
+    public function registerAdmin(Request $request)
+    {
+        $validacao = validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|min:3|max:150',
+            'password' => 'required|min:3|max:150|unique:admin'
+        ]);
+
+        if ($validacao->fails()) {
+            dd($validacao);
+            return redirect('/')
+            ->withErrors(['errors' => 'problemas']);
+        }
+
+        $user = new admin();
+        $user->nome = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->nivel = 0;
+        $user->save();
+
+        return redirect()->route('login-admin');
     }
 
     /**

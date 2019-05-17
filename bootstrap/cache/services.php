@@ -29,10 +29,11 @@
     25 => 'Laravel\\Tinker\\TinkerServiceProvider',
     26 => 'Carbon\\Laravel\\ServiceProvider',
     27 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    28 => 'equipac\\Providers\\AppServiceProvider',
-    29 => 'equipac\\Providers\\AuthServiceProvider',
-    30 => 'equipac\\Providers\\EventServiceProvider',
-    31 => 'equipac\\Providers\\RouteServiceProvider',
+    28 => 'Sven\\ArtisanView\\ServiceProvider',
+    29 => 'equipac\\Providers\\AppServiceProvider',
+    30 => 'equipac\\Providers\\AuthServiceProvider',
+    31 => 'equipac\\Providers\\EventServiceProvider',
+    32 => 'equipac\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -50,10 +51,11 @@
     11 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     12 => 'JeroenNoten\\LaravelAdminLte\\ServiceProvider',
     13 => 'Carbon\\Laravel\\ServiceProvider',
-    14 => 'equipac\\Providers\\AppServiceProvider',
-    15 => 'equipac\\Providers\\AuthServiceProvider',
-    16 => 'equipac\\Providers\\EventServiceProvider',
-    17 => 'equipac\\Providers\\RouteServiceProvider',
+    14 => 'Sven\\ArtisanView\\ServiceProvider',
+    15 => 'equipac\\Providers\\AppServiceProvider',
+    16 => 'equipac\\Providers\\AuthServiceProvider',
+    17 => 'equipac\\Providers\\EventServiceProvider',
+    18 => 'equipac\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (
