@@ -12,8 +12,17 @@ alteração do status para status_manutencao e status_chamados
 Começar a integração com o travis ci
 
 
-<form method="get" action="{{route('editar-bolsista')}}">
-                  @csrf
-                  <input type="hidden" name="id" value="{{$e['id']}}">
-                  <button type="imput" class="btn btn-primary">Editar</button>
-                </form>
+-- NOVAS ISSUES ITERAÇÃO 3
+@jorge
+Autenticação do admin
+Middleware do admin
+Configuração do adminLTE para o admin
+@messias
+Configuração do config/auth.php para o admin
+criação da model para o admin
+criação do controller para o admin
+criação da view para o admin
+criação da rota para o admin
+@victor
+Adição do Can para o admin no AdminLTE
+Criação da tabela do admin no banco de dados
