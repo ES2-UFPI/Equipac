@@ -20,6 +20,16 @@ class RedirectIfAuthenticated
                     return redirect()->route('bolsista');
                 }
                 break;
+            case 'supervisor':
+                if (Auth::guard($guard)->check()) {
+                    return redirect()->route('supervisor');
+                }
+                break;
+            case 'admin':
+                if (Auth::guard($guard)->check()) {
+                    return redirect()->route('admin');
+                }
+                break;
             default:
                 if (Auth::guard($guard)->check()) {
                     return redirect('/');

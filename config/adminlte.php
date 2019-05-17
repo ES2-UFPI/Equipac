@@ -121,7 +121,7 @@ return [
             'icon'        => 'wrench',
             //'label'       => 5,
             //'label_color' => 'success',
-            'can'         => 'bolsista', 
+            'can'         => 'bolsista',
         ],
         [
             'text'        => 'Sol. de chamados',

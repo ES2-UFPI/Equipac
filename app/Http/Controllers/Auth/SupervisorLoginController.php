@@ -39,6 +39,7 @@ class SupervisorLoginController extends Controller
     {
         return view('supervisor.auth.login');
     }
+
     public function loginBolsista(Request $request)
     {
       // Validate the form data
@@ -46,12 +47,9 @@ class SupervisorLoginController extends Controller
             'email'   => 'required|email',
             'password' => 'required|min:6'
         ]);
-      // Attempt to log the user in
         if (Auth::guard('supervisor')->attempt(['email' => $request->email, 'password' => $request->password])) {
-        // if successful, then redirect to their intended location
             return redirect()->intended(route('supervisor'));
         }
-      // if unsuccessful, then redirect back to the login with the form data
         return redirect()->back()->withInput($request->only('email'));
     }
 

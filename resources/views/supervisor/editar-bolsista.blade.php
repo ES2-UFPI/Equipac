@@ -27,6 +27,7 @@ $nome = "";
 $email = "";
 ?>
 @endif
+
 <div class="content">
     <div class="row">
       <div class="col-md-12">
