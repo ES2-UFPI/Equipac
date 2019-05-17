@@ -17,12 +17,13 @@ Começar a integração com o travis ci
 Autenticação do admin
 Middleware do admin
 Configuração do adminLTE para o admin
-@messias
+Criação da tabela do admin no banco de dados
 Configuração do config/auth.php para o admin
+Adição do Can para o admin no AdminLTE
+
+@messias
 criação da model para o admin
 criação do controller para o admin
 criação da view para o admin
 criação da rota para o admin
-@victor
-Adição do Can para o admin no AdminLTE
-Criação da tabela do admin no banco de dados
+
