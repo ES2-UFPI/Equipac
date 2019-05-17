@@ -22,8 +22,8 @@ Configuração do config/auth.php para o admin
 Adição do Can para o admin no AdminLTE
 
 @messias
-criação da model para o admin
-criação do controller para o admin
+criação da model para o admin -- OK
+criação do controller para o admin -- OK
 criação da view para o admin
 criação da rota para o admin
 
