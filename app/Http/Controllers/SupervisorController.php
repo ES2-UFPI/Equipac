@@ -10,10 +10,10 @@ use Validator;
 
 class SupervisorController extends Controller
 {
- public function __construct()
- {
-    $this->middleware('auth:supervisor', ['only' => 'index']);
-}
+    public function __construct()
+    {
+        $this->middleware('auth:supervisor', ['only' => 'index']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -49,8 +49,7 @@ class SupervisorController extends Controller
         if (auth()->guard('supervisor')->attempt($credenciais)) {
             config(['auth.defaults.guard' => 'supervisor']);
             return redirect('home');
-        } 
-        else{
+        } else {
             return redirect('login-supervisor')
             ->withErrors(['errors' => 'nao existe']);
         }
@@ -58,14 +57,14 @@ class SupervisorController extends Controller
 
     public function registerSupervisor(Request $request)
     {
-        $validacao = validator::make($request->all(),[
+        $validacao = validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|min:3|max:150',
             'password' => 'required|min:3|max:150|unique:supervisor',
             'cpf' => 'required|max:15'
         ]);
 
-        if($validacao->fails()){
+        if ($validacao->fails()) {
             dd($validacao);
             return redirect('/')
             ->withErrors(['errors' => 'problemas']);
@@ -80,19 +79,18 @@ class SupervisorController extends Controller
         $user->save();
 
         return redirect()->route('login-supervisor');
-
     }
 
     public function registerBolsista(Request $request)
     {
-        $validacao = validator::make($request->all(),[
+        $validacao = validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|min:3|max:150',
             'password' => 'required|min:3|max:150|unique:bolsista',
             'cpf' => 'required|max:15'
         ]);
 
-        if($validacao->fails()){
+        if ($validacao->fails()) {
             dd($validacao);
             return redirect('/')
             ->withErrors(['errors' => 'problemas']);
@@ -107,7 +105,6 @@ class SupervisorController extends Controller
         $user->save();
 
         return redirect()->route('supervisor-register-bolsista')->with('success', 'Bolsista cadastrado com sucesso!');
-
     }
 
     public function indexRegisterBolsista()
@@ -194,9 +191,8 @@ class SupervisorController extends Controller
         $bol['email'] = $request->get('email');
         if ($bol->save()) {
             return  redirect()->route('listar-bolsista-index')->with('success', 'Informações do Bolsista atualizadas com sucesso!');
-        }else{
+        } else {
             return  redirect()->route('listar-bolsista-index')->with('error', 'Informações do Bolsista não foram atualizadas!');
         }
-
     }
 }

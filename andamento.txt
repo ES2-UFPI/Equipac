@@ -15,11 +15,11 @@ Começar a integração com o travis ci
 -- NOVAS ISSUES ITERAÇÃO 3
 @jorge
 Criação da tabela do admin no banco de dados -- OK
-Autenticação do admin
-Middleware do admin
-Configuração do adminLTE para o admin
+Autenticação do admin -- OK
+Middleware do admin -- OK
+Configuração do adminLTE para o admin -- OK
 Configuração do config/auth.php para o admin -- OK
-Adição do Can para o admin no AdminLTE
+Adição do Can para o admin no AdminLTE -- OK
 
 @messias
 criação da model para o admin -- OK

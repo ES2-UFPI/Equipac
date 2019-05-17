@@ -12,8 +12,7 @@ class ChamadoController extends Controller
         //auth()->setDefaultDriver('usuario');
 
 
-        $this->middleware('auth:bolsista',['only' => 'index', 'create', 'store', 'update', 'destroy']);
-
+        $this->middleware('auth:bolsista', ['only' => 'index', 'create', 'store', 'update', 'destroy']);
     }
     /**
      * Display a listing of the resource.
@@ -23,7 +22,7 @@ class ChamadoController extends Controller
     public function index(Problema $prob)
     {
         $problema = $prob::all();
-        return view('bolsista.chamados' , compact('problema'));
+        return view('bolsista.chamados', compact('problema'));
     }
 
     /**
@@ -50,10 +49,11 @@ class ChamadoController extends Controller
         $result = array_merge($request->all(), $ext);
         $insert = $cham->create($result);
 
-        if ($insert)
+        if ($insert) {
             return redirect()
                     ->route('index')
                     ->with('success', 'Chamado criado com sucesso!');
+        }
 
     // Redireciona de volta com uma mensagem de erro
         return redirect()

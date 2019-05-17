@@ -5,11 +5,10 @@ namespace equipac\models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use equipac\models\Equipamento;
 
-
 class Usuario extends Authenticatable
 {
 
-	protected $table = 'usuario';
+    protected $table = 'usuario';
     protected $primarykey = 'id';
     public $timestamps = false;
     /**
@@ -44,5 +43,4 @@ class Usuario extends Authenticatable
     {
         return $this->hasMany('equipac\models\Equipamento', 'usuario_id', 'id');
     }
-
 }

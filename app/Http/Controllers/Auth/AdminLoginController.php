@@ -28,7 +28,7 @@ class AdminLoginController extends Controller
     // protected $redirectTo = '/home';
     public function __construct()
     {
-    	$this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
     /**
      * Display a listing of the resource.
@@ -37,28 +37,27 @@ class AdminLoginController extends Controller
      */
     public function login()
     {
-    	return view('admin.auth.login');
+        return view('admin.auth.login');
     }
     public function loginAdmin(Request $request)
     {
       // Validate the form data
-    	$this->validate($request, [
-    		'email'   => 'required|email',
-    		'password' => 'required|min:6'
-    	]);
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
       // Attempt to log the user in
-    	if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
         // if successful, then redirect to their intended location
-    		return redirect()->intended(route('admin'));
-    	}
+            return redirect()->intended(route('admin'));
+        }
       // if unsuccessful, then redirect back to the login with the form data
-    	return redirect()->back()->withInput($request->only('email'));
+        return redirect()->back()->withInput($request->only('email'));
     }
 
     public function logout()
     {
-    	Auth::guard('admin')->logout();
-    	return redirect()->route('login-admin');
+        Auth::guard('admin')->logout();
+        return redirect()->route('login-admin');
     }
-    
-  }
+}
