@@ -19,8 +19,8 @@
 <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/adminlte/responsive.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/adminlte/animate.css') }}">
-<link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" href="css/all-type-forms.css">
+<!-- <link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/all-type-forms.css"> -->
 
     @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->

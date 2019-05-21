@@ -14,7 +14,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin', ['only' => 'index']);
+        $this->middleware('auth:admin');
     }
 
     public function index()
@@ -128,5 +128,11 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public function listarAdminIndex(Admin $admin)
+    {
+        $adm = $admin::all();
+        return view('admin.listar-admin', compact('adm'));
     }
 }

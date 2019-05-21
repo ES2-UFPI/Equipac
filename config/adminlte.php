@@ -180,6 +180,13 @@ return [
             //'label_color' => 'success',
             'can'         => 'admin'
         ],
+        [
+            'text'        => 'Lista Admin',
+            'url'         => 'admin/listar-admin',
+            'icon'        => 'list',
+            //'label_color' => 'success',
+            'can'         => 'admin'
+        ],
     ],
     /*    'ACCOUNT SETTINGS',
         [

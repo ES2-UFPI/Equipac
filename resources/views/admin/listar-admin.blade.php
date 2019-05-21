@@ -26,29 +26,23 @@
             <th>E-mail</th>
             <th>Opções</th>      
           </tr>
-          @foreach($bol as $index => $e )
+          @foreach($adm as $index => $e )
           <tr>
             <th>{{ $e['id']}}</th>
             <th>{{ $e['nome']}}</th>
             <th>{{ $e['email']}}</th>
             <th>
-              <form method="post" action="{{route('excluir-bolsista')}}">
-                @csrf
-                <input type="hidden" name="id" value="{{$e['id']}}">
-                <button type="imput" class="btn btn-danger">Excluir</button></th>
-              </form>
             </th>
             <th>
-              <a href="{{route('editar-bolsista', $e['id'])}}">
-                <button type="imput" class="btn btn-primary">Editar</button>
-              </a>
-            </th>
+              <button type="imput" class="btn btn-primary">Editar</button>
+            </a>
           </th>
-        </tr>
-        @endforeach
-      </table>
-    </div>
+        </th>
+      </tr>
+      @endforeach
+    </table>
   </div>
+</div>
 </div>
 </div>
 </div>
