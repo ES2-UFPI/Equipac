@@ -12,7 +12,7 @@ class SupervisorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:supervisor');
+        $this->middleware('auth:supervisor')->except(['registerSupervisor', 'registerIndex']);
     }
     /**
      * Display a listing of the resource.

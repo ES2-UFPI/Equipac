@@ -55,6 +55,8 @@ Route::prefix('admin')->group(function () {
     route::get('register', 'AdminController@registerIndex')->name('register-a');
     route::Post('register', 'AdminController@registerAdmin')->name('register-admin');
     route::get('listar-admin', 'AdminController@listarAdminIndex')->name('listar-admin');
+    route::get('register-admin', 'AdminController@registerAdminIndex')->name('register-admin-index');
+    route::post('register-admin', 'AdminController@adminRegisterAdmin')->name('admin-register-admin');
 });
 
 Route::post('logout', 'Auth\LoginController@logout');

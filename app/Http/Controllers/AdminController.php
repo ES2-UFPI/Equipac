@@ -14,7 +14,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:admin')->except(['registerAdmin', 'registerIndex']);
     }
 
     public function index()
@@ -25,6 +25,11 @@ class AdminController extends Controller
     public function registerIndex()
     {
         return view('admin.auth.register');
+    }
+
+    public function registerAdminIndex()
+    {
+        return view('admin.register-admin');
     }
 
     public function postLogin(Request $request)
@@ -63,6 +68,30 @@ class AdminController extends Controller
         $user->save();
 
         return redirect()->route('login-admin');
+    }
+
+    public function adminRegisterAdmin(Request $request)
+    {
+        $validacao = validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|min:3|max:150',
+            'password' => 'required|min:3|max:150|unique:admin'
+        ]);
+
+        if ($validacao->fails()) {
+            dd($validacao);
+            return redirect('/')
+            ->withErrors(['errors' => 'problemas']);
+        }
+
+        $user = new admin();
+        $user->nome = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->nivel = 0;
+        $user->save();
+
+        return redirect()->route('listar-admin')->with('success', 'Admin cadastrado com sucesso!');
     }
 
     /**
