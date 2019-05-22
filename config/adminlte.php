@@ -121,7 +121,7 @@ return [
             'icon'        => 'wrench',
             //'label'       => 5,
             //'label_color' => 'success',
-            'can'         => 'bolsista', 
+            'can'         => 'bolsista',
         ],
         [
             'text'        => 'Sol. de chamados',
@@ -167,11 +167,18 @@ return [
             'can'         => 'supervisor'
         ],
         [
-            'text'        => 'Litar Bolsistas',
+            'text'        => 'Listar Bolsistas',
             'url'         => 'supervisor/listar-bolsista',
             'icon'        => 'list',
             //'label_color' => 'success',
             'can'         => 'supervisor'
+        ],
+        [
+            'text'        => 'Cadastrar supervisor',
+            'url'         => 'admin/cadastrar-supervisor',
+            'icon'        => 'list',
+            //'label_color' => 'success',
+            'can'         => 'admin'
         ],
     ],
     /*    'ACCOUNT SETTINGS',
