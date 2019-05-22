@@ -32,6 +32,11 @@
             <th>{{ $e['nome']}}</th>
             <th>{{ $e['email']}}</th>
             <th>
+              <form method="post" action="{{route('excluir-admin')}}">
+                @csrf
+                <input type="hidden" name="id" value="{{$e['id']}}">
+                <button type="imput" class="btn btn-danger">Excluir</button></th>
+              </form>
             </th>
             <th>
               <button type="imput" class="btn btn-primary">Editar</button>
