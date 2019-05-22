@@ -19,13 +19,13 @@ class ProblemaController extends Controller
     public function index(Problema $prob)
     {
         $problema = $prob::all();
-        return view('usuarios.problema' , compact('problema'));
+        return view('usuarios.problema', compact('problema'));
     }
 
     public function indexLista(Problema $prob)
     {
         $problema = $prob::all();
-        return view('usuarios.lista-problemas' , compact('problema'));
+        return view('usuarios.lista-problemas', compact('problema'));
     }
 
     /**
@@ -46,24 +46,25 @@ class ProblemaController extends Controller
      */
     public function store(Request $request, Problema $cham)
     {
-       $ext = array('criacao' => date('Y-m-d H:i:s'),
+        $ext = array('criacao' => date('Y-m-d H:i:s'),
         'usuario_id' => auth()->user()->id);
-       $result = array_merge($request->all(), $ext);
-       $insert = $cham->create($result);
+        $result = array_merge($request->all(), $ext);
+        $insert = $cham->create($result);
 
-       if ($insert)
-        return redirect()
-    ->route('problemas.index')
-    ->with('success', 'Chamado criado com sucesso!');
+        if ($insert) {
+            return redirect()
+            ->route('problemas.index')
+            ->with('success', 'Chamado criado com sucesso!');
+        }
 
     // Redireciona de volta com uma mensagem de erro
-    return redirect()
-    ->back()
-    ->with('error', 'Falha ao Criar');
-}
+        return redirect()
+        ->back()
+        ->with('error', 'Falha ao Criar');
+    }
 
-public function manutencao(Request $request, Chamados $cham)
-{
+    public function manutencao(Request $request, Chamados $cham)
+    {
         //dd($dados->all());
 /*
     $ext = array('criacao' => date('Y-m-d H:i:s'),
@@ -81,8 +82,8 @@ public function manutencao(Request $request, Chamados $cham)
     ->back()
     ->with('error', 'Falha ao Criar');
 
-*/    
-}
+    */
+    }
     /**
      * Display the specified resource.
      *

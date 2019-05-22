@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Status_manutencao extends Model
 {
-	protected $table = 'status_manutencao';
+    protected $table = 'status_manutencao';
     protected $primarykey = 'id';
     public $timestamps = false;
     

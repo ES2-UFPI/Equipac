@@ -174,8 +174,15 @@ return [
             'can'         => 'supervisor'
         ],
         [
-            'text'        => 'Cadastrar supervisor',
-            'url'         => 'admin/cadastrar-supervisor',
+            'text'        => 'Cadastrar Admin',
+            'url'         => 'admin/register-admin',
+            'icon'        => 'list',
+            //'label_color' => 'success',
+            'can'         => 'admin'
+        ],
+        [
+            'text'        => 'Lista Admin',
+            'url'         => 'admin/listar-admin',
             'icon'        => 'list',
             //'label_color' => 'success',
             'can'         => 'admin'

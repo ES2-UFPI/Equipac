@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ManutencaoController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
         $this->middleware('auth:bolsista', ['only' => 'index']);
     }
@@ -32,7 +32,7 @@ class ManutencaoController extends Controller
         // }
         
         //dd($a->id);
-        return view('bolsista.manutencao' , compact('manutencao'));
+        return view('bolsista.manutencao', compact('manutencao'));
     }
 
     /**
@@ -56,10 +56,10 @@ class ManutencaoController extends Controller
         //dd($eqp::find($request->get('id'))->usuario->id);
         $eqpp = $eqp::find($request->get('id'));
         $ext = array('dataAtribuida' => date('Y-m-d H:i:s'));
-        $ext2 = array('status_id' => '1'); 
+        $ext2 = array('status_id' => '1');
         $result = array_merge($ext2, $ext);
         $insert = $manut->create($result);
-        if ($insert){
+        if ($insert) {
             $eqpp->manutencao()->attach($insert, ['equipamento_usuario_id' => $eqp::find($request->get('id'))->usuario->id]);
             return redirect()
             ->route('equipamento.index')
@@ -75,7 +75,7 @@ class ManutencaoController extends Controller
         $manut = $ma::find($request->id);
         $sts = $status::find($request->status);
         $manut->status()->associate($sts);
-        if ($manut->save()){
+        if ($manut->save()) {
             return redirect()
             ->route('index-manutencao')
             ->with('success', 'Manutenção Cadastrada com sucesso!');
@@ -132,6 +132,5 @@ class ManutencaoController extends Controller
     
     public function atribuirChamado()
     {
-
     }
 }

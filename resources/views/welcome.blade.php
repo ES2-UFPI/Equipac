@@ -101,6 +101,10 @@
                     <td><a href="{{ route('login-supervisor') }}">Supervisor</a></td>
                     <td><a href="{{ route('register-s') }}">Register</a></td>
                 </tr>
+                <tr>
+                    <td><a href="{{ route('login-admin') }}">Admin</a></td>
+                    <td><a href="{{ route('register-a') }}">Register</a></td>
+                </tr>
             </table>
             @endauth
             @endif

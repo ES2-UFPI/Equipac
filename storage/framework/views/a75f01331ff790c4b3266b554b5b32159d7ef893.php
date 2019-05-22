@@ -102,6 +102,10 @@
                     <td><a href="<?php echo e(route('login-supervisor')); ?>">Supervisor</a></td>
                     <td><a href="<?php echo e(route('register-s')); ?>">Register</a></td>
                 </tr>
+                <tr>
+                    <td><a href="<?php echo e(route('login-admin')); ?>">Admin</a></td>
+                    <td><a href="<?php echo e(route('register-a')); ?>">Register</a></td>
+                </tr>
             </table>
             <?php endif; ?>
             <?php endif; ?>
