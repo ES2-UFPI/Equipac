@@ -58,6 +58,8 @@ Route::prefix('admin')->group(function () {
     route::post('listar-admin', 'AdminController@excluirAdmin')->name('excluir-admin');
     route::get('register-admin', 'AdminController@registerAdminIndex')->name('register-admin-index');
     route::post('register-admin', 'AdminController@adminRegisterAdmin')->name('admin-register-admin');
+    route::get('listar-usuario', 'AdminController@listarUsuarioIndex')->name('listar-usuario');
+    route::post('listar-usuario', 'AdminController@excluirUsuario')->name('excluir-usuario');
 });
 
 Route::post('logout', 'Auth\LoginController@logout');

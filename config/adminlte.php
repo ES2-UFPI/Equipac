@@ -181,8 +181,15 @@ return [
             'can'         => 'admin'
         ],
         [
-            'text'        => 'Lista Admin',
+            'text'        => 'Listar Admin',
             'url'         => 'admin/listar-admin',
+            'icon'        => 'list',
+            //'label_color' => 'success',
+            'can'         => 'admin'
+        ],
+        [
+            'text'        => 'Listar usuários',
+            'url'         => 'admin/listar-usuario',
             'icon'        => 'list',
             //'label_color' => 'success',
             'can'         => 'admin'
