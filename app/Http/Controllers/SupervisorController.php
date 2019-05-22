@@ -29,6 +29,12 @@ class SupervisorController extends Controller
         return view('supervisor.auth.register');
     }
 
+    public function indexListarBolsista(Bolsista $bolsista)
+    {
+        $bol = $bolsista::all();
+        return view('supervisor.listar-bolsista', compact('bol'));
+    }
+
     public function postLogin(Request $request)
     {
         $credenciais = ['email' => $request->get('email'),
