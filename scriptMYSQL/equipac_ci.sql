@@ -302,4 +302,3 @@ INSERT INTO `equipac_ci`.`status_manutencao` (`id`, `name`) VALUES (3, 'Em progr
 INSERT INTO `equipac_ci`.`status_manutencao` (`id`, `name`) VALUES (4, 'Finalizada');
 
 COMMIT;
-

@@ -24,16 +24,16 @@
       <div class="card-body table-responsive p-0">
         <table class="table table-hover">
           <tr>
-            <th>Id</th>
+            <th>Id Chamado</th>
             <th>Descrição</th>
             <th>Data</th>
             <th></th>
           </tr>
           @foreach($problema as $e )
           <tr>
-            <th>{{ $e['id']}}</th>
-            <th>{{ $e['descricao']}}</th>
-            <th>{{ $e['criacao']}}</th>
+            <th>{{ $e['ID']}}</th>
+            <th>{{ $e['Descricao']}}</th>
+            <th>{{ $e['Criacao']}}</th>
             <th><button type="" class="btn btn-primary">Sol. Chamado</button></th>
           </tr>
           @endforeach
