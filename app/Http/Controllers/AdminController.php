@@ -177,7 +177,6 @@ class AdminController extends Controller
         Schema::disableForeignKeyConstraints();
         $admin::find($request->get('id'))->delete();
         Schema::enableForeignKeyConstraints();
-        // if ($check)
         return redirect()->route('listar-admin')->with('success', 'Admin excluido com sucesso!');
     }
 
@@ -186,7 +185,6 @@ class AdminController extends Controller
         Schema::disableForeignKeyConstraints();
         $usuario::find($request->get('id'))->delete();
         Schema::enableForeignKeyConstraints();
-        // if ($check)
         return redirect()->route('listar-admin')->with('success', 'Usuário excluido com sucesso!');
     }
 }
