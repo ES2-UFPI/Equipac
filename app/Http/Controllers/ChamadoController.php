@@ -4,6 +4,7 @@ namespace equipac\Http\Controllers;
 
 use Illuminate\Http\Request;
 use equipac\models\problema;
+use equipac\models\Chamados;
 
 class ChamadoController extends Controller
 {
@@ -19,7 +20,7 @@ class ChamadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Problema $prob)
+    public function index(Chamados $prob)
     {
         $problema = $prob::all();
         return view('bolsista.chamados', compact('problema'));

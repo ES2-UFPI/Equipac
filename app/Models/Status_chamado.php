@@ -12,6 +12,6 @@ class Status_chamado extends Model
     
     public function manutencao()
     {
-        return $this->hasMany('equipac\models\chamado');
+        return $this->hasMany('equipac\models\chamados');
     }
 }

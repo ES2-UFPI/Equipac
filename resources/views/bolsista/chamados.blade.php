@@ -29,7 +29,7 @@
             <th>Data</th>
             <th></th>
           </tr>
-          @foreach($problema as $e )
+          @foreach($problema as $e)
           <tr>
             <th>{{ $e['ID']}}</th>
             <th>{{ $e['Descricao']}}</th>

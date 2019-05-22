@@ -2,7 +2,7 @@
 
 namespace equipac\Http\Controllers;
 
-use equipac\models\problema;
+use equipac\models\Problema;
 use Illuminate\Http\Request;
 
 class ProblemaController extends Controller
