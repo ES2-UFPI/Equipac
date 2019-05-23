@@ -5,9 +5,6 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
 -- Schema equipac_ci
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `equipac_ci` ;
@@ -19,6 +16,41 @@ CREATE SCHEMA IF NOT EXISTS `equipac_ci` DEFAULT CHARACTER SET utf8 ;
 USE `equipac_ci` ;
 
 -- -----------------------------------------------------
+-- Table `equipac_ci`.`status_chamado`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `equipac_ci`.`status_chamado` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`status_chamado` (
+  `id` INT(11) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `equipac_ci`.`chamado`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `equipac_ci`.`chamado` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`chamado` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `dataAtribuida` DATE NULL DEFAULT NULL,
+  `dataFinalizada` DATE NULL DEFAULT NULL,
+  `solucao` VARCHAR(200) NULL,
+  `status_chamado_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`, `status_chamado_id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_chamado_status_chamado_idx` (`status_chamado_id` ASC) VISIBLE,
+  CONSTRAINT `fk_chamado_status_chamado`
+    FOREIGN KEY (`status_chamado_id`)
+    REFERENCES `equipac_ci`.`status_chamado` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+USE `equipac_ci` ;
+
+-- -----------------------------------------------------
 -- Table `equipac_ci`.`admin`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `equipac_ci`.`admin` ;
@@ -27,19 +59,19 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`admin` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(16) NOT NULL,
   `email` VARCHAR(255) NULL DEFAULT NULL,
-  `password` VARCHAR(32) NOT NULL,
-  `admin_password_resets` VARCHAR(32) NOT NULL,
-  `create_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `Update_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `password` VARCHAR(200) NOT NULL,
+  `admin_password_resets` VARCHAR(32) NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `email_verified_at` TIMESTAMP NULL DEFAULT NULL,
   `remember_token` VARCHAR(100) NULL DEFAULT NULL,
   `nivel` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `equipac_ci`.`admin` (`id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -60,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`bolsista` (
   `nivel` INT(11) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 16
+AUTO_INCREMENT = 17
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
@@ -83,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`usuario` (
   `nivel` INT(11) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -100,6 +132,7 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`equipamento` (
   `criacao` DATETIME NOT NULL,
   `usuario_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`, `usuario_id`),
+  INDEX `fk_equipamento_usuario_idx` (`usuario_id` ASC) VISIBLE,
   CONSTRAINT `fk_equipamento_usuario`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `equipac_ci`.`usuario` (`id`))
@@ -107,8 +140,6 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
-CREATE INDEX `fk_equipamento_usuario_idx` ON `equipac_ci`.`equipamento` (`usuario_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -138,6 +169,8 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`manutencao` (
   `equipamento_id` INT(11) NOT NULL,
   `equipamento_usuario_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`, `status_id`, `equipamento_id`, `equipamento_usuario_id`),
+  INDEX `fk_manutencao_status1_idx` (`status_id` ASC) VISIBLE,
+  INDEX `fk_manutencao_equipamento1_idx` (`equipamento_id` ASC, `equipamento_usuario_id` ASC) VISIBLE,
   CONSTRAINT `fk_manutencao_equipamento1`
     FOREIGN KEY (`equipamento_id` , `equipamento_usuario_id`)
     REFERENCES `equipac_ci`.`equipamento` (`id` , `usuario_id`),
@@ -147,10 +180,6 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`manutencao` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8;
-
-CREATE INDEX `fk_manutencao_status1_idx` ON `equipac_ci`.`manutencao` (`status_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_manutencao_equipamento1_idx` ON `equipac_ci`.`manutencao` (`equipamento_id` ASC, `equipamento_usuario_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -162,6 +191,8 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`bolsista_has_manutencao` (
   `bolsista_id` INT(10) UNSIGNED NOT NULL,
   `manutencao_id` INT(11) NOT NULL,
   PRIMARY KEY (`bolsista_id`, `manutencao_id`),
+  INDEX `fk_bolsista_has_manutencao_manutencao1_idx` (`manutencao_id` ASC) VISIBLE,
+  INDEX `fk_bolsista_has_manutencao_bolsista1_idx` (`bolsista_id` ASC) VISIBLE,
   CONSTRAINT `fk_bolsista_has_manutencao_bolsista1`
     FOREIGN KEY (`bolsista_id`)
     REFERENCES `equipac_ci`.`bolsista` (`id`),
@@ -171,23 +202,6 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`bolsista_has_manutencao` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
-
-CREATE INDEX `fk_bolsista_has_manutencao_manutencao1_idx` ON `equipac_ci`.`bolsista_has_manutencao` (`manutencao_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_bolsista_has_manutencao_bolsista1_idx` ON `equipac_ci`.`bolsista_has_manutencao` (`bolsista_id` ASC) VISIBLE;
-
-
--- -----------------------------------------------------
--- Table `equipac_ci`.`status_chamado`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `equipac_ci`.`status_chamado` ;
-
-CREATE TABLE IF NOT EXISTS `equipac_ci`.`status_chamado` (
-  `id` INT(11) NOT NULL,
-  `name` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -202,67 +216,14 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`problema` (
   `finalizacao` TIMESTAMP NULL DEFAULT NULL,
   `usuario_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`, `usuario_id`),
+  INDEX `fk_problema_usuario1_idx` (`usuario_id` ASC) VISIBLE,
   CONSTRAINT `fk_problema_usuario1`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `equipac_ci`.`usuario` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 16
+AUTO_INCREMENT = 34
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
-CREATE INDEX `fk_problema_usuario1_idx` ON `equipac_ci`.`problema` (`usuario_id` ASC) VISIBLE;
-
-
--- -----------------------------------------------------
--- Table `equipac_ci`.`chamado`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `equipac_ci`.`chamado` ;
-
-CREATE TABLE IF NOT EXISTS `equipac_ci`.`chamado` (
-  `id` INT(11) NOT NULL,
-  `dataAtribuida` DATE NOT NULL,
-  `dataFinalizada` DATE NULL DEFAULT NULL,
-  `status_chamado_id` INT(11) NOT NULL,
-  `problema_id` INT(11) NOT NULL,
-  `problema_usuario_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`, `status_chamado_id`, `problema_id`, `problema_usuario_id`),
-  CONSTRAINT `fk_chamado_status_chamado1`
-    FOREIGN KEY (`status_chamado_id`)
-    REFERENCES `equipac_ci`.`status_chamado` (`id`),
-  CONSTRAINT `fk_chamado_problema1`
-    FOREIGN KEY (`problema_id` , `problema_usuario_id`)
-    REFERENCES `equipac_ci`.`problema` (`id` , `usuario_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-CREATE INDEX `fk_chamado_status_chamado1_idx` ON `equipac_ci`.`chamado` (`status_chamado_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_chamado_problema1_idx` ON `equipac_ci`.`chamado` (`problema_id` ASC, `problema_usuario_id` ASC) VISIBLE;
-
-
--- -----------------------------------------------------
--- Table `equipac_ci`.`chamado_has_bolsista`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `equipac_ci`.`chamado_has_bolsista` ;
-
-CREATE TABLE IF NOT EXISTS `equipac_ci`.`chamado_has_bolsista` (
-  `chamado_id` INT(11) NOT NULL,
-  `bolsista_id` INT(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`chamado_id`, `bolsista_id`),
-  CONSTRAINT `fk_chamado_has_bolsista_bolsista1`
-    FOREIGN KEY (`bolsista_id`)
-    REFERENCES `equipac_ci`.`bolsista` (`id`),
-  CONSTRAINT `fk_chamado_has_bolsista_chamado`
-    FOREIGN KEY (`chamado_id`)
-    REFERENCES `equipac_ci`.`chamado` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-CREATE INDEX `fk_chamado_has_bolsista_bolsista1_idx` ON `equipac_ci`.`chamado_has_bolsista` (`bolsista_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_chamado_has_bolsista_chamado_idx` ON `equipac_ci`.`chamado_has_bolsista` (`chamado_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -283,9 +244,38 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`supervisor` (
   `nivel` INT(11) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `equipac_ci`.`chamado`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `equipac_ci`.`chamado` ;
+
+CREATE TABLE IF NOT EXISTS `equipac_ci`.`chamado` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `dataAtribuida` DATE NULL DEFAULT NULL,
+  `dataFinalizada` DATE NULL DEFAULT NULL,
+  `solucao` VARCHAR(200) NULL DEFAULT NULL,
+  `status_chamado_id` INT(11) NOT NULL,
+  `problema_id` INT(11) NOT NULL,
+  `problema_usuario_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`, `status_chamado_id`, `problema_id`, `problema_usuario_id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `fk_chamado_status_chamado_idx` (`status_chamado_id` ASC) VISIBLE,
+  INDEX `fk_chamado_problema1_idx` (`problema_id` ASC, `problema_usuario_id` ASC) VISIBLE,
+  CONSTRAINT `fk_chamado_status_chamado`
+    FOREIGN KEY (`status_chamado_id`)
+    REFERENCES `equipac_ci`.`status_chamado` (`id`),
+  CONSTRAINT `fk_chamado_problema1`
+    FOREIGN KEY (`problema_id` , `problema_usuario_id`)
+    REFERENCES `equipac_ci`.`problema` (`id` , `usuario_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
