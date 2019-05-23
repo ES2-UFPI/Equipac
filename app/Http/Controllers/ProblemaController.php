@@ -3,6 +3,9 @@
 namespace equipac\Http\Controllers;
 
 use equipac\models\Problema;
+use equipac\models\Chamados;
+use equipac\models\Usuario;
+use equipac\models\Status_chamado;
 use Illuminate\Http\Request;
 
 class ProblemaController extends Controller
@@ -44,46 +47,35 @@ class ProblemaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Problema $cham)
+    public function store(Request $request, Chamados $cham, Problema $prob, Status_chamado $status, Usuario $usuario)
     {
-        $ext = array('criacao' => date('Y-m-d H:i:s'),
-        'usuario_id' => auth()->user()->id);
-        $result = array_merge($request->all(), $ext);
-        $insert = $cham->create($result);
+        $prob->criacao = date('Y-m-d H:i:s');
+        $prob->descricao = $request->get('descricao');
+        $prob->usuario()->associate($usuario::find(auth()->user()->id));
 
-        if ($insert) {
+        if ($prob->save()) {
+            $sts = $status::find(1);
+            $cham->dataAtribuida = date('Y-m-d H:i:s');
+            $cham->status()->associate($sts);
+            $cham->problema_usuario_id = $prob->usuario->id;
+            $cham->problema_id = $prob->id;
+            if ($cham->save()) {
+                $prob->chamado = $cham;
+                return redirect()
+                ->route('lista-problemas')
+                ->with('success', 'Chamado e problema Cadastrados com sucesso!');
+            } else {
+                return redirect()
+                ->back()
+                ->with('error', 'Falha ao Cadastrar');
+            }
+        } else {
             return redirect()
-            ->route('problemas.index')
-            ->with('success', 'Chamado criado com sucesso!');
+            ->back()
+            ->with('error', 'Falha ao Criar');
         }
-
-    // Redireciona de volta com uma mensagem de erro
-        return redirect()
-        ->back()
-        ->with('error', 'Falha ao Criar');
     }
 
-    public function manutencao(Request $request, Chamados $cham)
-    {
-        //dd($dados->all());
-/*
-    $ext = array('criacao' => date('Y-m-d H:i:s'),
-        'usuario_id' => auth()->user()->id);
-    $result = array_merge($request->all(), $ext);
-    $insert = $cham->create($result);
-
-    if ($insert)
-        return redirect()
-    ->route('index')
-    ->with('success', 'Chamado criado com sucesso!');
-
-    // Redireciona de volta com uma mensagem de erro
-    return redirect()
-    ->back()
-    ->with('error', 'Falha ao Criar');
-
-    */
-    }
     /**
      * Display the specified resource.
      *
@@ -124,8 +116,13 @@ class ProblemaController extends Controller
      * @param  \equipac\models\problema  $problema
      * @return \Illuminate\Http\Response
      */
-    public function destroy(problema $problema)
+    public function excluirProblema(Request $request, problema $problema)
     {
-        //
+        // dd($eqp::find($id));
+        
+        $problema::find($request->get('id'))->chamado->delete();
+        $problema::find($request->get('id'))->delete();
+
+        return redirect()->route('lista-equipamento-index')->with('success', 'chamado excluido com sucesso!');
     }
 }
