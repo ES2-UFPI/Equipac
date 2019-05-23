@@ -51,18 +51,6 @@
               <th>{{ $p['id']}}</th>
               <th>{{ $p['descricao']}}</th>
               <th>{{ $p['criacao']}}</th>
-              <th><form method="post" action="{{route('login-usuario')}}">
-                {!! csrf_field() !!}
-                <input type="hidden" name="id" value="{{$p['id']}}">
-                <button type="imput" class="btn btn-primary">Sol. Chamado</button></th>
-              </form>
-            </th>
-            <th><form method="post" action="{{route('login-usuario')}}">
-                {!! csrf_field() !!}
-                <input type="hidden" name="id" value="{{$p['id']}}">
-                <button type="imput" class="btn btn-primary">Excluir problema</button></th>
-              </form>
-            </th>
             </tr>
             @endforeach
           </table>

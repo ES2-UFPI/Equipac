@@ -16,7 +16,8 @@ Route::prefix('bolsista')->group(function () {
     route::get('register', 'BolsistaController@registerIndex')->name('register-b');
     route::Post('register', 'BolsistaController@registerBolsista')->name('register-bolsista');
     route::Post('manutencao', 'ManutencaoController@AlterarStatus')->name('altera-status');
-    Route::resource('chamados', 'ChamadoController');
+    Route::get('chamados', 'ChamadoController@index')->name('index-chamado');
+    Route::post('chamados', 'ChamadoController@alterarStatus')->name('altera-status-chamado');
     Route::get('manutencao', 'ManutencaoController@index')->name('index-manutencao');
 });
 
@@ -31,7 +32,7 @@ Route::prefix('usuario')->group(function () {
     Route::get('lista-equipamento', 'ListarEquipamentoController@index')->name('lista-equipamento-index');
     route::Post('lista-equipamento', 'EquipamentoController@manutencao')->name('equipamento-manutencao');
     route::get('lista-problemas', 'ProblemaController@indexLista')->name('lista-problemas');
-    route::Post('lista-problemas', 'ProblemaController@chamado')->name('problema-chamado');
+    route::Post('lista-problemas', 'ProblemaController@excluirProblema')->name('excluir-problema');
 });
 
 Route::prefix('supervisor')->group(function () {
