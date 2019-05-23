@@ -221,4 +221,22 @@ class AdminController extends Controller
         }
     }
 
+    public function indexEditarUsuarioInfo(int $id, Usuario $usuario)
+    {
+        $bol = $usuario::find($id);
+        return view('admin.editar-usuario', compact('bol'));
+    }
+
+    public function updateUsuario(int $id, Request $request, Usuario $usuario)
+    {
+        $bol = $usuario::find($id);
+        $bol['nome'] = $request->get('nome');
+        $bol['email'] = $request->get('email');
+        if ($bol->save()) {
+            return  redirect()->route('listar-usuario')->with('success', 'Informações do Supervisor atualizadas com sucesso!');
+        } else {
+            return  redirect()->route('listar-usuario')->with('error', 'Informações do Supervisor não foram atualizadas!');
+        }
+    }
+
 }
