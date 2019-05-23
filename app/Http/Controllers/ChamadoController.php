@@ -122,4 +122,23 @@ class ChamadoController extends Controller
         ->back()
         ->with('error', 'Falha ao Cadastrar');
     }
+
+    public function solucaoChamadoIndex(int $id, Chamados $chamado)
+    {
+        $cham = $chamado::find($id);
+        return view('bolsista.solucao-chamado', compact('cham'));
+    }
+
+    public function solucaoChamado(int $id, Request $request, Chamados $chamado, Status_chamado $status)
+    {
+        $cham = $chamado::find($id);
+        $cham['solucao'] = $request->get('solucao');
+        $sts = $status::find(4);
+        $cham->status()->associate($sts);
+        if ($cham->save()) {
+            return  redirect()->route('index-chamado')->with('success', 'Solucão cadastrada com sucesso!');
+        } else {
+            return  redirect()->route('index-chamado')->with('error', 'Solucão não foi cadastrada!');
+        }
+    }
 }

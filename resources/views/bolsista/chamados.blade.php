@@ -27,7 +27,8 @@
             <th>Id Chamado</th>
             <th>Id Usuario</th>
             <th>nome</th>
-            <td>Status</td>
+            <th>Status</th>
+            <th>Solução</th>
             <td>Opcão</td>
           </tr>
           @foreach($chamado as $index => $ma)
@@ -37,7 +38,13 @@
           <th>{{ $ma->problema->usuario->id  }}</th>
           <th>{{ $ma->problema->usuario->nome  }}</th>
           <th>{{ $ma->status->name  }}</th>
+          <th>{{ $ma->solucao  }}</th>
           <td>
+            @if($ma['status_chamado_id']=='3')
+              <a href="{{route('solucao-chamado-index', $ma['id'])}}">
+                <button type="imput" class="btn btn-primary">Concluir</button>
+              </a>
+            @else
             <form method="post" action="{{route('altera-status-chamado')}}">
               {!! csrf_field() !!}
               @if($ma['status_chamado_id']=='1')
@@ -48,12 +55,9 @@
               <input type="hidden" name="id" value="{{$ma['id']}}">
               <input type="hidden" name="status" value="3">
               <button type="imput" class="btn btn-primary">Em andamento</button></th>
-              @elseif($ma['status_chamado_id']=='3')
-              <input type="hidden" name="id" value="{{$ma['id']}}">
-              <input type="hidden" name="status" value="4">
-              <button type="imput" class="btn btn-primary">Concluir</button></th>
               @endif
             </form>
+            @endif
           </td>
           @endif
         </tr>

@@ -21,6 +21,8 @@ Route::prefix('bolsista')->group(function () {
     Route::get('manutencao', 'ManutencaoController@index')->name('index-manutencao');
     Route::get('solucao-manutencao/{id}', 'ManutencaoController@solucaoManutencaoIndex')->name('solucao-manutencao-index');
     Route::post('solucao-manutencao/{id}', 'ManutencaoController@solucaoManutencao')->name('solucao-manutencao');
+    Route::get('solucao-chamado/{id}', 'ChamadoController@solucaoChamadoIndex')->name('solucao-chamado-index');
+    Route::post('solucao-chamado/{id}', 'ChamadoController@solucaoChamado')->name('solucao-chamado');
 });
 
 Route::prefix('usuario')->group(function () {
