@@ -180,6 +180,7 @@ class AdminController extends Controller
         return redirect()->route('listar-admin')->with('success', 'Admin excluido com sucesso!');
     }
 
+
     public function excluirUsuario(Request $request, Usuario $usuario)
     {
         Schema::disableForeignKeyConstraints();
