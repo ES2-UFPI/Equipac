@@ -26,6 +26,6 @@ class Chamados extends Model
 
     public function problema()
     {
-        return $this->hasOne('equipac\models\Problema');
+        return $this->belongsTo('equipac\models\Problema', 'problema_id');
     }
 }
