@@ -56,6 +56,11 @@
                 <button type="imput" class="btn btn-danger">Excluir</button></th>
               </form>
             </th>
+            <th>
+              <a href="{{route('editar-supervisor', $e['id'])}}">
+                <button type="imput" class="btn btn-primary">Editar</button>
+              </a>
+            </th>
           </th>
         </tr>
         @endforeach
