@@ -15,10 +15,12 @@ Route::prefix('bolsista')->group(function () {
     route::Post('login', 'Auth\BolsistaLoginController@loginBolsista')->name('login-submit-bolsista');
     route::get('register', 'BolsistaController@registerIndex')->name('register-b');
     route::Post('register', 'BolsistaController@registerBolsista')->name('register-bolsista');
-    route::Post('manutencao', 'ManutencaoController@AlterarStatus')->name('altera-status');
+    route::Post('manutencao', 'ManutencaoController@alterarStatus')->name('altera-status');
     Route::get('chamados', 'ChamadoController@index')->name('index-chamado');
     Route::post('chamados', 'ChamadoController@alterarStatus')->name('altera-status-chamado');
     Route::get('manutencao', 'ManutencaoController@index')->name('index-manutencao');
+    Route::get('solucao-manutencao/{id}', 'ManutencaoController@solucaoManutencaoIndex')->name('solucao-manutencao-index');
+    Route::post('solucao-manutencao/{id}', 'ManutencaoController@solucaoManutencao')->name('solucao-manutencao');
 });
 
 Route::prefix('usuario')->group(function () {
