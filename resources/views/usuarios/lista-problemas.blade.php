@@ -28,6 +28,7 @@
             <th>Descrição</th>
             <th>Data</th>
             <th>Status Chamado</th>
+            <th>Solução</th>
             <th>Excluir problema</th>
 
           </tr>
@@ -37,6 +38,7 @@
             <th>{{ $p['descricao']}}</th>
             <th>{{ $p['criacao']}}</th>
             <th>{{ $p->chamado->status->name }}</th>
+            <th>{{ $p->chamado->solucao }}</th>
             @if($p->chamado->status->id == 1)
             <th><form method="post" action="{{route('excluir-problema')}}">
                 {!! csrf_field() !!}
