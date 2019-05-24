@@ -39,6 +39,7 @@
             <th>Patrimonio</th>
             <th>Modelo</th>
             <th>Status</th>
+            <th>Solucao</th>
             <th>Solicitar Manutenção</th>
             <th>Excluir equipamento</th>          
           </tr>
@@ -50,8 +51,14 @@
             <!-- exists é para relacionamentos n to n -->
             @if(!$e->manutencao->isEmpty())
             <th>{{ $e->manutencao->last()->status->name }}</th>
+             <th>
+            @foreach($e->manutencao as $ma)
+            {{ $ma->solucao }}
+            @endforeach
+            </th>
             @else
             <th>Sem Sol. Man</th>
+            <th>Nenhuma Solicitação</th>
             @endif
             @if(!$e->manutencao->isEmpty() && $e->manutencao->last()->status->id != 4)
             <th>Solicitação feita</th>
