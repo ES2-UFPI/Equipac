@@ -28,7 +28,7 @@ class BolsistaLoginController extends Controller
     // protected $redirectTo = '/home';
     public function __construct()
     {
-    	$this->middleware('guest:bolsista')->except('logout');
+        $this->middleware('guest:bolsista')->except('logout');
     }
     /**
      * Display a listing of the resource.
@@ -37,28 +37,27 @@ class BolsistaLoginController extends Controller
      */
     public function login()
     {
-    	return view('bolsista.auth.login');
+        return view('bolsista.auth.login');
     }
     public function loginBolsista(Request $request)
     {
       // Validate the form data
-    	$this->validate($request, [
-    		'email'   => 'required|email',
-    		'password' => 'required|min:6'
-    	]);
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
       // Attempt to log the user in
-    	if (Auth::guard('bolsista')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('bolsista')->attempt(['email' => $request->email, 'password' => $request->password])) {
         // if successful, then redirect to their intended location
-    		return redirect()->intended(route('bolsista'));
-    	}
+            return redirect()->intended(route('bolsista'));
+        }
       // if unsuccessful, then redirect back to the login with the form data
-    	return redirect()->back()->withInput($request->only('email'));
+        return redirect()->back()->withInput($request->only('email'));
     }
 
     public function logout()
     {
-    	Auth::guard('bolsista')->logout();
-    	return redirect()->route('login-bolsista');
+        Auth::guard('bolsista')->logout();
+        return redirect()->route('login-bolsista');
     }
-    
-  }
+}
