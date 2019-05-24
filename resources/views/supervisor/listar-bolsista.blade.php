@@ -14,24 +14,6 @@
 </div>
 @endif
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="breadcome-list single-page-breadcome">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <div class="breadcome-heading">
-              <form role="search" class="sr-input-func">
-                <input type="text" placeholder="Search..." class="search-int form-control">
-                <a href="#"><i class="fa fa-search"></i></a>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -45,29 +27,24 @@
             <th>Opções</th>      
           </tr>
           @foreach($bol as $index => $e )
-          <tr>
-            <th>{{ $e['id']}}</th>
-            <th>{{ $e['nome']}}</th>
-            <th>{{ $e['email']}}</th>
-            <th>
-              <form method="post" action="{{route('excluir-bolsista')}}">
-                @csrf
-                <input type="hidden" name="id" value="{{$e['id']}}">
-                <button type="imput" class="btn btn-danger">Excluir</button></th>
-              </form>
-            </th>
-            <th>
-              <a href="{{route('editar-bolsista', $e['id'])}}">
-                <button type="imput" class="btn btn-primary">Editar</button>
-              </a>
-            </th>
-          </th>
-        </tr>
-        @endforeach
-      </table>
+            <tr>
+              <th>{{ $e['id']}}</th>
+              <th>{{ $e['nome']}}</th>
+              <th>{{ $e['email']}}</th>
+              <th>
+                <form method="post" action="{{route('excluir-bolsista')}}">
+                  @csrf
+                  <input type="hidden" name="id" value="{{$e['id']}}">
+                  <button type="imput" class="btn btn-danger">Excluir</button></th>
+                </form> 
+              </th> 
+            </tr>
+          @endforeach
+        </table>
     </div>
   </div>
 </div>
 </div>
 </div>
+
 @endsection

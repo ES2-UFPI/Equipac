@@ -21,27 +21,19 @@ class DatabaseSeeder extends Seeder
 }
 
 //alura
-class createBolsistaTable extends Seeder
-{
-    public function run()
-    {
-        DB::insert(
-            'insert into bolsistas (nome, email, password, cpf) values (?,?,?,?)',
-            array('joaov', 'joaov@gmail.com', 'root213','123.321.124-32')
-        );
+class createBolsistaTable extends Seeder{
+    public function run (){
+        DB::insert('insert into bolsistas (nome, email, password, cpf) values (?,?,?,?)',
+        array('joaov', 'joaov@gmail.com', 'root213','123.321.124-32'));
 
-        DB::insert(
-            'insert into bolsistas
+        DB::insert('insert into bolsistas
       (nome, email, password, cpf)
         values (?,?,?,?)',
-            array('joaoc', 'joaoc@gmail.com', 'root122', '123.321.122-32')
-        );
+        array('joaoc', 'joaoc@gmail.com', 'root122', '123.321.122-32'));
 
-        DB::insert(
-            'insert into bolsistas
+        DB::insert('insert into bolsistas
        (nome, email, password, cpf)
         values (?,?,?,?)',
-            array('joaovv', 'joaovv@gmail.com', 'root121', '123.321.323-32')
-        );
+        array('joaovv', 'joaovv@gmail.com', 'root121', '123.321.323-32'));
     }
 }
