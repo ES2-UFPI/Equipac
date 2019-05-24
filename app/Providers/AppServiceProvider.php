@@ -4,6 +4,7 @@ namespace equipac\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,11 +26,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::define('bolsista', function ($user) {
 
-           if (1){
-               return true;
-           }
-           return false;
-
-       });
+            if (1) {
+                return true;
+            }
+            return false;
+        });
     }
 }

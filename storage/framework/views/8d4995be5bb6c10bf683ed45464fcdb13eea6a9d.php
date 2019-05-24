@@ -53,9 +53,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo e(route('login-bolsista')); ?>"><?php echo e(__('Login')); ?></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo e(route('register-b')); ?>"><?php echo e(__('Register')); ?></a>
-                        </li>
                         <?php endif; ?>
                         <?php else: ?>
                         <li class="nav-item dropdown">

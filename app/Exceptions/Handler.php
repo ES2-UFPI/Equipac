@@ -13,9 +13,9 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
- protected $dontReport = [
+    protected $dontReport = [
         //
- ];
+    ];
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
@@ -51,21 +51,25 @@ class Handler extends ExceptionHandler
     
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-         if ($request->expectsJson()) {
-                return response()->json(['error' => 'Unauthenticated.'], 401);
-            }
-            if ($request->is('usuario') || $request->is('usuario/*')) {
-                $login = 'usuarios.auth.login';
-                return redirect()->guest(route($login));
-            }
-            if ($request->is('bolsista') || $request->is('bolsista/*')) {
-                $login = 'bolsista.auth.login';
-                 return redirect()->guest(route($login));
-            }
-            if ($request->is('supervisor') || $request->is('supervisor/*')) {
-                $login = 'bolsista.auth.login';
-                 return redirect()->guest(route($login));
-            }
+        if ($request->expectsJson()) {
+               return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+        if ($request->is('usuario') || $request->is('usuario/*')) {
+            $login = 'usuarios.auth.login';
+            return redirect()->guest(route($login));
+        }
+        if ($request->is('bolsista') || $request->is('bolsista/*')) {
+            $login = 'bolsista.auth.login';
+             return redirect()->guest(route($login));
+        }
+        if ($request->is('supervisor') || $request->is('supervisor/*')) {
+            $login = 'supervisor.auth.login';
+             return redirect()->guest(route($login));
+        }
+        if ($request->is('admin') || $request->is('admin/*')) {
+            $login = 'admin.auth.login';
+             return redirect()->guest(route($login));
+        }
             return redirect()->guest(route('login'));
-  }
+    }
 }
