@@ -52,6 +52,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login-bolsista') }}">{{ __('Login') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register-b') }}">{{ __('Register') }}</a>
+                        </li>
                         @endif
                         @else
                         <li class="nav-item dropdown">

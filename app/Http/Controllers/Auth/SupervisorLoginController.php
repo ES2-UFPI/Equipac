@@ -28,7 +28,7 @@ class SupervisorLoginController extends Controller
     // protected $redirectTo = '/home';
     public function __construct()
     {
-        $this->middleware('guest:supervisor')->except('logout');
+    	$this->middleware('guest:supervisor')->except('logout');
     }
     /**
      * Display a listing of the resource.
@@ -37,25 +37,28 @@ class SupervisorLoginController extends Controller
      */
     public function login()
     {
-        return view('supervisor.auth.login');
+    	return view('supervisor.auth.login');
     }
-
     public function loginBolsista(Request $request)
     {
       // Validate the form data
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]);
-        if (Auth::guard('supervisor')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended(route('supervisor'));
-        }
-        return redirect()->back()->withInput($request->only('email'));
+    	$this->validate($request, [
+    		'email'   => 'required|email',
+    		'password' => 'required|min:6'
+    	]);
+      // Attempt to log the user in
+    	if (Auth::guard('supervisor')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        // if successful, then redirect to their intended location
+    		return redirect()->intended(route('supervisor'));
+    	}
+      // if unsuccessful, then redirect back to the login with the form data
+    	return redirect()->back()->withInput($request->only('email'));
     }
 
     public function logout()
     {
-        Auth::guard('supervisor')->logout();
-        return redirect()->route('login-supervisor');
+    	Auth::guard('supervisor')->logout();
+    	return redirect()->route('login-supervisor');
     }
-}
+    
+  }

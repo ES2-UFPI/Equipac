@@ -121,7 +121,7 @@ return [
             'icon'        => 'wrench',
             //'label'       => 5,
             //'label_color' => 'success',
-            'can'         => 'bolsista',
+            'can'         => 'bolsista', 
         ],
         [
             'text'        => 'Sol. de chamados',
@@ -167,39 +167,11 @@ return [
             'can'         => 'supervisor'
         ],
         [
-            'text'        => 'Listar Bolsistas',
+            'text'        => 'Litar Bolsistas',
             'url'         => 'supervisor/listar-bolsista',
             'icon'        => 'list',
             //'label_color' => 'success',
             'can'         => 'supervisor'
-        ],
-        [
-            'text'        => 'Cadastrar Admin',
-            'url'         => 'admin/register-admin',
-            'icon'        => 'list',
-            //'label_color' => 'success',
-            'can'         => 'admin'
-        ],
-        [
-            'text'        => 'Listar Admin',
-            'url'         => 'admin/listar-admin',
-            'icon'        => 'list',
-            //'label_color' => 'success',
-            'can'         => 'admin'
-        ],
-        [
-            'text'        => 'Listar usuários',
-            'url'         => 'admin/listar-usuario',
-            'icon'        => 'list',
-            //'label_color' => 'success',
-            'can'         => 'admin'
-        ],
-        [
-            'text'        => 'Listar supervisor',
-            'url'         => 'admin/listar-supervisor',
-            'icon'        => 'list',
-            //'label_color' => 'success',
-            'can'         => 'admin'
         ],
     ],
     /*    'ACCOUNT SETTINGS',

@@ -7,7 +7,7 @@ use equipac\models\Usuario;
 
 class Equipamento extends Model
 {
-    protected $table = 'equipamento';
+	protected $table = 'equipamento';
     protected $primarykey = 'id';
     public $timestamps = false;
     protected $fillable = ['patrimonio', 'modelo','criacao','usuario_id'];
@@ -23,4 +23,5 @@ class Equipamento extends Model
         //$this->belongsToMany('relacao', 'nome da tabela pivot', 'key ref. equipamento em pivot', 'key ref. manutencao em pivot')
         return $this->belongsTo('equipac\models\Usuario');
     }
+
 }

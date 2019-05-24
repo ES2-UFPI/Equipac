@@ -17,7 +17,6 @@ return [
         'guard' => 'usuario',
         'guard' => 'bolsista',
         'guard' => 'supervisor',
-        'guard' => 'admin',
         'passwords' => 'users',
     ],
     
@@ -56,10 +55,6 @@ return [
             'driver' => 'session',
             'provider' => 'supervisor',
         ],
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admin',
-        ],
     ],
 
     /*
@@ -91,10 +86,6 @@ return [
         'supervisor' => [
             'driver' => 'eloquent',
             'model' => equipac\Models\Supervisor::class,
-        ],
-        'admin' => [
-            'driver' => 'eloquent',
-            'model' => equipac\Models\Admin::class,
         ],
         'users' => [
             'driver' => 'eloquent',
@@ -132,11 +123,6 @@ return [
             'provider' => 'supervisor',
             'table' => 'usuario_password_resets',
             'expire' => 60,
-        ],
-        'admin' => [
-            'provider' => 'admin',
-            'table' => 'admin_password_resets',
-            'expire' => 20,
         ],
         'users' => [
             'provider' => 'users',

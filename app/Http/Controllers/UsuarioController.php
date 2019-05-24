@@ -13,7 +13,8 @@ class UsuarioController extends Controller
     public function __construct()
     {
         //auth()->setDefaultDriver('usuario');
-        $this->middleware('auth:usuario', ['only' => 'index']);
+        $this->middleware('auth:usuario',['only' => 'index']);
+
     }
 
     public function index()
@@ -49,14 +50,14 @@ class UsuarioController extends Controller
 
     public function registerUsuario(Request $request)
     {
-        $validacao = validator::make($request->all(), [
+        $validacao = validator::make($request->all(),[
             'name' => 'required',
             'email' => 'required|min:3|max:150',
             'password' => 'required|min:3|max:150|unique:Usuario',
             'cpf' => 'required|max:15'
         ]);
 
-        if ($validacao->fails()) {
+        if($validacao->fails()){
             dd($validacao);
             return redirect('/')
             ->withErrors(['errors' => 'Problema']);
@@ -71,6 +72,7 @@ class UsuarioController extends Controller
         $user->save();
         
         return redirect()->route('login-usuario');
+
     }
 
     /**

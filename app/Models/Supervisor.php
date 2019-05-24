@@ -35,4 +35,5 @@ class Supervisor extends Authenticatable
     ];
 
     protected $guard = 'supervisor';
+
 }
