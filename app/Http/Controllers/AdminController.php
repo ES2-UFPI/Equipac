@@ -4,6 +4,7 @@ namespace equipac\Http\Controllers;
 
 use equipac\models\Admin;
 use equipac\models\Usuario;
+use equipac\models\Supervisor;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Schema;
@@ -172,6 +173,12 @@ class AdminController extends Controller
         return view('admin.listar-usuario', compact('adm'));
     }
 
+    public function listarSupervisorIndex(Supervisor $usuario)
+    {
+        $adm = $usuario::all();
+        return view('admin.listar-supervisor', compact('adm'));
+    }
+
     public function excluirAdmin(Request $request, Admin $admin)
     {
         Schema::disableForeignKeyConstraints();
@@ -180,12 +187,19 @@ class AdminController extends Controller
         return redirect()->route('listar-admin')->with('success', 'Admin excluido com sucesso!');
     }
 
-
     public function excluirUsuario(Request $request, Usuario $usuario)
     {
         Schema::disableForeignKeyConstraints();
         $usuario::find($request->get('id'))->delete();
         Schema::enableForeignKeyConstraints();
-        return redirect()->route('listar-admin')->with('success', 'Usuário excluido com sucesso!');
+        return redirect()->route('listar-usuario')->with('success', 'Usuário excluido com sucesso!');
+    }
+
+    public function excluirSupervisor(Request $request, Supervisor $usuario)
+    {
+        Schema::disableForeignKeyConstraints();
+        $usuario::find($request->get('id'))->delete();
+        Schema::enableForeignKeyConstraints();
+        return redirect()->route('listar-supervisor')->with('success', 'Supervisor excluido com sucesso!');
     }
 }
