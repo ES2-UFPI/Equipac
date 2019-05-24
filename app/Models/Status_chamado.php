@@ -10,8 +10,9 @@ class Status_chamado extends Model
     protected $primarykey = 'id';
     public $timestamps = false;
     
-    public function manutencao()
+    
+    public function chamado()
     {
-        return $this->hasMany('equipac\models\chamado');
+        return $this->hasMany('equipac\models\Chamados');
     }
 }
