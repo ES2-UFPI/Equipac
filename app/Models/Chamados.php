@@ -14,6 +14,7 @@ class Chamados extends Model
     public $timestamps = false;
     protected $fillable = ['dataAtribuida'];
 
+    
     public function status()
     {
         return $this->belongsTo('equipac\models\Status_chamado', 'status_chamado_id');

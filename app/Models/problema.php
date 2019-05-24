@@ -12,7 +12,6 @@ class Problema extends Model
     public $timestamps = false;
     protected $fillable = ['descricao', 'criacao', 'usuario_id'];
 
-
     public function chamado()
     {
         return $this->hasOne('equipac\models\Chamados', 'problema_id', 'id');
