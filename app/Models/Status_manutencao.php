@@ -12,6 +12,6 @@ class Status_manutencao extends Model
     
     public function manutencao()
     {
-        return $this->hasMany('equipac\models\manutencao');
+        return $this->hasMany('equipac\models\manutencao', 'status_id');
     }
 }
