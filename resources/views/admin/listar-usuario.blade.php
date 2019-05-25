@@ -39,8 +39,10 @@
               </form>
             </th>
             <th>
-              <button type="imput" class="btn btn-primary">Editar</button>
-            </a>
+              <a href="{{route('editar-usuario', $e['id'])}}">
+                <button type="imput" class="btn btn-primary">Editar</button>
+              </a>
+            </th>
           </th>
         </th>
       </tr>

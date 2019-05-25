@@ -67,6 +67,10 @@ Route::prefix('admin')->group(function () {
     route::post('listar-usuario', 'AdminController@excluirUsuario')->name('excluir-usuario');
     route::get('listar-supervisor', 'AdminController@listarSupervisorIndex')->name('listar-supervisor');
     route::post('listar-supervisor', 'AdminController@excluirSupervisor')->name('excluir-supervisor');
+    Route::get('editar-supervisor/{id}', 'AdminController@indexEditarSupervisorInfo')->name('editar-supervisor');
+    Route::post('editar-supervisor/{id}', 'AdminController@updateSupervisor')->name('update-supervisor');
+    Route::get('editar-usuario/{id}', 'AdminController@indexEditarUsuarioInfo')->name('editar-usuario');
+    Route::post('editar-usuario/{id}', 'AdminController@updateUsuario')->name('update-usuario');
 });
 
 Route::post('logout', 'Auth\LoginController@logout');
