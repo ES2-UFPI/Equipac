@@ -45,8 +45,7 @@ class BolsistaController extends Controller
         if (auth()->guard('bolsista')->attempt($credenciais)) {
             config(['auth.defaults.guard' => 'bolsista']);
             return redirect('home');
-        } 
-        else{
+        } else {
             return redirect('login-bolsista')
             ->withErrors(['errors' => 'nao existe']);
         }
@@ -54,14 +53,14 @@ class BolsistaController extends Controller
 
     public function registerbolsista(Request $request)
     {
-        $validacao = validator::make($request->all(),[
+        $validacao = validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|min:3|max:150',
             'password' => 'required|min:3|max:150|unique:bolsista',
             'cpf' => 'required|max:15'
         ]);
 
-        if($validacao->fails()){
+        if ($validacao->fails()) {
             dd($validacao);
             return redirect('/')
             ->withErrors(['errors' => 'problemas']);
@@ -76,7 +75,6 @@ class BolsistaController extends Controller
         $user->save();
 
         return redirect()->route('login-bolsista');
-
     }
 
     /**

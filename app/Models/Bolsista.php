@@ -40,7 +40,11 @@ class Bolsista extends Authenticatable
      */
     public function manutencao()
     {
-        return $this->belongsToMany('equipac\models\Manutencao','bolsista_has_manutencao', 'bolsista_id', 'manutencao_id');
+        return $this->belongsToMany('equipac\models\Manutencao', 'bolsista_has_manutencao', 'bolsista_id', 'manutencao_id');
     }
 
+    public function chamado()
+    {
+        return $this->belongsToMany('equipac\models\Chamados', 'chamado_has_bolsista', 'chamado_id', 'bolsista_id');
+    }
 }

@@ -28,7 +28,7 @@ class UsuarioLoginController extends Controller
     // protected $redirectTo = '/home';
     public function __construct()
     {
-    	$this->middleware('guest:usuario')->except('logout');
+        $this->middleware('guest:usuario')->except('logout');
     }
     /**
      * Display a listing of the resource.
@@ -37,28 +37,27 @@ class UsuarioLoginController extends Controller
      */
     public function login()
     {
-    	return view('usuarios.auth.login');
+        return view('usuarios.auth.login');
     }
     public function loginUsuario(Request $request)
     {
       // Validate the form data
-    	$this->validate($request, [
-    		'email'   => 'required|email',
-    		'password' => 'required|min:6'
-    	]);
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
       // Attempt to log the user in
-    	if (Auth::guard('usuario')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+        if (Auth::guard('usuario')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
         // if successful, then redirect to their intended location
-    		return redirect()->intended(route('usuario'));
-    	}
+            return redirect()->intended(route('usuario'));
+        }
       // if unsuccessful, then redirect back to the login with the form data
-    	return redirect()->back()->withInput($request->only('email', 'remember'));
+        return redirect()->back()->withInput($request->only('email', 'remember'));
     }
 
     public function logout()
     {
-    	Auth::guard('usuario')->logout();
-    	return redirect()->route('login-usuario');
+        Auth::guard('usuario')->logout();
+        return redirect()->route('login-usuario');
     }
-    
-  }
+}

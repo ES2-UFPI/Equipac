@@ -11,13 +11,12 @@ use Auth;
 
 class ListarEquipamentoController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
         //auth()->setDefaultDriver('usuario');
 
 
-        $this->middleware('auth:usuario',['only' => 'index']);
-
+        $this->middleware('auth:usuario', ['only' => 'index']);
     }
     
     /**
@@ -30,19 +29,19 @@ class ListarEquipamentoController extends Controller
         //dd(Auth::guard()->user()->id);
         $equipamento = $usuario::find(auth()->user()->id)->equipamento;
 
-        return view('usuarios.lista-equipamento' , compact('equipamento'));
+        return view('usuarios.lista-equipamento', compact('equipamento'));
     }
 
-    public function deletaEquipamento(Request $request, Equipamento $eqp){
+    public function deletaEquipamento(Request $request, Equipamento $eqp)
+    {
         $eqpp = $eqp::find($request->get('id'));
         $check = $eqpp->delete();
         dd($check);
-        if ($check)
+        if ($check) {
             return redirect()->route('lista-equipamento-index')->with('success', 'Equipamento excluido com sucesso!');
+        }
 
         // Redireciona de volta com uma mensagem de erro
         return redirect() ->back() ->with('error', 'Falha ao excluir equipamento!');
-
-    } 
-    
+    }
 }
