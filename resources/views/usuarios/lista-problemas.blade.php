@@ -27,7 +27,8 @@
             <th>Id</th>
             <th>Descrição</th>
             <th>Data</th>
-            <th>Solicitar Chamado</th>
+            <th>Status Chamado</th>
+            <th>Solução</th>
             <th>Excluir problema</th>
 
           </tr>
@@ -36,22 +37,18 @@
             <th>{{ $p['id']}}</th>
             <th>{{ $p['descricao']}}</th>
             <th>{{ $p['criacao']}}</th>
-            <th><form method="post" action="{{route('login-usuario')}}">
-                {!! csrf_field() !!}
-                <input type="hidden" name="id" value="{{$p['id']}}">
-                <button type="imput" class="btn btn-primary">Sol. Chamado</button></th>
-              </form>
-            </th>
-            <th><form method="post" action="{{route('login-usuario')}}">
+            <th>{{ $p->chamado->status->name }}</th>
+            <th>{{ $p->chamado->solucao }}</th>
+            @if($p->chamado->status->id == 1)
+            <th><form method="post" action="{{route('excluir-problema')}}">
                 {!! csrf_field() !!}
                 <input type="hidden" name="id" value="{{$p['id']}}">
                 <button type="imput" class="btn btn-primary">Excluir</button></th>
-
-        
-
               </form>
             </th>
-          
+            @else
+            <th>Não pode excluir</th>
+            @endif
           </tr>
           @endforeach
         </table>

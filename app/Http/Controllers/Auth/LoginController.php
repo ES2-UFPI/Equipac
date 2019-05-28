@@ -40,22 +40,23 @@ class LoginController extends Controller
         $this->middleware('guest:usuario')->except('logout');
         $this->middleware('guest:bolsista')->except('logout');
         $this->middleware('guest:supervisor')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
 
-    public function logout(Request $request) {
-        //dd(Auth()->guard());
-    	if (Auth::guard('usuario')->check()) {
-    		Auth::guard('usuario')->logout();
-    		return redirect('/usuario/login');	
-    	} else if(Auth::guard('bolsista')->check()){
-    		Auth::guard('bolsista')->logout();
-    		return redirect('/bolsista/login');
-    	}
-        else if(Auth::guard('supervisor')->check()){
+    public function logout(Request $request)
+    {
+        if (Auth::guard('usuario')->check()) {
+            Auth::guard('usuario')->logout();
+            return redirect('/usuario/login');
+        } else if (Auth::guard('bolsista')->check()) {
+            Auth::guard('bolsista')->logout();
+            return redirect('/bolsista/login');
+        } else if (Auth::guard('supervisor')->check()) {
             Auth::guard('supervisor')->logout();
             return redirect('/supervisor/login');
+        } else if (Auth::guard('admin')->check()) {
+            Auth::guard('admin')->logout();
+            return redirect('/admin/login');
         }
-
-}
-
+    }
 }
