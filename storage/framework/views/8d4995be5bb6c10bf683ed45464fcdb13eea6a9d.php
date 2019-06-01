@@ -84,5 +84,4 @@
     </main>
 </div>
 </body>
-</html>
-<?php /**PATH E:\DESENVOLVIMENTO\COMPUTACAO\Equipac\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+</html><?php /**PATH E:\DESENVOLVIMENTO\COMPUTACAO\Equipac\resources\views/layouts/app.blade.php ENDPATH**/ ?>

@@ -14,7 +14,7 @@ class ChamadoController extends Controller
         //auth()->setDefaultDriver('usuario');
 
 
-        $this->middleware('auth:bolsista', ['only' => 'index', 'create', 'store', 'update', 'destroy']);
+        $this->middleware('auth:bolsista');
     }
     /**
      * Display a listing of the resource.

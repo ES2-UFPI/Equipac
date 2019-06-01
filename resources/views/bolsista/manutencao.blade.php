@@ -78,5 +78,4 @@
     <!-- /.card -->
   </div>
   <!-- /.row -->
-
   @endsection

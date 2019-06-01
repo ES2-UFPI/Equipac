@@ -118,11 +118,10 @@ class ProblemaController extends Controller
      */
     public function excluirProblema(Request $request, problema $problema)
     {
-        // dd($eqp::find($id));
-        
+
         $problema::find($request->get('id'))->chamado->delete();
         $problema::find($request->get('id'))->delete();
 
-        return redirect()->route('lista-equipamento-index')->with('success', 'chamado excluido com sucesso!');
+        return redirect()->route('lista-chamados')->with('success', 'chamado excluido com sucesso!');
     }
 }

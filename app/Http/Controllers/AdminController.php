@@ -201,6 +201,7 @@ class AdminController extends Controller
         $usuario::find($request->get('id'))->delete();
         Schema::enableForeignKeyConstraints();
         return redirect()->route('listar-supervisor')->with('success', 'Supervisor excluido com sucesso!');
+
     }
 
     public function indexEditarSupervisorInfo(int $id, Supervisor $supervisor)
@@ -208,6 +209,7 @@ class AdminController extends Controller
         $bol = $supervisor::find($id);
         return view('admin.editar-supervisor', compact('bol'));
     }
+
 
     public function updateSupervisor(int $id, Request $request, Supervisor $supervisor)
     {
@@ -238,5 +240,6 @@ class AdminController extends Controller
             return  redirect()->route('listar-usuario')->with('error', 'Informações do Supervisor não foram atualizadas!');
         }
     }
+
 
 }
