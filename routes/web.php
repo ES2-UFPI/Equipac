@@ -15,9 +15,14 @@ Route::prefix('bolsista')->group(function () {
     route::Post('login', 'Auth\BolsistaLoginController@loginBolsista')->name('login-submit-bolsista');
     route::get('register', 'BolsistaController@registerIndex')->name('register-b');
     route::Post('register', 'BolsistaController@registerBolsista')->name('register-bolsista');
-    route::Post('manutencao', 'ManutencaoController@AlterarStatus')->name('altera-status');
-    Route::resource('chamados', 'ChamadoController');
+    route::Post('manutencao', 'ManutencaoController@alterarStatus')->name('altera-status');
+    Route::get('chamados', 'ChamadoController@index')->name('index-chamado');
+    Route::post('chamados', 'ChamadoController@alterarStatus')->name('altera-status-chamado');
     Route::get('manutencao', 'ManutencaoController@index')->name('index-manutencao');
+    Route::get('solucao-manutencao/{id}', 'ManutencaoController@solucaoManutencaoIndex')->name('solucao-manutencao-index');
+    Route::post('solucao-manutencao/{id}', 'ManutencaoController@solucaoManutencao')->name('solucao-manutencao');
+    Route::get('solucao-chamado/{id}', 'ChamadoController@solucaoChamadoIndex')->name('solucao-chamado-index');
+    Route::post('solucao-chamado/{id}', 'ChamadoController@solucaoChamado')->name('solucao-chamado');
 });
 
 Route::prefix('usuario')->group(function () {
@@ -31,7 +36,7 @@ Route::prefix('usuario')->group(function () {
     Route::get('lista-equipamento', 'ListarEquipamentoController@index')->name('lista-equipamento-index');
     route::Post('lista-equipamento', 'EquipamentoController@manutencao')->name('equipamento-manutencao');
     route::get('lista-problemas', 'ProblemaController@indexLista')->name('lista-problemas');
-    route::Post('lista-problemas', 'ProblemaController@chamado')->name('problema-chamado');
+    route::Post('lista-problemas', 'ProblemaController@excluirProblema')->name('excluir-problema');
 });
 
 Route::prefix('supervisor')->group(function () {
@@ -60,6 +65,12 @@ Route::prefix('admin')->group(function () {
     route::post('register-admin', 'AdminController@adminRegisterAdmin')->name('admin-register-admin');
     route::get('listar-usuario', 'AdminController@listarUsuarioIndex')->name('listar-usuario');
     route::post('listar-usuario', 'AdminController@excluirUsuario')->name('excluir-usuario');
+    route::get('listar-supervisor', 'AdminController@listarSupervisorIndex')->name('listar-supervisor');
+    route::post('listar-supervisor', 'AdminController@excluirSupervisor')->name('excluir-supervisor');
+    Route::get('editar-supervisor/{id}', 'AdminController@indexEditarSupervisorInfo')->name('editar-supervisor');
+    Route::post('editar-supervisor/{id}', 'AdminController@updateSupervisor')->name('update-supervisor');
+    Route::get('editar-usuario/{id}', 'AdminController@indexEditarUsuarioInfo')->name('editar-usuario');
+    Route::post('editar-usuario/{id}', 'AdminController@updateUsuario')->name('update-usuario');
 });
 
 Route::post('logout', 'Auth\LoginController@logout');

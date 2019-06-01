@@ -194,6 +194,13 @@ return [
             //'label_color' => 'success',
             'can'         => 'admin'
         ],
+        [
+            'text'        => 'Listar supervisor',
+            'url'         => 'admin/listar-supervisor',
+            'icon'        => 'list',
+            //'label_color' => 'success',
+            'can'         => 'admin'
+        ],
     ],
     /*    'ACCOUNT SETTINGS',
         [

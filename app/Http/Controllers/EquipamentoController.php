@@ -60,18 +60,14 @@ class EquipamentoController extends Controller
      */
     public function store(Request $request, Equipamento $eqp)
     {
-        //dd($dados->all());
         $ext = array('criacao' => date('Y-m-d H:i:s'),
                      'usuario_id' => auth()->guard('usuario')->user()->id
                     );
         $result = array_merge($request->all(), $ext);
         $insert = $eqp->create($result);
-
         if ($insert) {
             return redirect()->route('equipamento.index')->with('success', 'Equipamento inserida com sucesso!');
         }
-
-        // Redireciona de volta com uma mensagem de erro
         return redirect()->back()->with('error', 'Falha ao inserir');
     }
 

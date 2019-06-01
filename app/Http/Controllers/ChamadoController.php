@@ -4,6 +4,8 @@ namespace equipac\Http\Controllers;
 
 use Illuminate\Http\Request;
 use equipac\models\problema;
+use equipac\models\Chamados;
+use equipac\models\Status_chamado;
 
 class ChamadoController extends Controller
 {
@@ -19,10 +21,10 @@ class ChamadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Problema $prob)
+    public function index(Chamados $prob)
     {
-        $problema = $prob::all();
-        return view('bolsista.chamados', compact('problema'));
+        $chamado = $prob::all();
+        return view('bolsista.chamados', compact('chamado'));
     }
 
     /**
@@ -104,5 +106,39 @@ class ChamadoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function alterarStatus(Request $request, Status_chamado $status, Chamados $cham)
+    {
+        $chamado = $cham::find($request->id);
+        $sts = $status::find($request->status);
+        $chamado->status()->associate($sts);
+        if ($chamado->save()) {
+            return redirect()
+            ->route('index-chamado')
+            ->with('success', 'Chamado alterado com sucesso!');
+        }
+        return redirect()
+        ->back()
+        ->with('error', 'Falha ao Cadastrar');
+    }
+
+    public function solucaoChamadoIndex(int $id, Chamados $chamado)
+    {
+        $cham = $chamado::find($id);
+        return view('bolsista.solucao-chamado', compact('cham'));
+    }
+
+    public function solucaoChamado(int $id, Request $request, Chamados $chamado, Status_chamado $status)
+    {
+        $cham = $chamado::find($id);
+        $cham['solucao'] = $request->get('solucao');
+        $sts = $status::find(4);
+        $cham->status()->associate($sts);
+        if ($cham->save()) {
+            return  redirect()->route('index-chamado')->with('success', 'Solucão cadastrada com sucesso!');
+        } else {
+            return  redirect()->route('index-chamado')->with('error', 'Solucão não foi cadastrada!');
+        }
     }
 }
