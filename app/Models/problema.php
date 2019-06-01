@@ -12,10 +12,6 @@ class Problema extends Model
     public $timestamps = false;
     protected $fillable = ['descricao', 'criacao', 'usuario_id'];
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/iteracao3
     public function chamado()
     {
         return $this->hasOne('equipac\models\Chamados', 'problema_id', 'id');

@@ -16,9 +16,6 @@ CREATE SCHEMA IF NOT EXISTS 'equipac_ci' DEFAULT CHARACTER SET utf8;
 USE 'equipac_ci' ;
 
 -- -----------------------------------------------------
-<<<<<<< HEAD
--- Table `equipac_ci`.`status_chamado`
-=======
 -- Table 'equipac_ci'.'usuario'
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS 'equipac_ci'.'usuario' ;
@@ -82,7 +79,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS 'equipac_ci'.'chamado' ;
 
-<<<<<<< HEAD
+
 CREATE TABLE IF NOT EXISTS `equipac_ci`.`chamado` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `dataAtribuida` DATE NULL DEFAULT NULL,
@@ -95,26 +92,6 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`chamado` (
   CONSTRAINT `fk_chamado_status_chamado`
     FOREIGN KEY (`status_chamado_id`)
     REFERENCES `equipac_ci`.`status_chamado` (`id`)
-=======
-CREATE TABLE IF NOT EXISTS 'equipac_ci'.'chamado' (
-  'id' INT NOT NULL,
-  'dataAtribuida' DATE NOT NULL,
-  'dataFinalizada' DATE NULL,
-  'problema_id' INT(11) NOT NULL,
-  'problema_usuario_id' INT(11) NOT NULL,
-  'status_chamado_id' INT(11) NOT NULL,
-  PRIMARY KEY ('id', 'problema_id', 'problema_usuario_id', 'status_chamado_id'),
-  INDEX 'fk_chamado_problema1_idx' ('problema_id' ASC, 'problema_usuario_id' ASC) VISIBLE,
-  INDEX 'fk_chamado_status_chamado1_idx' ('status_chamado_id' ASC) VISIBLE,
-  CONSTRAINT 'fk_chamado_problema1'
-    FOREIGN KEY ('problema_id' , 'problema_usuario_id')
-    REFERENCES 'equipac_ci'.'problema' ('id' , 'usuario_id')
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT 'fk_chamado_status_chamado1'
-    FOREIGN KEY ('status_chamado_id')
-    REFERENCES 'equipac_ci'.'status_chamado' ('id')
->>>>>>> origin/iteracao3
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -168,7 +145,7 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
-<<<<<<< HEAD
+
 -- Table `equipac_ci`.`usuario`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `equipac_ci`.`usuario` ;
@@ -185,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `equipac_ci`.`usuario` (
   `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `nivel` INT(11) NOT NULL,
   PRIMARY KEY (`id`))
-=======
+
 -- Table 'equipac_ci'.'chamado_has_bolsista'
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS 'equipac_ci'.'chamado_has_bolsista' ;
@@ -317,7 +294,7 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
-<<<<<<< HEAD
+
 -- Table `equipac_ci`.`problema`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `equipac_ci`.`problema` ;
@@ -341,7 +318,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
 -- Table `equipac_ci`.`supervisor`
-=======
+
 -- Table 'equipac_ci'.'supervisor'
 >>>>>>> origin/iteracao3
 -- -----------------------------------------------------
@@ -366,11 +343,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
-<<<<<<< HEAD
+
 -- Table `equipac_ci`.`chamado`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `equipac_ci`.`chamado` ;
-=======
+
 -- Data for table 'equipac_ci'.'status_chamado'
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -405,11 +382,11 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
-<<<<<<< HEAD
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-=======
+
 -- -----------------------------------------------------
 -- Data for table 'equipac_ci'.'status_manutencao'
 -- -----------------------------------------------------

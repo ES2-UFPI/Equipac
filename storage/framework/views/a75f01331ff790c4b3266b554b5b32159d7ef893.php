@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Equipac</title>
+    <title>Laravel</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -81,7 +81,7 @@
 <body>
     <div class="content" >
         <div class="title m-b-md">
-            Escolha o tipo de Usuário
+            Escolha o tipo de Usuario
         </div>     
         <div class="">
             <?php if(Route::has('login')): ?>
@@ -99,11 +99,9 @@
                 </tr>
                 <tr>
                     <td><a href="<?php echo e(route('login-supervisor')); ?>">Supervisor</a></td>
-                    <td><a href="<?php echo e(route('register-s')); ?>">Register</a></td>
                 </tr>
                 <tr>
                     <td><a href="<?php echo e(route('login-admin')); ?>">Admin</a></td>
-                    <td><a href="<?php echo e(route('register-a')); ?>">Register</a></td>
                 </tr>
             </table>
             <?php endif; ?>

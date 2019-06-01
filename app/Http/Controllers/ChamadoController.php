@@ -14,7 +14,7 @@ class ChamadoController extends Controller
         //auth()->setDefaultDriver('usuario');
 
 
-        $this->middleware('auth:bolsista', ['only' => 'index', 'create', 'store', 'update', 'destroy']);
+        $this->middleware('auth:bolsista');
     }
     /**
      * Display a listing of the resource.
@@ -141,8 +141,4 @@ class ChamadoController extends Controller
             return  redirect()->route('index-chamado')->with('error', 'Solucão não foi cadastrada!');
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/iteracao3

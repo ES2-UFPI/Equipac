@@ -14,10 +14,7 @@ class Chamados extends Model
     public $timestamps = false;
     protected $fillable = ['dataAtribuida'];
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> origin/iteracao3
+
     public function status()
     {
         return $this->belongsTo('equipac\models\Status_chamado', 'status_chamado_id');
@@ -32,8 +29,5 @@ class Chamados extends Model
     {
         return $this->belongsTo('equipac\models\Problema', 'problema_id');
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> origin/iteracao3

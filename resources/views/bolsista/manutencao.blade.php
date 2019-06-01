@@ -78,9 +78,4 @@
     <!-- /.card -->
   </div>
   <!-- /.row -->
-
-<<<<<<< HEAD
   @endsection
-=======
-  @endsection
->>>>>>> origin/iteracao3
