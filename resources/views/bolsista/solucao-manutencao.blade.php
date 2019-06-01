@@ -38,4 +38,8 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> origin/iteracao3

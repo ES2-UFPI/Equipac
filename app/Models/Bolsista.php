@@ -47,4 +47,8 @@ class Bolsista extends Authenticatable
     {
         return $this->belongsToMany('equipac\models\Chamados', 'chamado_has_bolsista', 'chamado_id', 'bolsista_id');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/iteracao3

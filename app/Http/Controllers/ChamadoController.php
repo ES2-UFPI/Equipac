@@ -141,4 +141,8 @@ class ChamadoController extends Controller
             return  redirect()->route('index-chamado')->with('error', 'Solucão não foi cadastrada!');
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/iteracao3
