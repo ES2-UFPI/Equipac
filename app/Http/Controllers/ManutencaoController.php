@@ -45,6 +45,11 @@ class ManutencaoController extends Controller
         $sts = $status::find($request->status);
         $manut->status()->associate($sts);
         if ($manut->save()) {
+
+            // aqui ficaria o local para enviar email para o usuario
+            // 
+
+
             return redirect()
             ->route('index-manutencao')
             ->with('success', 'Manutenção Cadastrada com sucesso!');

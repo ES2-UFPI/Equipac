@@ -1,49 +1,49 @@
 <?php return array (
-  'beyondcode/laravel-dump-server' =>
+  'beyondcode/laravel-dump-server' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     ),
   ),
-  'fideloper/proxy' =>
+  'fideloper/proxy' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
-  'jeroennoten/laravel-adminlte' =>
+  'jeroennoten/laravel-adminlte' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'JeroenNoten\\LaravelAdminLte\\ServiceProvider',
     ),
   ),
-  'laravel/tinker' =>
+  'laravel/tinker' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
-  'nesbot/carbon' =>
+  'nesbot/carbon' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Carbon\\Laravel\\ServiceProvider',
     ),
   ),
-  'nunomaduro/collision' =>
+  'nunomaduro/collision' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
-  'sven/artisan-view' =>
+  'sven/artisan-view' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Sven\\ArtisanView\\ServiceProvider',
     ),
