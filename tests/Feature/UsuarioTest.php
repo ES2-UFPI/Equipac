@@ -2,43 +2,44 @@
 
 namespace Tests\Feature;
 
-use equipac\Models\Bolsista;
+use equipac\Models\Usuario;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class BolsistaTest extends TestCase
+class UsuarioTest extends TestCase
 {
+
     public function testRegister()
     {
-        $response = $this->get('/bolsista/register');
+        $response = $this->get('/usuario/register');
         $response->assertStatus(200);
     }
 
     public function testLogin()
     {
 
-        $Bolsista = factory(Bolsista::class)->create();
+        $Usuario = factory(Usuario::class)->create();
 
-        $response = $this->post('/bolsista/login', [
-            'email' => $Bolsista->email,
+        $response = $this->post('/usuario/login', [
+            'email' => $Usuario->email,
             'password' => 'root1234'
         ]);
 
         $response->assertStatus(302);
-        $this->assertAuthenticatedAs($Bolsista, 'bolsista');
+        $this->assertAuthenticatedAs($Usuario, 'usuario');
     }
 
     /**
-     * An invalid Bolsista cannot be logged in.
+     * An invalid Usuario cannot be logged in.
      *
      * @return void
      */
     public function testPasswordInvalido()
     {
-        $Bolsista = factory(Bolsista::class)->create();
-        $response = $this->post('/bolsista/login', [
-            'email' => $Bolsista->email,
+        $Usuario = factory(Usuario::class)->create();
+        $response = $this->post('/usuario/login', [
+            'email' => $Usuario->email,
             'password' => 'xxx'
         ]);
         $response->assertSessionHasErrors('password');
@@ -47,23 +48,23 @@ class BolsistaTest extends TestCase
 
     public function testLoginInvalido()
     {
-        $Bolsista = factory(Bolsista::class)->create();
-        $response = $this->post('/bolsista/login', [
-            'email' => $Bolsista->email,
+        $Usuario = factory(Usuario::class)->create();
+        $response = $this->post('/usuario/login', [
+            'email' => $Usuario->email,
             'password' => 'invalid'
         ]);
         $this->assertGuest();
     }
 
     /**
-     * A logged in Bolsista can be logged out.
+     * A logged in Usuario can be logged out.
      *
      * @return void
      */
     public function testLogout()
     {
-        $Bolsista = factory(Bolsista::class)->create();
-        $response = $this->actingAs($Bolsista)->post('/logout');
+        $Usuario = factory(Usuario::class)->create();
+        $response = $this->actingAs($Usuario)->post('/logout');
         $response->assertStatus(302);
         $this->assertGuest();
     }

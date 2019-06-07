@@ -109,7 +109,7 @@ class EquipamentoController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -143,14 +143,9 @@ class EquipamentoController extends Controller
      */
     public function destroy(int $id, Equipamento $eqp)
     {
-        // dd($eqp::find($id));
         Schema::disableForeignKeyConstraints();
         $eqp::find($id)->delete();
         Schema::enableForeignKeyConstraints();
-        // if ($check)
         return redirect()->route('lista-equipamento-index')->with('success', 'Equipamento excluido com sucesso!');
-
-        // Redireciona de volta com uma mensagem de erro
-        // return redirect() ->back() ->with('error', 'Falha ao excluir equipamento!');
     }
 }
