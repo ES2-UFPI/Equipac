@@ -5,6 +5,7 @@ namespace equipac\Http\Controllers;
 use equipac\models\Manutencao;
 use equipac\models\Equipamento;
 use equipac\models\Usuario;
+use equipac\models\Bolsista;
 use equipac\models\Status_manutencao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -41,16 +42,22 @@ class ManutencaoController extends Controller
         ->with('error', 'Falha ao inserir');
     }
 
-    public function alterarStatus(Request $request, Status_manutencao $status, Manutencao $ma, Usuario $usuario)
+    public function alterarStatus(Request $request, Status_manutencao $status, Manutencao $ma, Usuario $usuario, Bolsista $bolsista)
     {
+        $bol   = $bolsista::find($request->idb);
         $manut = $ma::find($request->id);
-        $sts = $status::find($request->status);
+        $sts   = $status::find($request->status);
+
         $manut->status()->associate($sts);
+
+        if (!$bol->manutencao->contains($manut)) {
+            $manut->bolsista()->attach($bol);
+        }
+        
         if ($manut->save()) {
             // aqui ficaria o local para enviar email para o usuario
-            
             Mail::to($manut->equipamento->usuario->email)
-            ->send(new EnviarEmailUsuario($manut->equipamento->usuario));
+            ->send(new EnviarEmailUsuario($manut->equipamento->usuario, $manut->bolsista, $manut));
 
 
             return redirect()
