@@ -30,6 +30,9 @@ class EnviarEmailUsuario extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.emailEquipamento')
+                    ->with([
+                    'user' => $this->user,
+                    ]);
     }
 }

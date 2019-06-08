@@ -7,6 +7,8 @@ use equipac\models\Equipamento;
 use equipac\models\Usuario;
 use equipac\models\Status_manutencao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use equipac\Mail\EnviarEmailUsuario;
 
 class ManutencaoController extends Controller
 {
@@ -39,15 +41,16 @@ class ManutencaoController extends Controller
         ->with('error', 'Falha ao inserir');
     }
 
-    public function alterarStatus(Request $request, Status_manutencao $status, Manutencao $ma)
+    public function alterarStatus(Request $request, Status_manutencao $status, Manutencao $ma, Usuario $usuario)
     {
         $manut = $ma::find($request->id);
         $sts = $status::find($request->status);
         $manut->status()->associate($sts);
         if ($manut->save()) {
-
             // aqui ficaria o local para enviar email para o usuario
-            // 
+            
+            Mail::to($manut->equipamento->usuario->email)
+            ->send(new EnviarEmailUsuario($manut->equipamento->usuario));
 
 
             return redirect()
