@@ -17,6 +17,7 @@ branches:
     - master
     - dev
     - iteracao3
+    - iteracao4
 
 services:
   - mysql
