@@ -9,7 +9,8 @@ use equipac\models\Bolsista;
 use equipac\models\Status_manutencao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use equipac\Mail\EnviarEmailUsuario;
+use equipac\Mail\EnviarEmailUsuarioEquipamento;
+use equipac\Mail\EnviarEmailUsuarioEquipamentoConcluido;
 
 class ManutencaoController extends Controller
 {
@@ -55,11 +56,8 @@ class ManutencaoController extends Controller
         }
         
         if ($manut->save()) {
-            // aqui ficaria o local para enviar email para o usuario
             Mail::to($manut->equipamento->usuario->email)
-            ->send(new EnviarEmailUsuario($manut->equipamento->usuario, $manut->bolsista, $manut));
-
-
+            ->send(new EnviarEmailUsuarioEquipamento($manut->equipamento->usuario, $manut->bolsista, $manut));
             return redirect()
             ->route('index-manutencao')
             ->with('success', 'Manutenção Cadastrada com sucesso!');
@@ -75,13 +73,22 @@ class ManutencaoController extends Controller
         return view('bolsista.solucao-manutencao', compact('manut'));
     }
 
-    public function solucaoManutencao(int $id, Request $request, Manutencao $manutencao, Status_manutencao $status)
+    public function solucaoManutencao(int $id, Request $request, Manutencao $manutencao, Status_manutencao $status, Usuario $usuario, Bolsista $bolsista)
     {
+        $bol   = $bolsista::find($request->idb);
+
         $manut = $manutencao::find($id);
         $manut['solucao'] = $request->get('solucao');
         $sts = $status::find(4);
         $manut->status()->associate($sts);
+
+        if (!$bol->manutencao->contains($manut)) {
+            $manut->bolsista()->attach($bol);
+        }
+        
         if ($manut->save()) {
+            Mail::to($manut->equipamento->usuario->email)
+            ->send(new EnviarEmailUsuarioEquipamentoConcluido($manut->equipamento->usuario, $manut->bolsista, $manut));
             return  redirect()->route('index-manutencao')->with('success', 'Atividade atualizadas com sucesso!');
         } else {
             return  redirect()->route('index-manutencao')->with('error', 'Atividades não foram atualizadas!');

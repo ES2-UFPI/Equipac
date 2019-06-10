@@ -10,7 +10,7 @@ use equipac\models\Usuario;
 use equipac\models\Bolsista;
 use equipac\models\Manutencao;
 
-class EnviarEmailUsuario extends Mailable
+class EnviarEmailUsuarioEquipamento extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
