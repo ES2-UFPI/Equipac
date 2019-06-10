@@ -24,7 +24,7 @@ services:
   - mysql
 
 before_install:
-  - mysql -u root --password="root" < scriptMYSQL/equipac_ci.sql  
+  - mysql -u root -p password="root" < scriptMYSQL/equipac_ci.sql  
 
 notifications:
  email: 
