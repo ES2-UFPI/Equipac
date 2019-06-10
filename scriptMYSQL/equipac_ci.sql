@@ -1,5 +1,8 @@
 -- MySQL Workbench Forward Engineering
 
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON *.* TO 'root'@'localhost';
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -62,7 +65,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 -- -----------------------------------------------------
 -- Table 'equipac_ci'.'status_chamado'
->>>>>>> origin/iteracao3
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS 'equipac_ci'.'status_chamado' ;
 
@@ -356,7 +358,6 @@ INSERT INTO 'equipac_ci'.'status_chamado' ('id', 'name') VALUES (1, 'Aberta');
 INSERT INTO 'equipac_ci'.'status_chamado' ('id', 'name') VALUES (2, 'Atribuida');
 INSERT INTO 'equipac_ci'.'status_chamado' ('id', 'name') VALUES (3, 'Em progresso');
 INSERT INTO 'equipac_ci'.'status_chamado' ('id', 'name') VALUES (4, 'Finalizada');
->>>>>>> origin/iteracao3
 
 CREATE TABLE IF NOT EXISTS `equipac_ci`.`chamado` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -398,4 +399,3 @@ INSERT INTO 'equipac_ci'.'status_manutencao' ('id', 'name') VALUES (3, 'Em progr
 INSERT INTO 'equipac_ci'.'status_manutencao' ('id', 'name') VALUES (4, 'Finalizada');
 
 COMMIT;
->>>>>>> origin/iteracao3

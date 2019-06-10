@@ -63,7 +63,7 @@ return [
 
         'testing' => [
             'driver' => 'mysql',
-            'host' => env('DB_TEST_HOST', '127.0.0.1'),
+            'host' => env('DB_TEST_HOST', 'localhost'),
             'database' => env('DB_TEST_DATABASE', 'equipac_ci'),
             'username' => env('DB_TEST_USERNAME', 'root'),
             'password' => env('DB_TEST_PASSWORD', 'root'),

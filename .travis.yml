@@ -22,7 +22,10 @@ branches:
     - travisMysql
 
 services:
-  - mysql 
+  - mysql
+
+before_install:
+  - mysql -u root --password="root" < scriptMYSQL/equipac_ci.sql  
 
 notifications:
  email: 
