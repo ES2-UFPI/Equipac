@@ -19,12 +19,10 @@ branches:
     - dev
     - iteracao3
     - iteracao4
+    - travisMysql
 
 services:
-  - mysql
-
-before_install:
-  - mysql -u root -p password="root" < scriptMYSQL/equipac_ci.sql  
+  - mysql 
 
 notifications:
  email: 
