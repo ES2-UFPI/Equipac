@@ -5,6 +5,7 @@ php:
 
 before_script:
   - cp .env.travis .env
+  - mysql -e 'create database equipac_ci;'
   - composer self-update
   - composer install --no-interaction
   - php artisan key:generate
@@ -21,6 +22,7 @@ branches:
 
 services:
   - mysql
+
 before_install:
   - mysql -u root --password="root" < scriptMYSQL/equipac_ci.sql  
 
