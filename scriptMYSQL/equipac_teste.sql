@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`admin` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -53,7 +52,6 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`bolsista` (
   `nivel` INT(11) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
@@ -74,7 +72,6 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`usuario` (
   `nivel` INT(11) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 66
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -94,7 +91,6 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`problema` (
     FOREIGN KEY (`usuario_id`)
     REFERENCES `testing_db`.`usuario` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 67
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -132,7 +128,6 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`chamado` (
     FOREIGN KEY (`status_chamado_id`)
     REFERENCES `testing_db`.`status_chamado` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -171,7 +166,6 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`equipamento` (
     FOREIGN KEY (`usuario_id`)
     REFERENCES `testing_db`.`usuario` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 29
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -208,7 +202,6 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`manutencao` (
     FOREIGN KEY (`status_id`)
     REFERENCES `testing_db`.`status_manutencao` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 42
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -248,7 +241,6 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`supervisor` (
   `nivel` INT(11) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
