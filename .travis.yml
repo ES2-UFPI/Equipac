@@ -36,7 +36,7 @@ sudo: required
 
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS testing_db;'  
-  - mysql -u root --default-character-set=utf8 testing_db < scriptMYSQL/equipac_teste.sql
+  - mysql -u root testing_db < scriptMYSQL/equipac_teste.sql
 
 notifications:
  email: 
