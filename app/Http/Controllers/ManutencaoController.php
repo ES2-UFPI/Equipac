@@ -5,8 +5,12 @@ namespace equipac\Http\Controllers;
 use equipac\models\Manutencao;
 use equipac\models\Equipamento;
 use equipac\models\Usuario;
+use equipac\models\Bolsista;
 use equipac\models\Status_manutencao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use equipac\Mail\EnviarEmailUsuarioEquipamento;
+use equipac\Mail\EnviarEmailUsuarioEquipamentoConcluido;
 
 class ManutencaoController extends Controller
 {
@@ -39,17 +43,21 @@ class ManutencaoController extends Controller
         ->with('error', 'Falha ao inserir');
     }
 
-    public function alterarStatus(Request $request, Status_manutencao $status, Manutencao $ma)
+    public function alterarStatus(Request $request, Status_manutencao $status, Manutencao $ma, Usuario $usuario, Bolsista $bolsista)
     {
+        $bol   = $bolsista::find($request->idb);
         $manut = $ma::find($request->id);
-        $sts = $status::find($request->status);
+        $sts   = $status::find($request->status);
+
         $manut->status()->associate($sts);
+
+        if (!$bol->manutencao->contains($manut)) {
+            $manut->bolsista()->attach($bol);
+        }
+        
         if ($manut->save()) {
-
-            // aqui ficaria o local para enviar email para o usuario
-            // 
-
-
+            Mail::to($manut->equipamento->usuario->email)
+            ->send(new EnviarEmailUsuarioEquipamento($manut->equipamento->usuario, $manut->bolsista, $manut));
             return redirect()
             ->route('index-manutencao')
             ->with('success', 'Manutenção Cadastrada com sucesso!');
@@ -65,13 +73,22 @@ class ManutencaoController extends Controller
         return view('bolsista.solucao-manutencao', compact('manut'));
     }
 
-    public function solucaoManutencao(int $id, Request $request, Manutencao $manutencao, Status_manutencao $status)
+    public function solucaoManutencao(int $id, Request $request, Manutencao $manutencao, Status_manutencao $status, Usuario $usuario, Bolsista $bolsista)
     {
+        $bol   = $bolsista::find($request->idb);
+
         $manut = $manutencao::find($id);
         $manut['solucao'] = $request->get('solucao');
         $sts = $status::find(4);
         $manut->status()->associate($sts);
+
+        if (!$bol->manutencao->contains($manut)) {
+            $manut->bolsista()->attach($bol);
+        }
+        
         if ($manut->save()) {
+            Mail::to($manut->equipamento->usuario->email)
+            ->send(new EnviarEmailUsuarioEquipamentoConcluido($manut->equipamento->usuario, $manut->bolsista, $manut));
             return  redirect()->route('index-manutencao')->with('success', 'Atividade atualizadas com sucesso!');
         } else {
             return  redirect()->route('index-manutencao')->with('error', 'Atividades não foram atualizadas!');
