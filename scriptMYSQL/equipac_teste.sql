@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`admin` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`bolsista` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 25
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_unicode_ci;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -78,8 +78,8 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`usuario` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 66
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -98,8 +98,8 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`problema` (
     REFERENCES `testing_db`.`usuario` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 67
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -155,8 +155,8 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`bolsista_has_chamado` (
     FOREIGN KEY (`chamado_id`)
     REFERENCES `testing_db`.`chamado` (`id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_unicode_ci;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -175,8 +175,8 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`equipamento` (
     REFERENCES `testing_db`.`usuario` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 29
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -231,8 +231,8 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`bolsista_has_manutencao` (
     FOREIGN KEY (`manutencao_id`)
     REFERENCES `testing_db`.`manutencao` (`id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_unicode_ci;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -252,8 +252,8 @@ CREATE TABLE IF NOT EXISTS `testing_db`.`supervisor` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 19
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
