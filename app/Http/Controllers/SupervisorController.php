@@ -4,9 +4,11 @@ namespace equipac\Http\Controllers;
 
 use equipac\models\Supervisor;
 use equipac\models\Bolsista;
+use equipac\models\Manutencao;
 use Illuminate\Http\Request;
 use Auth;
 use Validator;
+use PDF;
 
 class SupervisorController extends Controller
 {
@@ -194,5 +196,21 @@ class SupervisorController extends Controller
         } else {
             return  redirect()->route('listar-bolsista-index')->with('error', 'Informações do Bolsista não foram atualizadas!');
         }
+    }
+
+    public function relatorioManutencaoIndex(int $id, Bolsista $bolsista)
+    {
+        $bol = $bolsista::find($id);
+        // dd($manut);
+        return view('supervisor.relatorio-manutencao', compact('bol'));
+    }
+
+    public function gerarPdfManutencao(Request $request, Bolsista $bolsista)
+    {
+        $bol = $bolsista::find($request->get('id'));
+
+        $manut = $bol->manutencao;
+
+        return PDF::loadView('supervisor.tamplate-pdf', compact('manut'))->download('relatorio.pdf');
     }
 }
