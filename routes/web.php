@@ -53,6 +53,8 @@ Route::prefix('supervisor')->group(function () {
     Route::post('editar-bolsista/{id}', 'SupervisorController@updateBolsista')->name('update-bolsista');
     Route::get('relatorio-manutencao/{id}', 'SupervisorController@relatorioManutencaoIndex')->name('relatorio-manutencao-index');
     Route::post('relatorio-manutencao/{id}', 'SupervisorController@gerarPdfManutencao')->name('gerar-pdf-manutencao');
+    Route::get('relatorio-chamado/{id}', 'SupervisorController@relatorioChamadoIndex')->name('relatorio-chamado-index');
+    Route::post('relatorio-chamado/{id}', 'SupervisorController@gerarPdfChamado')->name('gerar-pdf-chamado');
 });
 
 Route::prefix('admin')->group(function () {

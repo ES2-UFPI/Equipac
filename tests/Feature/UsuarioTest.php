@@ -55,7 +55,7 @@ class UsuarioTest extends TestCase
         ]);
         $this->assertGuest();
     }
-
+    
     /**
      * A logged in Usuario can be logged out.
      *

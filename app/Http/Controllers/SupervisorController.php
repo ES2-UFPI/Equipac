@@ -213,4 +213,20 @@ class SupervisorController extends Controller
 
         return PDF::loadView('supervisor.tamplate-pdf', compact('manut'))->download('relatorio.pdf');
     }
+
+    public function relatorioChamadoIndex(int $id, Bolsista $bolsista)
+    {
+        $bol = $bolsista::find($id);
+        // dd($manut);
+        return view('supervisor.relatorio-chamado', compact('bol'));
+    }
+
+    public function gerarPdfChamado(Request $request, Bolsista $bolsista)
+    {
+        $bol = $bolsista::find($request->get('id'));
+
+        $cham = $bol->chamado;
+
+        return PDF::loadView('supervisor.tamplate-chamado-pdf', compact('cham'))->download('relatorio Chamado.pdf');
+    }
 }
