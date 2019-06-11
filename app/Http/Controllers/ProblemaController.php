@@ -7,6 +7,9 @@ use equipac\models\Chamados;
 use equipac\models\Usuario;
 use equipac\models\Status_chamado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use equipac\Mail\EnviarEmailUsuarioProblema;
+use equipac\Mail\EnviarEmailUsuarioProblemaConcluido;
 
 class ProblemaController extends Controller
 {
