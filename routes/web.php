@@ -51,6 +51,8 @@ Route::prefix('supervisor')->group(function () {
     route::Post('listar-bolsista', 'BolsistaController@excluirBolsista')->name('excluir-bolsista');
     Route::get('editar-bolsista/{id}', 'SupervisorController@indexEditarBolsistaInfo')->name('editar-bolsista');
     Route::post('editar-bolsista/{id}', 'SupervisorController@updateBolsista')->name('update-bolsista');
+    Route::get('relatorio-manutencao/{id}', 'SupervisorController@relatorioManutencaoIndex')->name('relatorio-manutencao-index');
+    Route::post('relatorio-manutencao/{id}', 'SupervisorController@gerarPdfManutencao')->name('gerar-pdf-manutencao');
 });
 
 Route::prefix('admin')->group(function () {

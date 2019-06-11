@@ -40,37 +40,21 @@
         <table class="table table-hover">
           <tr>
             <th>Id</th>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Opções</th>      
+            <th>Solucao</th>     
           </tr>
-          @foreach($bol as $index => $e )
+          @foreach($bol->manutencao as $index => $e )
           <tr>
             <th>{{ $e['id']}}</th>
-            <th>{{ $e['nome']}}</th>
-            <th>{{ $e['email']}}</th>
-            <th>
-              <form method="post" action="{{route('excluir-bolsista')}}">
-                @csrf
-                <input type="hidden" name="id" value="{{$e['id']}}">
-                <button type="imput" class="btn btn-danger">Excluir</button></th>
-              </form>
-            </th>
-            <th>
-              <a href="{{route('editar-bolsista', $e['id'])}}">
-                <button type="imput" class="btn btn-primary">Editar</button>
-              </a>
-            </th>
-            <th>
-              <a href="{{route('relatorio-manutencao-index', $e['id'])}}">
-                <button type="imput" class="btn btn-primary">Relatório</button>
-              </a>
-            </th>
-          </th>
+            <th>{{ $e['solucao']}}</th>
         </tr>
         @endforeach
       </table>
     </div>
+    <form method="post" action="{{route('gerar-pdf-manutencao', $bol->id)}}">
+        @csrf
+        <input type="hidden" name="id" value="{{$bol->id}}">
+        <button type="imput" class="btn btn-danger">Gerar PDF</button></th>
+      </form>
   </div>
 </div>
 </div>
