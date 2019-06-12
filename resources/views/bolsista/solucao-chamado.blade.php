@@ -27,6 +27,7 @@
         <div class="form-group">
           <label>Informe a solucão</label>
           <textarea name="solucao" id="solucao" class="form-control" rows="3" placeholder="Informe..."></textarea>
+          <input type="hidden" name="idb" value="{{ auth()->user()->id }}">
         </div>
         <div class="card-footer">
           <button type="submit" class="btn btn-primary">Concluir chamado</button>

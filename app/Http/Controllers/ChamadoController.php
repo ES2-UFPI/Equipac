@@ -5,7 +5,12 @@ namespace equipac\Http\Controllers;
 use Illuminate\Http\Request;
 use equipac\models\problema;
 use equipac\models\Chamados;
+use equipac\models\Bolsista;
+use equipac\models\Usuario;
 use equipac\models\Status_chamado;
+use Illuminate\Support\Facades\Mail;
+use equipac\Mail\EnviarEmailUsuarioProblema;
+use equipac\Mail\EnviarEmailUsuarioProblemaConcluido;
 
 class ChamadoController extends Controller
 {
@@ -108,12 +113,21 @@ class ChamadoController extends Controller
         //
     }
 
-    public function alterarStatus(Request $request, Status_chamado $status, Chamados $cham)
+    public function alterarStatus(Request $request, Status_chamado $status, Chamados $cham, Bolsista $bolsista)
     {
+        $bol     = $bolsista::find($request->idb);
         $chamado = $cham::find($request->id);
-        $sts = $status::find($request->status);
+        $sts     = $status::find($request->status);
+
         $chamado->status()->associate($sts);
+
+        if ($bol->chamado->contains($chamado) == false) {
+            $chamado->bolsista()->attach($bol);
+        }
+
         if ($chamado->save()) {
+             Mail::to($chamado->problema->usuario->email)
+            ->send(new EnviarEmailUsuarioProblema($chamado->problema->usuario, $chamado->bolsista, $chamado));
             return redirect()
             ->route('index-chamado')
             ->with('success', 'Chamado alterado com sucesso!');
@@ -129,13 +143,22 @@ class ChamadoController extends Controller
         return view('bolsista.solucao-chamado', compact('cham'));
     }
 
-    public function solucaoChamado(int $id, Request $request, Chamados $chamado, Status_chamado $status)
+    public function solucaoChamado(int $id, Request $request, Chamados $chamado, Status_chamado $status, Usuario $usuario, Bolsista $bolsista)
     {
+        $bol   = $bolsista::find($request->idb);
+
         $cham = $chamado::find($id);
         $cham['solucao'] = $request->get('solucao');
         $sts = $status::find(4);
         $cham->status()->associate($sts);
+
+        if (!$bol->chamado->contains($cham)) {
+            $cham->bolsista()->attach($bol);
+        }
+
         if ($cham->save()) {
+            Mail::to($cham->problema->usuario->email)
+            ->send(new EnviarEmailUsuarioProblemaConcluido($cham->problema->usuario, $cham->bolsista, $cham));
             return  redirect()->route('index-chamado')->with('success', 'Solucão cadastrada com sucesso!');
         } else {
             return  redirect()->route('index-chamado')->with('error', 'Solucão não foi cadastrada!');
