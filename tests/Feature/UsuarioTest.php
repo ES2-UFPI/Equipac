@@ -9,7 +9,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UsuarioTest extends TestCase
 {
-
     public function testRegister()
     {
         $response = $this->get('/usuario/register');
@@ -55,7 +54,7 @@ class UsuarioTest extends TestCase
         ]);
         $this->assertGuest();
     }
-
+    
     /**
      * A logged in Usuario can be logged out.
      *

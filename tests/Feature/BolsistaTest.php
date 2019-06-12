@@ -6,27 +6,24 @@ use equipac\Models\Bolsista;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class BolsistaTest extends TestCase
 {
-    public function testRegister()
-    {
-        $response = $this->get('/bolsista/register');
-        $response->assertStatus(200);
-    }
+    use WithoutMiddleware;
 
     public function testLogin()
     {
 
-        $Bolsista = factory(Bolsista::class)->create();
+        $bolsista = factory(Bolsista::class)->create();
 
         $response = $this->post('/bolsista/login', [
-            'email' => $Bolsista->email,
+            'email' => $bolsista->email,
             'password' => 'root1234'
         ]);
 
         $response->assertStatus(302);
-        $this->assertAuthenticatedAs($Bolsista, 'bolsista');
+        $this->assertAuthenticatedAs($bolsista, 'bolsista');
     }
 
     /**
@@ -36,9 +33,9 @@ class BolsistaTest extends TestCase
      */
     public function testPasswordInvalido()
     {
-        $Bolsista = factory(Bolsista::class)->create();
+        $bolsista = factory(Bolsista::class)->create();
         $response = $this->post('/bolsista/login', [
-            'email' => $Bolsista->email,
+            'email' => $bolsista->email,
             'password' => 'xxx'
         ]);
         $response->assertSessionHasErrors('password');
@@ -47,9 +44,9 @@ class BolsistaTest extends TestCase
 
     public function testLoginInvalido()
     {
-        $Bolsista = factory(Bolsista::class)->create();
+        $bolsista = factory(Bolsista::class)->create();
         $response = $this->post('/bolsista/login', [
-            'email' => $Bolsista->email,
+            'email' => $bolsista->email,
             'password' => 'invalid'
         ]);
         $this->assertGuest();
@@ -62,8 +59,8 @@ class BolsistaTest extends TestCase
      */
     public function testLogout()
     {
-        $Bolsista = factory(Bolsista::class)->create();
-        $response = $this->actingAs($Bolsista)->post('/logout');
+        $bolsista = factory(Bolsista::class)->create();
+        $response = $this->actingAs($bolsista)->post('/logout');
         $response->assertStatus(302);
         $this->assertGuest();
     }
