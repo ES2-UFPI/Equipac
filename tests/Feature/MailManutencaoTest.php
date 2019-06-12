@@ -15,11 +15,7 @@ use Faker\Factory as Faker;
 class MailManutencaoTest extends TestCase
 {
     use WithoutMiddleware;
-   /**
-     * A logged in Usuario can be logged out.
-     *
-     * @return void
-     */
+    
     public function testSendMail()
     {
         $faker = Faker::create();
