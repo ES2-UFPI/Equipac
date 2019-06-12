@@ -14,18 +14,18 @@ use Faker\Factory as Faker;
 
 class RelatoriosTest extends TestCase
 {
-    public function testRelatorioManutencao()
-    {
-        $faker = Faker::create();
-        $supervisor = factory(Supervisor::class)->create();
-        $bolsista = factory(Bolsista::class)->create();
+    // public function testRelatorioManutencao()
+    // {
+    //     $faker = Faker::create();
+    //     $supervisor = factory(Supervisor::class)->create();
+    //     $bolsista = factory(Bolsista::class)->create();
 
-        $response = $this->actingAs($supervisor, 'supervisor')->post('/supervisor/relatorio-manutencao/{{$bolsista->id}}', [
-            'id' => $bolsista->id
-        ]);
+    //     $response = $this->actingAs($supervisor, 'supervisor')->post('/supervisor/relatorio-manutencao/{{$bolsista->id}}', [
+    //         'id' => $bolsista->id
+    //     ]);
 
-        $response->assertStatus(200);
-    }
+    //     $response->assertStatus(200);
+    // }
 
     public function testRelatorioChamado()
     {
