@@ -35,6 +35,7 @@
     31 => 'equipac\\Providers\\AuthServiceProvider',
     32 => 'equipac\\Providers\\EventServiceProvider',
     33 => 'equipac\\Providers\\RouteServiceProvider',
+    34 => 'Barryvdh\\DomPDF\\ServiceProvider',
   ),
   'eager' => 
   array (
@@ -58,6 +59,7 @@
     17 => 'equipac\\Providers\\AuthServiceProvider',
     18 => 'equipac\\Providers\\EventServiceProvider',
     19 => 'equipac\\Providers\\RouteServiceProvider',
+    20 => 'Barryvdh\\DomPDF\\ServiceProvider',
   ),
   'deferred' => 
   array (
