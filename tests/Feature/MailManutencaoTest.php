@@ -12,7 +12,7 @@ use equipac\Models\Equipamento;
 use equipac\Models\Manutencao;
 use Faker\Factory as Faker;
 
-class MailTest extends TestCase
+class MailManutencaoTest extends TestCase
 {
     use WithoutMiddleware;
    /**
@@ -46,30 +46,6 @@ class MailTest extends TestCase
 
         $response2 = $this->actingAs($bolsista, 'bolsista')->post('/bolsista/manutencao', [
             'id' => $manut->last()->id,
-            'status' => 2,
-            'idb' => $bolsista->id
-        ]);
-
-        $response2->assertStatus(302);
-    }
-
-    public function testSendMailChamado()
-    {
-        $faker = Faker::create();
-        $usuario = factory(Usuario::class)->create();
-
-        $response = $this->actingAs($usuario, 'usuario')->post('/usuario/problemas', [
-            'descricao' => $faker->text(150)
-        ]);
-
-        $response->assertStatus(302);
-        $pro = $usuario->problema;
-
-        $bolsista = factory(Bolsista::class)->create();
-        $cha = $pro->last()->chamado;
-        
-        $response2 = $this->actingAs($bolsista, 'bolsista')->post('/bolsista/chamados', [
-            'id' => $cha->id,
             'status' => 2,
             'idb' => $bolsista->id
         ]);
