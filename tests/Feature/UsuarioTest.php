@@ -9,7 +9,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UsuarioTest extends TestCase
 {
-
     public function testRegister()
     {
         $response = $this->get('/usuario/register');
