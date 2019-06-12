@@ -23,7 +23,7 @@ class MailTest extends TestCase
     public function testSendMail()
     {
         $faker = Faker::create();
-        $usuario = factory(Usuario::class)->create(['email' => "potydev@gmail.com"]);
+        $usuario = factory(Usuario::class)->create();
 
         $response = $this->actingAs($usuario, 'usuario')->post('/usuario/equipamento', [
             'patrimonio' => $faker->randomNumber(6),
@@ -56,7 +56,7 @@ class MailTest extends TestCase
     public function testSendMailChamado()
     {
         $faker = Faker::create();
-        $usuario = factory(Usuario::class)->create(['email' => "joaovictortanaareaooo1@gmail.com"]);
+        $usuario = factory(Usuario::class)->create();
 
         $response = $this->actingAs($usuario, 'usuario')->post('/usuario/problemas', [
             'descricao' => $faker->text(150)
