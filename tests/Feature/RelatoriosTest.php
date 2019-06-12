@@ -26,4 +26,17 @@ class RelatoriosTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testRelatorioChamado()
+    {
+        $faker = Faker::create();
+        $supervisor = factory(Supervisor::class)->create();
+        $bolsista = factory(Bolsista::class)->create();
+
+        $response = $this->actingAs($supervisor, 'supervisor')->post('/supervisor/relatorio-chamado/{{$bolsista->id}}', [
+            'id' => $bolsista->id
+        ]);
+
+        $response->assertStatus(200);
+    }
 }
