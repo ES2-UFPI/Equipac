@@ -63,7 +63,6 @@ class MailTest extends TestCase
         ]);
 
         $response->assertStatus(302);
-
         $pro = $usuario->problema;
 
         $bolsista = factory(Bolsista::class)->create();
