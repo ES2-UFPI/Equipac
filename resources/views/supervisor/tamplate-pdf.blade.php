@@ -26,7 +26,7 @@
             <th>Id</th>
             <th>Solucao</th>     
           </tr>
-          @foreach($manut as $index => $e )
+          @foreach($cham as $index => $e )
           <tr>
             <th>{{ $e['id']}}</th>
             <th>{{ $e['solucao']}}</th>
