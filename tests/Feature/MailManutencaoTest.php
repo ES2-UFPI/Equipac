@@ -15,7 +15,7 @@ use Faker\Factory as Faker;
 class MailManutencaoTest extends TestCase
 {
     use WithoutMiddleware;
-    
+
     public function testSendMail()
     {
         $faker = Faker::create();
@@ -35,7 +35,6 @@ class MailManutencaoTest extends TestCase
         ]);
 
         $response1->assertStatus(302);
-
 
         $bolsista = factory(Bolsista::class)->create();
         $manut = $eqp->last()->manutencao;
