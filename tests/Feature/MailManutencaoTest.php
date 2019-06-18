@@ -16,7 +16,7 @@ class MailManutencaoTest extends TestCase
 {
     use WithoutMiddleware;
 
-    public function testSendMail()
+    public function testSendMailManutencao()
     {
         $faker = Faker::create();
         $usuario = factory(Usuario::class)->create();
