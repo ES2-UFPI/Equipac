@@ -40,6 +40,7 @@
             <th>Patrimonio</th>
             <th>Modelo</th>
             <th>Status</th>
+            <th>Solucao</th>
             <th>Solicitar Manutenção</th>
             <th>Excluir equipamento</th>          
           </tr>
@@ -51,8 +52,15 @@
             <!-- exists é para relacionamentos n to n -->
             <?php if(!$e->manutencao->isEmpty()): ?>
             <th><?php echo e($e->manutencao->last()->status->name); ?></th>
+             <th>
+            <?php $__currentLoopData = $e->manutencao; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ma): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php echo e($ma->solucao); ?>
+
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </th>
             <?php else: ?>
             <th>Sem Sol. Man</th>
+            <th>Nenhuma Solicitação</th>
             <?php endif; ?>
             <?php if(!$e->manutencao->isEmpty() && $e->manutencao->last()->status->id != 4): ?>
             <th>Solicitação feita</th>
@@ -67,7 +75,7 @@
              </form>
            </th>
            <th>
-            <form method="post" action="<?php echo e(route('equipamento.destroy', ['eqp' => $e])); ?>">
+            <form method="Delete" action="<?php echo e(route('equipamento.destroy', ['eqp' => $e])); ?>">
               <?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?>
              <input type="hidden" name="id" value="<?php echo e($e['id']); ?>">
              <button type="imput" class="btn btn-primary">Excluir</button></th>
@@ -85,4 +93,5 @@
 <!-- /.row -->
 
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\DESENVOLVIMENTO\COMPUTACAO\Equipac\resources\views/usuarios/lista-equipamento.blade.php ENDPATH**/ ?>
