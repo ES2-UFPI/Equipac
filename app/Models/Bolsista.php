@@ -45,6 +45,6 @@ class Bolsista extends Authenticatable
 
     public function chamado()
     {
-        return $this->belongsToMany('equipac\models\Chamados', 'chamado_has_bolsista', 'chamado_id', 'bolsista_id');
+        return $this->belongsToMany('equipac\models\Chamados', 'bolsista_has_chamado', 'bolsista_id', 'chamado_id');
     }
 }

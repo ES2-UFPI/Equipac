@@ -209,6 +209,7 @@ class AdminController extends Controller
         return view('admin.editar-supervisor', compact('bol'));
     }
 
+
     public function updateSupervisor(int $id, Request $request, Supervisor $supervisor)
     {
         $bol = $supervisor::find($id);
@@ -238,5 +239,4 @@ class AdminController extends Controller
             return  redirect()->route('listar-usuario')->with('error', 'Informações do Supervisor não foram atualizadas!');
         }
     }
-
 }
