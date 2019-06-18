@@ -49,5 +49,4 @@ class Usuario extends Authenticatable
     {
         return $this->hasMany('equipac\models\Problema', 'usuario_id', 'id');
     }
-
 }

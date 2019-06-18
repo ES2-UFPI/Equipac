@@ -29,5 +29,4 @@ class Chamados extends Model
     {
         return $this->belongsTo('equipac\models\Problema', 'problema_id');
     }
-
 }

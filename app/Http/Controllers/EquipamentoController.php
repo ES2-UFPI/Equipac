@@ -109,7 +109,6 @@ class EquipamentoController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
