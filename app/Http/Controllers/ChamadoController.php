@@ -123,6 +123,7 @@ class ChamadoController extends Controller
 
         if ($bol->chamado->contains($chamado) == false) {
             $chamado->bolsista()->attach($bol);
+            $bol->chamado()->attach($chamado);
         }
 
         if ($chamado->save()) {
