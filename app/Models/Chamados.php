@@ -14,7 +14,7 @@ class Chamados extends Model
     public $timestamps = false;
     protected $fillable = ['dataAtribuida'];
 
-    
+
     public function status()
     {
         return $this->belongsTo('equipac\models\Status_chamado', 'status_chamado_id');
@@ -22,7 +22,7 @@ class Chamados extends Model
 
     public function bolsista()
     {
-        return $this->belongsToMany('equipac\models\Bolsista', 'chamado_has_bolsista', 'chamado_id', 'bolsista_id');
+        return $this->belongsToMany('equipac\models\Bolsista', 'bolsista_has_chamado', 'chamado_id', 'bolsista_id');
     }
 
     public function problema()

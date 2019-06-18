@@ -50,10 +50,12 @@
               @if($ma['status_chamado_id']=='1')
               <input type="hidden" name="id" value="{{$ma['id']}}">
               <input type="hidden" name="status" value="2">
+              <input type="hidden" name="idb" value="{{ auth()->user()->id }}">
               <button type="imput" class="btn btn-primary">Atribuir</button></th>
               @elseif($ma['status_chamado_id']=='2')
               <input type="hidden" name="id" value="{{$ma['id']}}">
               <input type="hidden" name="status" value="3">
+              <input type="hidden" name="idb" value="{{ auth()->user()->id }}">
               <button type="imput" class="btn btn-primary">Em andamento</button></th>
               @endif
             </form>

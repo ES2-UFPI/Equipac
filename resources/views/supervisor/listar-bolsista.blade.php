@@ -34,7 +34,7 @@
 </div>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col">
       <div class="card">
        <div class="card-body table-responsive p-0">
         <table class="table table-hover">
@@ -59,6 +59,16 @@
             <th>
               <a href="{{route('editar-bolsista', $e['id'])}}">
                 <button type="imput" class="btn btn-primary">Editar</button>
+              </a>
+            </th>
+            <th>
+              <a href="{{route('relatorio-manutencao-index', $e['id'])}}">
+                <button type="imput" class="btn btn-primary">Relatório Manutencao</button>
+              </a>
+            </th>
+            <th>
+              <a href="{{route('relatorio-chamado-index', $e['id'])}}">
+                <button type="imput" class="btn btn-primary">Relatório Chamado</button>
               </a>
             </th>
           </th>

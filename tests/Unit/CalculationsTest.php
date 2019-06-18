@@ -16,8 +16,8 @@ class CalculationsTest extends TestCase
     public function testAdd()
     {
         $this->assertEquals(
-          4,
-          2 + 2
+            4,
+            2 + 2
         );
     }
 
@@ -29,8 +29,8 @@ class CalculationsTest extends TestCase
     public function testMultiply()
     {
         $this->assertEquals(
-          9,
-          3 * 3
+            9,
+            3 * 3
         );
     }
 }

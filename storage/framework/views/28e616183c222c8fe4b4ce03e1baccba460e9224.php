@@ -26,7 +26,8 @@
             <th>Id</th>
             <th>Descrição</th>
             <th>Data</th>
-            <th>Solicitar Chamado</th>
+            <th>Status Chamado</th>
+            <th>Solução</th>
             <th>Excluir problema</th>
 
           </tr>
@@ -35,24 +36,19 @@
             <th><?php echo e($p['id']); ?></th>
             <th><?php echo e($p['descricao']); ?></th>
             <th><?php echo e($p['criacao']); ?></th>
-            <th><form method="post" action="<?php echo e(route('login-usuario')); ?>">
-                <?php echo csrf_field(); ?>
-
-                <input type="hidden" name="id" value="<?php echo e($p['id']); ?>">
-                <button type="imput" class="btn btn-primary">Sol. Chamado</button></th>
-              </form>
-            </th>
-            <th><form method="post" action="<?php echo e(route('login-usuario')); ?>">
+            <th><?php echo e($p->chamado->status->name); ?></th>
+            <th><?php echo e($p->chamado->solucao); ?></th>
+            <?php if($p->chamado->status->id == 1): ?>
+            <th><form method="post" action="<?php echo e(route('excluir-problema')); ?>">
                 <?php echo csrf_field(); ?>
 
                 <input type="hidden" name="id" value="<?php echo e($p['id']); ?>">
                 <button type="imput" class="btn btn-primary">Excluir</button></th>
-
-        
-
               </form>
             </th>
-          
+            <?php else: ?>
+            <th>Não pode excluir</th>
+            <?php endif; ?>
           </tr>
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </table>
