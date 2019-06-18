@@ -19,7 +19,7 @@ branches:
     - dev
     - iteracao3
     - iteracao4
-    - iteracaoX
+    - IteracaoX
 
 services:
   - mysql
